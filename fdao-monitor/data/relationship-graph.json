@@ -1,0 +1,214 @@
+{
+  "updatedAt": "2026-08-30T09:06:48.889Z",
+  "coverage": 1,
+  "backfillDone": true,
+  "relationshipStatus": "referral_not_exposed_by_stake_contract",
+  "sources": {
+    "chain": "BNB Smart Chain transaction input and receipts",
+    "frontend": "fdao.io exposes /api/user/bind-code, /api/user/invite-records and /api/user/rank/:tokenId behind wallet login",
+    "contract": "The public staking ABI contains stake, unstake, price and reward functions but no referral getter."
+  },
+  "evidenceSummary": {
+    "totalFirstStakeWallets": 3106,
+    "sampledFirstStakeTransactions": 3106,
+    "calldataPatterns": [
+      {
+        "selector": "0x9cd441da",
+        "inputBytes": 68,
+        "argumentWords": 2,
+        "count": 1759,
+        "addressFieldHits": 0
+      },
+      {
+        "selector": "0xc38bde14",
+        "inputBytes": 100,
+        "argumentWords": 3,
+        "count": 1315,
+        "addressFieldHits": 0
+      },
+      {
+        "selector": "0xd0b4d220",
+        "inputBytes": 68,
+        "argumentWords": 2,
+        "count": 13,
+        "addressFieldHits": 0
+      },
+      {
+        "selector": "0x3c2621e7",
+        "inputBytes": 100,
+        "argumentWords": 3,
+        "count": 13,
+        "addressFieldHits": 0
+      },
+      {
+        "selector": "0xa694fc3a",
+        "inputBytes": 36,
+        "argumentWords": 1,
+        "count": 2,
+        "addressFieldHits": 0
+      },
+      {
+        "selector": "0x4b8db9ff",
+        "inputBytes": 196,
+        "argumentWords": 6,
+        "count": 2,
+        "addressFieldHits": 0
+      },
+      {
+        "selector": "0x8aa3d542",
+        "inputBytes": 68,
+        "argumentWords": 2,
+        "count": 1,
+        "addressFieldHits": 0
+      },
+      {
+        "selector": "0xe59e39d3",
+        "inputBytes": 68,
+        "argumentWords": 2,
+        "count": 1,
+        "addressFieldHits": 0
+      }
+    ],
+    "gradeAConfirmedEdges": 0,
+    "gradeBRewardEdges": 0,
+    "gradeCBehaviorClusters": 4,
+    "walletsInBehaviorClusters": 14,
+    "fixedReceiptRecipients": [
+      "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
+      "0x3690803f317915a9b68424f3b245102e2af0c51a",
+      "0xa18ac44542e4c60c50fa6994216959d7a3216fd4",
+      "0x4f49ad237a81ad403a88f34a12a8d1d53c2d7d89",
+      "0x000000000000000000000000000000000000dead",
+      "0x98f0421fcb5129b352cc35c1ed15ae9081deb700",
+      "0x0ed943ce24baebf257488771759f9bf482c39706",
+      "0xf40bbdb6dbd48ce693bb9c4b18f9e495554747b9"
+    ]
+  },
+  "edges": [],
+  "behaviorClusters": [
+    {
+      "id": "amount:5959183:1054.29",
+      "type": "same_amount_window",
+      "detail": "5分钟内相同 META 数量 1054.29",
+      "walletCount": 4,
+      "firstTs": 1787754960,
+      "lastTs": 1787755188,
+      "stakeMeta": 4217.165343706837,
+      "wallets": [
+        "0x344517053b61975fc62a97b99fdff78064aa7d63",
+        "0xf7e3d36c64f55db640e9c526d30101e8e56eef8f",
+        "0x2ed4c70cf345b16b12b373d526c033a690a707c5",
+        "0x0498872015266be24db3c1d1678da1fd42038548"
+      ]
+    },
+    {
+      "id": "amount:5952276:299.41",
+      "type": "same_amount_window",
+      "detail": "5分钟内相同 META 数量 299.41",
+      "walletCount": 4,
+      "firstTs": 1785682830,
+      "lastTs": 1785683024,
+      "stakeMeta": 1197.6264008658163,
+      "wallets": [
+        "0x760c7d7c0b2bff4a6646ad8be2a62b301b9e9c90",
+        "0xe8392b1500a7bcd3cc558f1dc0215ff3d3c2bbff",
+        "0xad9bfef6bbb83c5b5285b428584ccd1d925e1143",
+        "0x020f7b79bd2e1c734f4af2bef72f7d5f6e231993"
+      ]
+    },
+    {
+      "id": "amount:5957837:2000",
+      "type": "same_amount_window",
+      "detail": "5分钟内相同 META 数量 2000",
+      "walletCount": 3,
+      "firstTs": 1787351303,
+      "lastTs": 1787351381,
+      "stakeMeta": 6000,
+      "wallets": [
+        "0x223921037d69b683bb7e0f33c5579713664e5573",
+        "0xf6f170cb5be791d979c130c0ed5f8bf87a42ecb4",
+        "0x9ff68668b2863487bcd3634c89a266326bc3e74d"
+      ]
+    },
+    {
+      "id": "amount:5955907:1057.73",
+      "type": "same_amount_window",
+      "detail": "5分钟内相同 META 数量 1057.73",
+      "walletCount": 3,
+      "firstTs": 1786772176,
+      "lastTs": 1786772302,
+      "stakeMeta": 3173.1982050931806,
+      "wallets": [
+        "0x0da1e677ca1f14b87e2e61944f4cda602a0567ca",
+        "0xec9b687c165af044d045debe3c92250714988e29",
+        "0x84929de7a503ca923f324843107d3769a2f392c8"
+      ]
+    }
+  ],
+  "levelDistribution": {
+    "available": false,
+    "reason": "V1–V9 requires the official parent-child tree, team performance and two-leg structure. These are not exposed by the staking calldata/events inspected so far.",
+    "selfThresholdsOnly": [
+      {
+        "level": "V1",
+        "selfUsd": 2000,
+        "walletsMeetingSelfThreshold": 620
+      },
+      {
+        "level": "V2",
+        "selfUsd": 4000,
+        "walletsMeetingSelfThreshold": 390
+      },
+      {
+        "level": "V3",
+        "selfUsd": 8000,
+        "walletsMeetingSelfThreshold": 183
+      },
+      {
+        "level": "V4",
+        "selfUsd": 15000,
+        "walletsMeetingSelfThreshold": 59
+      },
+      {
+        "level": "V5",
+        "selfUsd": 30000,
+        "walletsMeetingSelfThreshold": 18
+      },
+      {
+        "level": "V6",
+        "selfUsd": 40000,
+        "walletsMeetingSelfThreshold": 13
+      },
+      {
+        "level": "V7",
+        "selfUsd": 50000,
+        "walletsMeetingSelfThreshold": 6
+      },
+      {
+        "level": "V8",
+        "selfUsd": 60000,
+        "walletsMeetingSelfThreshold": 2
+      },
+      {
+        "level": "V9",
+        "selfUsd": 80000,
+        "walletsMeetingSelfThreshold": 2
+      }
+    ],
+    "warning": "Meeting the personal stake threshold does not mean the wallet has reached that official V level."
+  },
+  "teamMetrics": {
+    "available": false,
+    "confirmedParentEdges": 0,
+    "conflicts": [],
+    "rootTeams": [],
+    "topRootTeamsShare": 0,
+    "reason": "No A/B-grade parent-child tree exists yet, so team size, team stake, two largest legs and top-team share would be misleading."
+  },
+  "conclusions": [
+    "首入质押参数目前只有金额和质押类型，没有稳定的推荐人地址字段。",
+    "首入回执中的资金接收方是固定合约、流动性池和销毁地址，尚未出现可唯一对应上级的10%奖励钱包。",
+    "推荐绑定与邀请名单出现在项目方登录后的 API 中，说明组织树很可能主要保存在项目方后台。",
+    "C级行为簇只能提示批量铺号或同一操盘批次，不能当成官方上下级关系。"
+  ]
+}

@@ -2,7 +2,7 @@ name: FDAO Background Monitor
 
 on:
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: "*/10 * * * *"
   workflow_dispatch:
 
 permissions:
@@ -24,7 +24,7 @@ jobs:
           fetch-depth: 1
       - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: "22"
       - name: Verify RPC secret
         run: test -n "$NODEREAL_RPC_URL"
       - name: Update live chain index
@@ -35,6 +35,9 @@ jobs:
       - name: Probe contracts and frontend calls
         continue-on-error: true
         run: node fdao-monitor/contract-probe.mjs
+      - name: Rebuild graded relationship evidence
+        continue-on-error: true
+        run: node fdao-monitor/relationship-indexer.mjs
       - name: Persist computed data safely
         run: |
           mkdir -p /tmp/fdao-data
