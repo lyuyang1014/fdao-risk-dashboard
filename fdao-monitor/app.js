@@ -35,7 +35,7 @@ function chart(days) {
     element.innerHTML = '<span class="sub">历史回填中…</span>';
     return;
   }
-  const recent = days.slice(-24);
+  const recent = days.slice(-60);
   const max = Math.max(...recent.map((item) => item.stakeUsdAtCurrentPrice), 1);
   element.innerHTML = recent
     .map(
