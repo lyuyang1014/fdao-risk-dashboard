@@ -10,6 +10,7 @@ const TRANSFER_TOPIC =
 const MY_INFOS = "0xc81a81d9";
 const RELEASABLE = "0xa3f8eace";
 const RELEASE_CALL = "0x86d1a69f";
+const RELEASE_BACKFILL_SPAN = 250000;
 const PUBLIC_RPC =
   process.env.BSC_PUBLIC_RPC_URL ||
   "https://bsc-dataseed-public.bnbchain.org";
@@ -166,6 +167,7 @@ async function main() {
     byTransaction: {},
   });
   const previous = readJson("release-audit.json", null);
+  const historyState = readJson("history-state.json", { events: [] });
   const events = Object.values(cache.byTransaction || {}).flat();
   const now = Math.floor(Date.now() / 1000);
   const wallets = [...new Set(events.map((event) => event.wallet))];
@@ -188,22 +190,44 @@ async function main() {
     transfers: [],
   };
   if (maturedEvents.length && HAS_INDEXING_RPC) {
-    const earliestMaturity = Math.min(
-      ...maturedEvents.map(
-        (event) => event.timestamp + event.releaseDays * 86400,
-      ),
+    const observedUnstakeBlocks = (historyState.events || [])
+      .filter((event) => event.kind === "unstake")
+      .map((event) => Number(event.block))
+      .filter(Number.isFinite);
+    const earliestUnstakeTimestamp = Math.min(
+      ...events.map((event) => Number(event.timestamp)),
     );
-    const initialBlock = await blockAt(earliestMaturity, latestBlock);
+    const floorBlock = observedUnstakeBlocks.length
+      ? Math.min(...observedUnstakeBlocks)
+      : await blockAt(earliestUnstakeTimestamp, latestBlock);
     const previousTransfers = previous?.transferScan?.transfers || [];
-    const fromBlock =
-      previous?.transferScan?.status === "complete_through_latest_block" &&
-      Number.isFinite(Number(previous.transferScan.throughBlock))
-        ? Number(previous.transferScan.throughBlock) + 1
-        : initialBlock;
-    const newTransfers =
-      fromBlock <= latestBlock
-        ? await scanReleaseTransfers(fromBlock, latestBlock)
-        : [];
+    const previousFrom = Number(previous?.transferScan?.fromBlock);
+    const previousThrough = Number(previous?.transferScan?.throughBlock);
+    const hasPreviousWindow =
+      previousTransfers.length > 0 &&
+      Number.isFinite(previousFrom) &&
+      Number.isFinite(previousThrough);
+    const ranges = [];
+    if (hasPreviousWindow) {
+      if (previousThrough < latestBlock) {
+        ranges.push([previousThrough + 1, latestBlock]);
+      }
+      if (previousFrom > floorBlock) {
+        ranges.push([
+          Math.max(floorBlock, previousFrom - RELEASE_BACKFILL_SPAN),
+          previousFrom - 1,
+        ]);
+      }
+    } else {
+      ranges.push([
+        Math.max(floorBlock, latestBlock - RELEASE_BACKFILL_SPAN + 1),
+        latestBlock,
+      ]);
+    }
+    const newTransfers = [];
+    for (const [from, to] of ranges) {
+      if (from <= to) newTransfers.push(...(await scanReleaseTransfers(from, to)));
+    }
     const byId = new Map(
       [...previousTransfers, ...newTransfers].map((item) => [
         item.id || `${item.tx}:${item.to}:${item.lpAmount}`,
@@ -211,17 +235,32 @@ async function main() {
       ]),
     );
     const transfers = [...byId.values()];
+    const scannedFromBlock = Math.min(
+      hasPreviousWindow ? previousFrom : latestBlock,
+      ...ranges.map(([from]) => from),
+    );
     transferScan = {
-      status: "complete_through_latest_block",
-      fromBlock: Math.min(
-        initialBlock,
-        Number(previous?.transferScan?.fromBlock || initialBlock),
-      ),
+      status:
+        scannedFromBlock <= floorBlock
+          ? "complete_observed_unstake_window"
+          : "backfilling_release_history",
+      floorBlock,
+      fromBlock: scannedFromBlock,
       throughBlock: latestBlock,
+      backfillCoverage:
+        latestBlock === floorBlock
+          ? 1
+          : (latestBlock - scannedFromBlock) / (latestBlock - floorBlock),
       transfers,
     };
   } else if (maturedEvents.length) {
-    transferScan.status = "requires_indexing_rpc";
+    transferScan = previous?.transferScan
+      ? {
+          ...previous.transferScan,
+          status: previous.transferScan.status,
+          refreshStatus: "requires_indexing_rpc",
+        }
+      : { ...transferScan, status: "requires_indexing_rpc" };
   } else {
     transferScan.status = "no_matured_events_yet";
   }

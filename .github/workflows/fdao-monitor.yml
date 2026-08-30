@@ -32,12 +32,6 @@ jobs:
       - name: Audit matured LP releases
         continue-on-error: true
         run: node fdao-monitor/release-audit.mjs
-      - name: Compare META with FSD at the same age
-        continue-on-error: true
-        run: node fdao-monitor/peer-comparison.mjs
-      - name: Probe contracts and frontend calls
-        continue-on-error: true
-        run: node fdao-monitor/contract-probe.mjs
       - name: Backfill launch-to-date daily history
         continue-on-error: true
         run: node fdao-monitor/history-indexer.mjs
