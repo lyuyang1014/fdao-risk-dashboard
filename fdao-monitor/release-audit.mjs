@@ -11,6 +11,7 @@ const MY_INFOS = "0xc81a81d9";
 const RELEASABLE = "0xa3f8eace";
 const RELEASE_CALL = "0x86d1a69f";
 const RELEASE_BACKFILL_SPAN = 250000;
+const RELEASE_BACKFILL_SPAN_AFTER_HISTORY = 750000;
 const PUBLIC_RPC =
   process.env.BSC_PUBLIC_RPC_URL ||
   "https://bsc-dataseed-public.bnbchain.org";
@@ -75,6 +76,12 @@ export function decodeMyInfos(raw) {
     lockedLp: units(decoded[1]),
     releasedLp: units(decoded[2]),
   };
+}
+
+export function releaseBackfillSpan(historyState) {
+  return historyState?.done
+    ? RELEASE_BACKFILL_SPAN_AFTER_HISTORY
+    : RELEASE_BACKFILL_SPAN;
 }
 
 async function walletState(wallet) {
@@ -168,6 +175,7 @@ async function main() {
   });
   const previous = readJson("release-audit.json", null);
   const historyState = readJson("history-state.json", { events: [] });
+  const backfillSpan = releaseBackfillSpan(historyState);
   const events = Object.values(cache.byTransaction || {}).flat();
   const now = Math.floor(Date.now() / 1000);
   const wallets = [...new Set(events.map((event) => event.wallet))];
@@ -214,13 +222,13 @@ async function main() {
       }
       if (previousFrom > floorBlock) {
         ranges.push([
-          Math.max(floorBlock, previousFrom - RELEASE_BACKFILL_SPAN),
+          Math.max(floorBlock, previousFrom - backfillSpan),
           previousFrom - 1,
         ]);
       }
     } else {
       ranges.push([
-        Math.max(floorBlock, latestBlock - RELEASE_BACKFILL_SPAN + 1),
+        Math.max(floorBlock, latestBlock - backfillSpan + 1),
         latestBlock,
       ]);
     }
