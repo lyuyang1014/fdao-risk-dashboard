@@ -32,6 +32,9 @@ jobs:
       - name: Backfill launch-to-date daily history
         continue-on-error: true
         run: node fdao-monitor/history-indexer.mjs
+      - name: Build position and sell-risk assessment
+        continue-on-error: true
+        run: node fdao-monitor/risk-engine.mjs
       - name: Compare META with FSD at the same age
         continue-on-error: true
         run: node fdao-monitor/peer-comparison.mjs
@@ -41,9 +44,6 @@ jobs:
       - name: Rebuild graded relationship evidence
         continue-on-error: true
         run: node fdao-monitor/relationship-indexer.mjs
-      - name: Build position and sell-risk assessment
-        continue-on-error: true
-        run: node fdao-monitor/risk-engine.mjs
       - name: Persist computed data safely
         run: |
           mkdir -p /tmp/fdao-data

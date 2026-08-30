@@ -264,7 +264,13 @@ async function main() {
   const missingUnstakeTransactionHashes = unstakeEvents.length
     ? unstakeEvents.length - unstakeTransactions.length
     : 0;
-  const [knownTransaction, knownReceipt, stakingInfo, unstakeReceipts] =
+  const evidenceCache = readJson("unstake-evidence-cache.json", {
+    byTransaction: {},
+  });
+  const uncachedTransactions = unstakeTransactions.filter(
+    (transactionHash) => !evidenceCache.byTransaction[transactionHash],
+  );
+  const [knownTransaction, knownReceipt, stakingInfo, uncachedReceipts] =
     await Promise.all([
       rpc("eth_getTransactionByHash", [KNOWN_TX]),
       rpc("eth_getTransactionReceipt", [KNOWN_TX]),
@@ -272,8 +278,16 @@ async function main() {
         { to: FDAO, from: USER, data: VIEW_STAKING_INFO },
         "latest",
       ]),
-      receipts(unstakeTransactions),
+      receipts(uncachedTransactions),
     ]);
+
+  for (const receipt of uncachedReceipts) {
+    evidenceCache.byTransaction[receipt.transactionHash] = parseUnstakeEvidence(
+      [receipt],
+    );
+  }
+  evidenceCache.updatedAt = new Date().toISOString();
+  writeJson("unstake-evidence-cache.json", evidenceCache);
 
   const stakingWords = words(stakingInfo);
   const stakedLpWei = BigInt(stakingWords[0]);
@@ -330,7 +344,9 @@ async function main() {
     };
   });
 
-  const unstakeEvidence = parseUnstakeEvidence(unstakeReceipts);
+  const unstakeEvidence = unstakeTransactions.flatMap(
+    (transactionHash) => evidenceCache.byTransaction[transactionHash] || [],
+  );
   const cumulativeStakeUsd = sum(
     (history.daily || []).map((item) => item.stakeUsdAtCurrentPrice),
   );
