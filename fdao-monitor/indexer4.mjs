@@ -1,0 +1,45 @@
+import fs from 'node:fs';
+import path from 'node:path';
+const DIR=path.resolve('fdao-monitor/data');fs.mkdirSync(DIR,{recursive:true});
+const A={FDAO:'0xc5424eb1061bd9e147788c527c95ac27710bfa41',META:'0x98f0421fcb5129b352cc35c1ed15ae9081deb700',PAIR:'0x4f49ad237a81ad403a88f34a12a8d1d53c2d7d89',USER:'0x0e39420fcdb05c5378c7d1f955dc546b5f5a85b6',DEAD:'0x000000000000000000000000000000000000dead'};
+const RPC='https://bsc-dataseed.binance.org/';
+const LOG_RPCS=['https://public.1rpc.io/bnb','https://bsc-rpc.publicnode.com'];
+const DEX='https://api.dexscreener.com/latest/dex/pairs/bsc/'+A.PAIR;
+const PAP='https://api.dexpaprika.com/networks/bsc/pools/'+A.PAIR;
+const T={stake:'0x3e451024d3d4ca4a6f8985802ef8887d16b5f1b2c495e5ace458437b21d18505',stake1:'0x05a5b88949c1b7e7b6f52ca8bb014e695c3f9bc8893e0f75a3699a1519507e5c',stakeA:'0x95b92b7b8f8d5c56d72e536e955714d166392387f565da17b314fbb8e73280a1',unstake:'0x9d4ddcf7be95a56327247eeb36efb79783c00d13defcd5a572d1e3e0d8bf57d5',unstake1:'0x7baf0db25f935f5cb985caf351c40c4ecfd6a3b4ee3c8e3360183b8f051ed97e',unstakeA:'0xc4915ee1bfb9fe5fca0991eeb563dea7da3fe05fb9265ffc22a49c16cc9ff58e'};
+const ST=[T.stake,T.stake1,T.stakeA],ALL=[...ST,T.unstake,T.unstake1,T.unstakeA];
+const sleep=m=>new Promise(r=>setTimeout(r,m)),hx=n=>'0x'+BigInt(n).toString(16),num=h=>Number(BigInt(h)),unit=h=>Number(BigInt(h))/1e18;
+const words=d=>{let s=d.slice(2),a=[];for(let i=0;i<s.length;i+=64)a.push('0x'+s.slice(i,i+64));return a};
+const who=t=>'0x'+t.slice(-40).toLowerCase();
+const read=(f,x)=>{try{return JSON.parse(fs.readFileSync(path.join(DIR,f),'utf8'))}catch{return x}},write=(f,x)=>fs.writeFileSync(path.join(DIR,f),JSON.stringify(x,null,2)+'\n');
+async function rpc(method,params=[],url=RPC,retries=5){let last;for(let i=0;i<retries;i++){try{let r=await fetch(url,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',id:1,method,params})});let j=await r.json();if(j.error)throw new Error(j.error.message||'RPC error');return j.result}catch(e){last=e;await sleep(300*(i+1))}}throw last}
+async function logRpc(filter,seq){let last;for(let k=0;k<LOG_RPCS.length;k++){let url=LOG_RPCS[(seq+k)%LOG_RPCS.length];try{return await rpc('eth_getLogs',[filter],url,3)}catch(e){last=e}}throw last}
+const latest=async()=>num(await rpc('eth_blockNumber'));async function block(b){return rpc('eth_getBlockByNumber',[hx(b),false])}
+async function blockAt(ts){let hi=await latest(),lo=Math.max(1,hi-500000);while(lo<hi){let m=Math.floor((lo+hi)/2),b=await block(m),t=num(b.timestamp);if(t<ts)lo=m+1;else hi=m}return lo}
+async function logs50(from,to){let out=[],seq=0;for(let a=from;a<=to;a+=50){let b=Math.min(to,a+49),x=await logRpc({address:A.FDAO,fromBlock:hx(a),toBlock:hx(b),topics:[ALL]},seq++);out.push(...x);if(seq%120===0)await sleep(350)}return out}
+async function call(to,data,from=A.USER){return rpc('eth_call',[{to,from,data},'latest'])}
+const bal=a=>'0x70a08231'+'0'.repeat(24)+a.slice(2).toLowerCase();
+function stakeInfo(raw){let w=words(raw);return{myStaked:unit(w[0]),myReward:unit(w[1]),totalStakedRaw:unit(w[2]),apy:unit(w[3]),tvl:unit(w[4])}}
+function hkdate(){return new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Hong_Kong',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date())}function midnight(){return Date.parse(hkdate()+'T00:00:00+08:00')/1000}
+function parse(l){let topic=l.topics[0].toLowerCase(),w=words(l.data),user=who(l.topics[1]),id=l.transactionHash+':'+l.logIndex,block=num(l.blockNumber);if(ST.includes(topic))return{kind:'stake',id,user,block,tx:l.transactionHash,lp:unit(w[0]),meta:unit(w[1]),ts:num(w.at(-1))};return{kind:'unstake',id,user,block,tx:l.transactionHash,lp:unit(w[0]),rtype:num(w[1]),token:unit(w[2]),fee:unit(w[3]),ts:num(w.at(-1))}}
+function mergeEvents(target,ls){let ids=new Set(target.map(e=>e.id));for(let l of ls){let e=parse(l);if(!ids.has(e.id)){target.push(e);ids.add(e.id)}}}
+
+let old=read('state.json',{}),today=hkdate(),stateReset=old.engine!=='bsc-direct-v1'||old.date!==today;
+let s=stateReset?{engine:'bsc-direct-v1',date:today,dayStartBlock:null,lastBlock:null,dayEvents:[],dayBackfillCursor:null,historyCursor:null,historyFloor:null,historicalWallets:[],dayBackfillDone:false}:old;
+if(!s.dayStartBlock){s.dayStartBlock=await blockAt(midnight());let h=await latest();s.lastBlock=h;s.dayBackfillCursor=h;s.historyFloor=Math.max(1,s.dayStartBlock-6000000)}
+let head=await latest();
+// Incremental live scan since last successful run.
+if(head>s.lastBlock){let ls=await logs50(s.lastBlock+1,head);mergeEvents(s.dayEvents,ls);s.lastBlock=head}
+// Backfill up to 40k blocks of today per run, newest -> oldest. First run includes user's known 10:21 event.
+if(!s.dayBackfillDone){let to=s.dayBackfillCursor,from=Math.max(s.dayStartBlock,to-39999);let ls=await logs50(from,to);mergeEvents(s.dayEvents,ls);s.dayBackfillCursor=from-1;if(from<=s.dayStartBlock){s.dayBackfillDone=true;s.historyCursor=s.dayStartBlock-1}}
+// Once today is complete, backfill older history 40k blocks/run to identify true first-time wallets.
+if(s.dayBackfillDone&&s.historyCursor>s.historyFloor){let to=s.historyCursor,from=Math.max(s.historyFloor,to-39999);let ls=await logs50(from,to),hist=new Set(s.historicalWallets||[]);for(let l of ls)if(ST.includes(l.topics[0].toLowerCase()))hist.add(who(l.topics[1]));s.historicalWallets=[...hist];s.historyCursor=from-1}
+
+const [sir,supplyr,fdaolpr,burnr,resr,priceRaw,dex,pap]=await Promise.all([call(A.FDAO,'0xb46fb85f'),call(A.PAIR,'0x18160ddd'),call(A.PAIR,bal(A.FDAO)),call(A.META,bal(A.DEAD)),call(A.PAIR,'0x0902f1ac'),call(A.FDAO,'0xc7d7e396'),fetch(DEX).then(r=>r.json()).catch(()=>({})),fetch(PAP).then(r=>r.json()).catch(()=>({}))]);
+let info=stakeInfo(sir),supply=unit(supplyr),fdaoLp=unit(fdaolpr),burn=unit(burnr),rw=words(resr),reserveSentis=unit(rw[0]),reserveMeta=unit(rw[1]),pw=words(priceRaw),metaPrice=unit(pw[0]),sentisPrice=reserveSentis?reserveMeta*metaPrice/reserveSentis:0;
+let dp=(dex.pairs||[])[0]||{},ph=pap['24h']||{},volume24=Number(ph.volume_usd??ph.volumeUsd??pap.volume_usd_24h??dp.volume?.h24??0),liqPap=Number(pap.liquidity_usd??pap.liquidityUsd??0),liquidity=liqPap||2*reserveMeta*metaPrice,buys=Number(ph.buy??ph.buys??dp.txns?.h24?.buys??0),sells=Number(ph.sell??ph.sells??dp.txns?.h24?.sells??0);
+let market={metaPrice,sentisPrice,liquidity,volume24,buys,sells,priceChange24:Number(dp.priceChange?.h24??0),priceSource:'FDAO viewTokenPrice + on-chain reserves',volumeSource:volume24?'DexPaprika/DexScreener':'unavailable'};
+let stakes=s.dayEvents.filter(e=>e.kind==='stake'),uns=s.dayEvents.filter(e=>e.kind==='unstake'),wallets=[...new Set(stakes.map(e=>e.user))],hist=new Set(s.historicalWallets||[]),nw=wallets.filter(w=>!hist.has(w)),stakeMeta=stakes.reduce((a,e)=>a+e.meta,0),exitToken=uns.reduce((a,e)=>a+e.token,0),stakeUsd=stakeMeta*metaPrice,unstakeUsd=exitToken*metaPrice,netUsd=stakeUsd-unstakeUsd,rewardLow=info.tvl*.006,rewardHigh=info.tvl*.012,feeMax=volume24*.02;
+let dayRange=Math.max(1,head-s.dayStartBlock+1),covered=s.dayBackfillDone?1:Math.min(1,(head-s.dayBackfillCursor)/dayRange),historyDone=s.dayBackfillDone&&s.historyCursor<=s.historyFloor;
+let current={updatedAt:new Date().toISOString(),timezone:'Asia/Hong_Kong',block:head,date:today,market,protocol:{apy:info.apy,tvl:info.tvl,totalStakedRaw:info.totalStakedRaw,pairSupply:supply,pairInFdao:fdaoLp,custodyPct:supply?fdaoLp/supply:0,burnedMeta:burn,reserveSentis,reserveMeta},today:{uniqueStakeWallets:wallets.length,newWallets:nw.length,stakeCount:stakes.length,stakeMeta,stakeUsd,unstakeCount:uns.length,unstakeToken:exitToken,unstakeUsd,netUsd},pressure:{rewardLow,rewardHigh,feeMax,feeCoverLow:rewardLow?feeMax/rewardLow:0,rewardToVolumeLow:volume24?rewardLow/volume24:0,rewardToVolumeHigh:volume24?rewardHigh/volume24:0},indexing:{engine:s.engine,dayStartBlock:s.dayStartBlock,lastBlock:s.lastBlock,dayBackfillCursor:s.dayBackfillCursor,dayBackfillDone:s.dayBackfillDone,todayCoverage:covered,historyCursor:s.historyCursor,historyFloor:s.historyFloor,historyDone,historicalWallets:s.historicalWallets.length,newWalletMeaning:historyDone?'发行期回填范围内真正首次质押钱包':'历史回填中；新钱包数暂为“已回填范围内未见旧质押”'},user:{address:A.USER,myStakedLp:info.myStaked,myReward:info.myReward}};
+let daily=read('daily.json',[]).filter(x=>x.date!==today);daily.push({date:today,updatedAt:current.updatedAt,...current.today,todayCoverage:covered,tvl:info.tvl,apy:info.apy,liquidity,volume24,burnedMeta:burn});write('state.json',s);write('current.json',current);write('daily.json',daily.slice(-120));console.log(JSON.stringify({ok:true,market,today:current.today,indexing:current.indexing,user:current.user},null,2));

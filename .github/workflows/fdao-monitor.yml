@@ -1,0 +1,52 @@
+name: FDAO Background Monitor
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fdao-background-monitor
+  cancel-in-progress: false
+
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      NODEREAL_RPC_URL: ${{ secrets.NODEREAL_RPC_URL }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify RPC secret
+        run: test -n "$NODEREAL_RPC_URL"
+      - name: Update live chain index
+        run: node fdao-monitor/indexer6.mjs
+      - name: Backfill launch-to-date daily history
+        continue-on-error: true
+        run: node fdao-monitor/history-indexer.mjs
+      - name: Probe contracts and frontend calls
+        continue-on-error: true
+        run: node fdao-monitor/contract-probe.mjs
+      - name: Persist computed data safely
+        run: |
+          mkdir -p /tmp/fdao-data
+          cp fdao-monitor/data/*.json /tmp/fdao-data/
+          git fetch origin main
+          git reset --hard origin/main
+          mkdir -p fdao-monitor/data
+          cp /tmp/fdao-data/*.json fdao-monitor/data/
+          git config user.name 'fdao-monitor-bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add fdao-monitor/data/
+          if ! git diff --cached --quiet; then
+            git commit -m "data: refresh FDAO monitor"
+            git push origin HEAD:main
+          fi
