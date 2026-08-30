@@ -2,6 +2,7 @@ const DATA = "./data/current.json";
 const HIST = "./data/history-daily.json";
 const WAL = "./data/wallet-analytics.json";
 const REL = "./data/relationship-graph.json";
+const RISK = "./data/risk-assessment.json";
 const $ = (id) => document.getElementById(id);
 const usd = (value) => {
   let number = Number(value);
@@ -80,16 +81,84 @@ function renderRelationships(report) {
     '<tr><td colspan="4">暂未发现达到保守阈值的同批行为</td></tr>';
 }
 
+function renderRisk(report) {
+  if (!report) {
+    $("riskAction").textContent = "风险模型尚未生成，后台会继续重试。";
+    return;
+  }
+  $("scaleLiquidity").textContent = usd(report.scale.exitPoolLiquidityUsd);
+  $("scaleCustody").textContent = usd(report.scale.fdaoCustodiedLiquidityUsd);
+  $("scaleTvl").textContent = usd(report.scale.contractReportedTvlUsd);
+  $("scaleCoverage").textContent = pct(report.scale.custodyCoverage);
+  $("scaleExplain").innerHTML =
+    `链上退出池约 <b>${usd(report.scale.exitPoolLiquidityUsd)}</b>；FDAO持有其中约 <b>${pct(report.scale.fdaoLpCustodyShare)}</b> 的LP，折算可对应约 <b>${usd(report.scale.fdaoCustodiedLiquidityUsd)}</b>。合约自己显示TVL为 <b>${usd(report.scale.contractReportedTvlUsd)}</b>，LP资产覆盖约 <b>${pct(report.scale.custodyCoverage)}</b>。覆盖率不是“马上亏损率”，但低于100%说明显示TVL不能全部等同于可退出资产。`;
+
+  const position = report.userPosition;
+  $("positionCost").textContent =
+    `${num(position.chainVerifiedCost.amount, 2)} SENTIS`;
+  $("positionCostUsd").textContent = usd(position.usdCostBasis.amount);
+  $("positionLp").textContent = num(position.current.stakedLp, 2);
+  $("positionReward").textContent =
+    `${num(position.current.rewardMeta, 2)} META`;
+  $("exitOptions").innerHTML = (position.exitOptions || [])
+    .map((option) => {
+      const pnlClass = option.pnlUsdVsReference >= 0 ? "good" : "bad";
+      const pnlSign = option.pnlUsdVsReference >= 0 ? "+" : "";
+      return `<tr><td>${option.releaseDays}天</td><td>${pct(option.feeRate)}</td><td>${num(option.netSentisBeforePossibleBurn, 2)}</td><td>${usd(option.currentNetUsdBeforePossibleBurn)}</td><td class="${pnlClass}">${pnlSign}${usd(option.pnlUsdVsReference)} · ${pnlSign}${pct(option.pnlPctVsReference)}</td><td>$${num(option.breakEvenSentisUsd, 4)}</td></tr>`;
+    })
+    .join("");
+  const option90 = position.exitOptions?.find(
+    (option) => option.releaseDays === 90,
+  );
+  $("positionExplain").innerHTML = option90
+    ? `链上报价目前显示：选择90天释放、扣除10%链上手续费后，约为 <b>${num(option90.netSentisBeforePossibleBurn, 2)} SENTIS</b>，按现价约 <b>${usd(option90.currentNetUsdBeforePossibleBurn)}</b>，对比截图参考成本约 <b class="${option90.pnlUsdVsReference >= 0 ? "good" : "bad"}">${usd(option90.pnlUsdVsReference)}</b>。SENTIS约需达到 <b>$${num(option90.breakEvenSentisUsd, 4)}</b> 才能覆盖该参考成本。*项目页面另称最终有2%销毁，实际到账可能再低一些，仍需用完成释放的链上交易确认。`
+    : "等待90天释放方案的链上报价。";
+
+  const levelLabels = {
+    red: "🔴 红色",
+    orange: "🟠 橙色",
+    yellow: "🟡 黄色",
+    green: "🟢 绿色",
+  };
+  $("riskLevel").textContent = levelLabels[report.assessment.level] || "—";
+  $("riskInflow").textContent = pct(report.growth.period7.inflowRatio);
+  $("riskWallets").textContent = pct(report.growth.period7.newWalletRatio);
+  $("riskRewardCover").textContent =
+    `${num(report.assessment.rewardCoverage, 2)}×`;
+  $("riskAction").innerHTML =
+    `<b>${levelLabels[report.assessment.level] || ""}：</b>${report.assessment.action} 当前真实解押仍很少，但LP资产覆盖与高档奖励承接已经进入橙色区间。`;
+  const signalNames = {
+    custody_coverage: "LP资产覆盖",
+    seven_day_inflow_momentum: "7日新增资金",
+    seven_day_wallet_momentum: "7日新钱包",
+    high_reward_coverage: "新增覆盖高档奖励",
+    real_exit_ratio: "真实解押比例",
+    relationship_opacity: "团队关系透明度",
+  };
+  $("riskSignals").innerHTML = (report.assessment.signals || [])
+    .map(
+      (signal) =>
+        `<div class="line"><span>${signalNames[signal.id] || signal.id}：${signal.explanation}</span><b class="${signal.level === "green" ? "good" : signal.level === "red" ? "bad" : "warn"}">${levelLabels[signal.level] || signal.level}</b></div>`,
+    )
+    .join("");
+}
+
 async function load() {
   try {
     const timestamp = Date.now();
-    const [currentResponse, historyResponse, walletResponse, relationResponse] =
-      await Promise.all([
-        fetch(`${DATA}?t=${timestamp}`, { cache: "no-store" }),
-        fetch(`${HIST}?t=${timestamp}`, { cache: "no-store" }),
-        fetch(`${WAL}?t=${timestamp}`, { cache: "no-store" }),
-        fetch(`${REL}?t=${timestamp}`, { cache: "no-store" }),
-      ]);
+    const [
+      currentResponse,
+      historyResponse,
+      walletResponse,
+      relationResponse,
+      riskResponse,
+    ] = await Promise.all([
+      fetch(`${DATA}?t=${timestamp}`, { cache: "no-store" }),
+      fetch(`${HIST}?t=${timestamp}`, { cache: "no-store" }),
+      fetch(`${WAL}?t=${timestamp}`, { cache: "no-store" }),
+      fetch(`${REL}?t=${timestamp}`, { cache: "no-store" }),
+      fetch(`${RISK}?t=${timestamp}`, { cache: "no-store" }),
+    ]);
     if (!currentResponse.ok) throw new Error("实时数据读取失败");
     const current = await currentResponse.json();
     const historyData = historyResponse.ok
@@ -99,6 +168,7 @@ async function load() {
     const relationships = relationResponse.ok
       ? await relationResponse.json()
       : null;
+    const riskAssessment = riskResponse.ok ? await riskResponse.json() : null;
 
     $("price").textContent = "$" + current.market.metaPrice.toFixed(4);
     $("liq").textContent = usd(current.market.liquidity);
@@ -150,32 +220,6 @@ async function load() {
             `<div class="line"><span>${item.name}：${num(item.wallets)}个地址</span><b>${usd(item.capitalUsd)} · ${pct(item.share)}</b></div>`,
         )
         .join("");
-      const maturity = wallets.maturity || {};
-      $("m30").textContent = usd(maturity.next7d30?.capitalUsd);
-      $("m30w").textContent = `${num(maturity.next7d30?.wallets)}个钱包`;
-      $("m60").textContent = usd(maturity.next7d60?.capitalUsd);
-      $("m60w").textContent = `${num(maturity.next7d60?.wallets)}个钱包`;
-      $("m90").textContent = usd(maturity.next7d90?.capitalUsd);
-      $("m90w").textContent = `${num(maturity.next7d90?.wallets)}个钱包`;
-      $("m90_30").textContent = usd(maturity.next30d90?.capitalUsd);
-      $("m90_30w").textContent = `${num(maturity.next30d90?.wallets)}个钱包`;
-      const near =
-        (maturity.next7d60?.capitalUsd || 0) +
-        (maturity.next7d90?.capitalUsd || 0);
-      let message = wallets.backfillDone
-        ? ""
-        : "历史还没100%，以下到期额只是下限。 ";
-      if (near > current.today.stakeUsd * 3) {
-        message +=
-          "🔴 未来7天进入60/90日低费区间的本金，明显高于今天新增资金，退出压力值得重点警惕。";
-      } else if (near > current.today.stakeUsd) {
-        message +=
-          "🟠 未来7天低费到期本金已高于今天新增，后续要看是否真的开始解押。";
-      } else {
-        message +=
-          "🟡 目前已识别的未来7天低费到期本金，还没有明显压过今天新增资金。";
-      }
-      $("maturityExplain").textContent = message;
       $("topWallets").innerHTML =
         (wallets.topWallets || [])
           .slice(0, 30)
@@ -187,27 +231,29 @@ async function load() {
     }
 
     renderRelationships(relationships);
+    renderRisk(riskAssessment);
     chart(historyData.daily || []);
     $("totalWallets").textContent = num(historyData.totalObservedStakeWallets);
-    $("avg3").textContent = usd(historyData.trend?.last3AvgStakeUsd);
-    $("prev3").textContent = usd(historyData.trend?.previous3AvgStakeUsd);
+    $("avg7").textContent = usd(
+      riskAssessment?.growth?.period7?.recentAvgInflowUsd ??
+        historyData.trend?.last7AvgStakeUsd,
+    );
+    $("prev7").textContent = usd(
+      riskAssessment?.growth?.period7?.previousAvgInflowUsd ??
+        historyData.trend?.previous7AvgStakeUsd,
+    );
     $("flowRatio").textContent =
-      historyData.trend?.flowRatio == null
+      (riskAssessment?.growth?.period7?.inflowRatio ??
+        historyData.trend?.full7FlowRatio) == null
         ? "—"
-        : pct(historyData.trend.flowRatio);
+        : pct(
+            riskAssessment?.growth?.period7?.inflowRatio ??
+              historyData.trend.full7FlowRatio,
+          );
     $("trendRisk").textContent = historyData.trend?.risk || "历史回填中";
-    const ratio = historyData.trend?.flowRatio;
-    let headline = "当前仍属于高收益、高依赖新增资金的结构。";
-    if (ratio != null && ratio < 0.6) {
-      headline =
-        "🔴 新增质押动能较前一阶段下降40%以上，而奖励仍持续释放：这是重要的早期风险信号。";
-    } else if (ratio != null && ratio < 0.85) {
-      headline =
-        "🟠 新增质押明显放缓；如果同时出现到期本金增加、退出增加或LP下降，风险会快速上升。";
-    } else if (current.today.netUsd > 0) {
-      headline =
-        "🟡 当前仍有净新增资金进入，但高收益主要不是手续费创造，安全性依赖新人和人均投入持续。";
-    }
+    let headline = riskAssessment
+      ? `${riskAssessment.assessment.level === "red" ? "🔴" : riskAssessment.assessment.level === "orange" ? "🟠" : "🟡"} ${riskAssessment.assessment.action}`
+      : "当前仍属于高收益、高依赖新增资金的结构。";
     if (todayCoverage < 1) headline += " 今日扫描尚未100%。";
     $("headline").textContent = headline;
     $("safetyExplain").textContent = headline;

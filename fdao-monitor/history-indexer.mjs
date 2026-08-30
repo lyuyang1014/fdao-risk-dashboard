@@ -93,7 +93,9 @@ function parse(l) {
         user: u,
         block: b,
         lp: unit(w[0]),
+        rtype: num(w[1]),
         token: unit(w[2]),
+        fee: unit(w[3]),
         ts: num(w.at(-1)),
         tx: l.transactionHash,
       };
@@ -222,21 +224,25 @@ let daily = [...m.values()]
       netUsdAtCurrentPrice: (x.sm - x.ut) * p,
     }))
     .sort((a, b) => a.date.localeCompare(b.date)),
-  vs = daily.map((x) => x.stakeUsdAtCurrentPrice),
-  ws = daily.map((x) => x.stakeWallets),
+  completeDaily = daily.filter((x) => x.date !== cur.date),
+  vs = completeDaily.map((x) => x.stakeUsdAtCurrentPrice),
+  ws = completeDaily.map((x) => x.stakeWallets),
   l3 = avg(vs.slice(-3)),
   p3 = avg(vs.slice(-6, -3)),
+  l7 = avg(vs.slice(-7)),
+  p7 = avg(vs.slice(-14, -7)),
   wr = avg(ws.slice(-3)),
   wp = avg(ws.slice(-6, -3)),
   fr = p3 ? l3 / p3 : null,
+  fr7 = p7 ? l7 / p7 : null,
   risk =
-    fr == null
+    fr7 == null
       ? "数据不足"
-      : fr < 0.6
-        ? "红色：新增资金动能较前3日下降40%以上"
-        : fr < 0.85
+      : fr7 < 0.7
+        ? "红色：最近7个完整日新增资金较前7日下降30%以上"
+        : fr7 < 0.9
           ? "黄色：新增资金动能明显放缓"
-          : fr > 1.15
+          : fr7 > 1.15
             ? "绿色：新增资金动能仍在增强"
             : "黄色：新增资金大致持平";
 let wallets = [...wm.values()]
@@ -275,32 +281,21 @@ let wallets = [...wm.values()]
       : 0,
   now = Math.floor(Date.now() / 1000),
   DAY = 86400;
-function queue(days, horizon = 7) {
-  let a = wallets.filter((w) => {
-    let t = (w.firstStakeTs || 0) + days * DAY;
-    return t >= now && t < now + horizon * DAY;
-  });
+function ageCohort(days) {
+  let a = wallets.filter(
+    (w) => w.firstStakeTs && w.firstStakeTs <= now - days * DAY,
+  );
   return {
     days,
-    horizonDays: horizon,
     wallets: a.length,
     capitalUsd: sum(a.map((w) => w.stakeUsd)),
-    top: a
-      .slice(0, 20)
-      .map((w) => ({
-        address: w.address,
-        capitalUsd: w.stakeUsd,
-        eligibleAt: (w.firstStakeTs || 0) + days * DAY,
-      })),
   };
 }
-let maturity = {
-  next7d30: queue(30, 7),
-  next7d60: queue(60, 7),
-  next7d90: queue(90, 7),
-  next30d30: queue(30, 30),
-  next30d60: queue(60, 30),
-  next30d90: queue(90, 30),
+let walletAgeCohorts = {
+  atLeast30Days: ageCohort(30),
+  atLeast60Days: ageCohort(60),
+  atLeast90Days: ageCohort(90),
+  note: "钱包年龄仅描述持有时间，不代表解押费率资格。30/60/90是用户选择的释放方案。",
 };
 let walletOut = {
   updatedAt: new Date().toISOString(),
@@ -313,7 +308,7 @@ let walletOut = {
     ),
   ),
   backfillDone: s.done,
-  note: "资金层级仅按累计质押金额分组，不等同于FDAO官方V级会员。历史回填100%前，首次进入时间与到期队列仍可能提前。",
+  note: "资金层级仅按累计质押金额分组，不等同于FDAO官方V级会员。钱包年龄不代表解押费率资格。",
   summary: {
     wallets: wallets.length,
     totalStakeUsd: totalStake,
@@ -324,7 +319,7 @@ let walletOut = {
     top100Share: topShare(100),
   },
   capitalTiers: tiers,
-  maturity,
+  walletAgeCohorts,
   topWallets: wallets.slice(0, 100),
 };
 let out = {
@@ -340,9 +335,13 @@ let out = {
     last3AvgStakeUsd: l3,
     previous3AvgStakeUsd: p3,
     flowRatio: fr,
+    last7AvgStakeUsd: l7,
+    previous7AvgStakeUsd: p7,
+    full7FlowRatio: fr7,
     last3AvgWallets: wr,
     previous3AvgWallets: wp,
     walletRatio: wp ? wr / wp : null,
+    excludesCurrentPartialDay: true,
     risk,
   },
   daily,

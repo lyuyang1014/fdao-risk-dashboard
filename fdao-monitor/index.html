@@ -357,32 +357,96 @@
         </div>
       </div>
       <div class="sec">
-        <h3>未来退出压力：什么时候第一批人更容易抛？</h3>
+        <h3>盘子到底有多大？</h3>
+        <p class="intro">
+          “合约显示TVL”不等于随时能兑付的资产。这里同时列出退出池、FDAO持有的LP价值和两者覆盖率。
+        </p>
         <div class="grid">
           <div class="card">
-            <div class="label">未来7天进入30日档</div>
-            <div class="value" id="m30">—</div>
-            <div class="help" id="m30w">—</div>
+            <div class="label">退出池总流动性</div>
+            <div class="value" id="scaleLiquidity">—</div>
           </div>
           <div class="card">
-            <div class="label">未来7天进入60日档</div>
-            <div class="value" id="m60">—</div>
-            <div class="help" id="m60w">—</div>
+            <div class="label">FDAO持有LP折算</div>
+            <div class="value" id="scaleCustody">—</div>
           </div>
           <div class="card">
-            <div class="label">未来7天进入90日档</div>
-            <div class="value" id="m90">—</div>
-            <div class="help" id="m90w">—</div>
+            <div class="label">合约显示TVL</div>
+            <div class="value" id="scaleTvl">—</div>
           </div>
           <div class="card">
-            <div class="label">未来30天90日到期</div>
-            <div class="value" id="m90_30">—</div>
-            <div class="help" id="m90_30w">—</div>
+            <div class="label">LP资产覆盖率</div>
+            <div class="value" id="scaleCoverage">—</div>
           </div>
         </div>
-        <div class="call danger" id="maturityExplain">
-          历史回填完成前，这些数字只是已扫描地址的下限。
+        <div class="call danger" id="scaleExplain">等待独立资产核算。</div>
+      </div>
+      <div class="sec">
+        <h3>你的已知钱包：现在退出会赚还是亏？</h3>
+        <p class="intro">
+          SENTIS投入量、质押LP和退出手续费由链上读取；美元成本使用你交易后截图中的SENTIS价格，只是参考，不冒充链上事实。
+        </p>
+        <div class="grid">
+          <div class="card">
+            <div class="label">链上确认投入</div>
+            <div class="value" id="positionCost">—</div>
+          </div>
+          <div class="card">
+            <div class="label">参考美元成本</div>
+            <div class="value" id="positionCostUsd">—</div>
+          </div>
+          <div class="card">
+            <div class="label">当前质押LP</div>
+            <div class="value" id="positionLp">—</div>
+          </div>
+          <div class="card">
+            <div class="label">当前待领取奖励</div>
+            <div class="value" id="positionReward">—</div>
+          </div>
         </div>
+        <div class="card tw">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>释放选择</th>
+                <th>链上手续费</th>
+                <th>预计净得SENTIS*</th>
+                <th>按现价折算</th>
+                <th>参考盈亏</th>
+                <th>SENTIS保本价</th>
+              </tr>
+            </thead>
+            <tbody id="exitOptions">
+              <tr>
+                <td colspan="6">等待链上报价</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="call danger" id="positionExplain">等待链上报价。</div>
+      </div>
+      <div class="sec">
+        <h3>现在应该怎么做？</h3>
+        <div class="grid">
+          <div class="card">
+            <div class="label">当前风险阶段</div>
+            <div class="value" id="riskLevel">—</div>
+          </div>
+          <div class="card">
+            <div class="label">7日新增动能</div>
+            <div class="value" id="riskInflow">—</div>
+          </div>
+          <div class="card">
+            <div class="label">7日新人动能</div>
+            <div class="value" id="riskWallets">—</div>
+          </div>
+          <div class="card">
+            <div class="label">新增/高档奖励</div>
+            <div class="value" id="riskRewardCover">—</div>
+          </div>
+        </div>
+        <div class="call danger" id="riskAction">等待综合判断。</div>
+        <div class="card" id="riskSignals">等待风险信号。</div>
       </div>
       <div class="sec">
         <h3>上线以来：每天新增质押价值</h3>
@@ -400,12 +464,12 @@
             <div class="value" id="totalWallets">—</div>
           </div>
           <div class="card">
-            <div class="label">近3日平均新增</div>
-            <div class="value" id="avg3">—</div>
+            <div class="label">近7个完整日平均新增</div>
+            <div class="value" id="avg7">—</div>
           </div>
           <div class="card">
-            <div class="label">前3日平均新增</div>
-            <div class="value" id="prev3">—</div>
+            <div class="label">之前7日平均新增</div>
+            <div class="value" id="prev7">—</div>
           </div>
           <div class="card">
             <div class="label">新增资金动能</div>
@@ -424,7 +488,7 @@
             <span>新增持平、奖励继续产生</span><b class="warn">压力累积</b>
           </div>
           <div class="line">
-            <span>新增下降 + 到期资金增加</span><b class="bad">危险拐点</b>
+            <span>新增下降 + LP资产覆盖下降</span><b class="bad">危险拐点</b>
           </div>
           <div class="line">
             <span>净流出 + LP缩水 + 大户解押</span><b class="bad">高危</b>
@@ -507,6 +571,6 @@
         核心预警组合：新钱包下降、人均投入下降、未来低费到期本金上升、实际解押上升、LP缩水。本页用于风险观察，不构成投资建议。
       </div>
     </div>
-    <script src="./app.js?v=8"></script>
+    <script src="./app.js?v=9"></script>
   </body>
 </html>

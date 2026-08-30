@@ -1,0 +1,241 @@
+{
+  "updatedAt": "2026-08-30T09:27:26.467Z",
+  "methodologyVersion": 1,
+  "chainScope": "BNB Smart Chain",
+  "scale": {
+    "exitPoolLiquidityUsd": 18523927.747855473,
+    "fdaoLpCustodyShare": 0.9007864836305838,
+    "fdaoCustodiedLiquidityUsd": 16686103.73901773,
+    "contractReportedTvlUsd": 20095204.48569232,
+    "custodyCoverage": 0.8303525227075021,
+    "observedCumulativeStakeUsd": 6493582.269379922,
+    "observedWallets": 3175,
+    "note": "Contract-reported TVL is chain-readable but contract-controlled accounting; FDAO-custodied LP value is independently derived from LP balance and pool liquidity."
+  },
+  "growth": {
+    "completeThrough": "2026-08-29",
+    "period3": {
+      "days": 3,
+      "complete": true,
+      "recentRange": [
+        "2026-08-27",
+        "2026-08-29"
+      ],
+      "previousRange": [
+        "2026-08-24",
+        "2026-08-26"
+      ],
+      "recentAvgInflowUsd": 236346.42852071812,
+      "previousAvgInflowUsd": 249859.3286274341,
+      "inflowRatio": 0.94591796839867,
+      "recentAvgNewWallets": 84.33333333333333,
+      "previousAvgNewWallets": 102.33333333333333,
+      "newWalletRatio": 0.8241042345276873,
+      "recentUnstakeUsd": 6064.53617080762,
+      "recentStakeUsd": 709039.2855621544
+    },
+    "period7": {
+      "days": 7,
+      "complete": true,
+      "recentRange": [
+        "2026-08-23",
+        "2026-08-29"
+      ],
+      "previousRange": [
+        "2026-08-16",
+        "2026-08-22"
+      ],
+      "recentAvgInflowUsd": 233968.35277185097,
+      "previousAvgInflowUsd": 212356.79956879062,
+      "inflowRatio": 1.101770008056933,
+      "recentAvgNewWallets": 92.71428571428571,
+      "previousAvgNewWallets": 101.42857142857143,
+      "newWalletRatio": 0.9140845070422534,
+      "recentUnstakeUsd": 7536.899112368254,
+      "recentStakeUsd": 1637778.4694029568
+    },
+    "period14": {
+      "days": 14,
+      "complete": true,
+      "recentRange": [
+        "2026-08-16",
+        "2026-08-29"
+      ],
+      "previousRange": [
+        "2026-08-02",
+        "2026-08-15"
+      ],
+      "recentAvgInflowUsd": 223162.5761703208,
+      "previousAvgInflowUsd": 192879.96343989347,
+      "inflowRatio": 1.1570023769724749,
+      "recentAvgNewWallets": 97.07142857142857,
+      "previousAvgNewWallets": 99.35714285714286,
+      "newWalletRatio": 0.9769949676491732,
+      "recentUnstakeUsd": 15037.206169962943,
+      "recentStakeUsd": 3124276.066384491
+    },
+    "excludesCurrentPartialDay": true
+  },
+  "exits": {
+    "observedUnstakeTransactions": 37,
+    "decodedUnstakeEvents": 37,
+    "missingUnstakeTransactionHashes": 0,
+    "cumulativeStakeUsdAtCurrentPrice": 6493582.269379916,
+    "cumulativeUnstakeUsdAtCurrentPrice": 22743.045864159634,
+    "cumulativeUnstakeToStakeRatio": 0.0035023881920158394,
+    "chainFeeEvidence": [
+      {
+        "releaseDays": 30,
+        "expectedFeeRate": 0.3,
+        "observedEvents": 23,
+        "observedMinFeeRate": 0.29999999999999993,
+        "observedMaxFeeRate": 0.30000000000000004,
+        "grossSentis": 49863.35202330067,
+        "feeSentis": 14959.005606990198
+      },
+      {
+        "releaseDays": 60,
+        "expectedFeeRate": 0.2,
+        "observedEvents": 2,
+        "observedMinFeeRate": 0.19999999999999998,
+        "observedMaxFeeRate": 0.2,
+        "grossSentis": 1871.8224050716412,
+        "feeSentis": 374.36448101432825
+      },
+      {
+        "releaseDays": 90,
+        "expectedFeeRate": 0.1,
+        "observedEvents": 12,
+        "observedMinFeeRate": 0.09999999999999998,
+        "observedMaxFeeRate": 0.10000000000000002,
+        "grossSentis": 28017.320960999023,
+        "feeSentis": 2801.732096099902
+      }
+    ],
+    "correction": "30/60/90 are release choices with observed 30%/20%/10% fees, not wallet-age eligibility milestones. Existing events prove 90-day choices occurred before wallets were 90 days old."
+  },
+  "userPosition": {
+    "wallet": "0x0e39420fcdb05c5378c7d1f955dc546b5f5a85b6",
+    "knownTransaction": "0x34637cca993eab690939bd8692d6ee0db64abd6e5ecea9e9ac523db22d87778a",
+    "transactionFrom": "0x0e39420fcdb05c5378c7d1f955dc546b5f5a85b6",
+    "chainVerifiedCost": {
+      "token": "SENTIS",
+      "amount": 13716.750199999999,
+      "source": "SENTIS Transfer from the user wallet to FDAO in the known receipt"
+    },
+    "usdCostBasis": {
+      "amount": 2988.8798685799998,
+      "sentisUsd": 0.2179,
+      "source": "user-provided wallet screenshot near the transaction time",
+      "chainVerified": false
+    },
+    "current": {
+      "stakedLp": 5500.488802934464,
+      "rewardMeta": 0,
+      "sentisUsd": 0.2150098572015502,
+      "metaUsd": 0.2851703354625142
+    },
+    "exitOptions": [
+      {
+        "releaseDays": 30,
+        "feeRate": 0.3,
+        "chainQuotedFeeSentis": 4309.593972091431,
+        "chainImpliedGrossSentis": 14365.313240304771,
+        "netSentisBeforePossibleBurn": 10055.71926821334,
+        "currentNetUsdBeforePossibleBurn": 2162.078763917427,
+        "pnlUsdVsReference": -826.8011046625729,
+        "pnlPctVsReference": -0.27662573974757354,
+        "breakEvenSentisUsd": 0.29723183283646426
+      },
+      {
+        "releaseDays": 60,
+        "feeRate": 0.2,
+        "chainQuotedFeeSentis": 2873.0626480609544,
+        "chainImpliedGrossSentis": 14365.313240304771,
+        "netSentisBeforePossibleBurn": 11492.250592243818,
+        "currentNetUsdBeforePossibleBurn": 2470.947158762774,
+        "pnlUsdVsReference": -517.9327098172257,
+        "pnlPctVsReference": -0.17328655971151252,
+        "breakEvenSentisUsd": 0.2600778537319062
+      },
+      {
+        "releaseDays": 90,
+        "feeRate": 0.1,
+        "chainQuotedFeeSentis": 1436.5313240304772,
+        "chainImpliedGrossSentis": 14365.313240304771,
+        "netSentisBeforePossibleBurn": 12928.781916274294,
+        "currentNetUsdBeforePossibleBurn": 2779.8155536081204,
+        "pnlUsdVsReference": -209.0643149718794,
+        "pnlPctVsReference": -0.06994737967545173,
+        "breakEvenSentisUsd": 0.23118031442836107
+      }
+    ],
+    "caveat": "The fee quote is read directly from viewUnStakeLPFee. The site also states a 2% burn; final cash received remains a range until a completed release withdrawal is decoded on-chain."
+  },
+  "assessment": {
+    "level": "orange",
+    "action": "停止追加，准备退出方案；若再出现一个红色信号，优先执行退出。",
+    "rewardCoverage": 0.9702495311689713,
+    "signals": [
+      {
+        "id": "custody_coverage",
+        "level": "orange",
+        "value": 0.8303525227075021,
+        "threshold": "orange < 90%; red < 75%",
+        "explanation": "FDAO持有的LP按池子流动性折算后，对合约显示TVL的覆盖程度。"
+      },
+      {
+        "id": "seven_day_inflow_momentum",
+        "level": "green",
+        "value": 1.101770008056933,
+        "threshold": "orange < 90%; red < 70%",
+        "explanation": "最近7个完整日的日均新增，对比之前7个完整日。"
+      },
+      {
+        "id": "seven_day_wallet_momentum",
+        "level": "green",
+        "value": 0.9140845070422534,
+        "threshold": "orange < 90%; red < 75%",
+        "explanation": "最近7个完整日的新钱包日均数，对比之前7日。"
+      },
+      {
+        "id": "high_reward_coverage",
+        "level": "orange",
+        "value": 0.9702495311689713,
+        "threshold": "orange < 1.0x; red < 0.75x",
+        "explanation": "最近7日日均新增资金，覆盖1.2%高档理论日奖励的倍数。"
+      },
+      {
+        "id": "real_exit_ratio",
+        "level": "green",
+        "value": 0.0035023881920158394,
+        "threshold": "orange > 10%; red > 25%",
+        "explanation": "链上累计发起解押价值，占累计质押价值的比例。"
+      },
+      {
+        "id": "relationship_opacity",
+        "level": "yellow",
+        "value": false,
+        "threshold": "A/B级关系树存在",
+        "explanation": "没有链上推荐树时，无法提前识别头部团队同步撤退。"
+      }
+    ]
+  },
+  "sellTriggers": [
+    {
+      "level": "orange",
+      "rule": "7个完整日新增资金低于前7日90%，或日均新增不足高档理论奖励，或LP资产覆盖低于90%。",
+      "action": "停止追加，准备90日低费退出方案。"
+    },
+    {
+      "level": "red",
+      "rule": "7日新增跌到前期70%以下、真实解押超过新增25%、或LP资产覆盖低于75%；任意两项同时发生。",
+      "action": "优先降低风险，不等待账面回本。"
+    }
+  ],
+  "limitations": [
+    "Official referral and team trees remain off-chain or behind authenticated project APIs.",
+    "USD entry cost is not immutable on-chain because SENTIS was not a stablecoin; the displayed USD P/L uses the user's contemporaneous screenshot price.",
+    "A final 2% burn and release withdrawals still need transaction-level reconciliation before net proceeds are exact."
+  ]
+}
