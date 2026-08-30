@@ -24,7 +24,7 @@ const RPCS = [
   "https://bsc-dataseed.binance.org",
   "https://bsc-rpc.publicnode.com",
 ].filter(Boolean);
-const RUN_SIZE = Number(process.env.RELATIONSHIP_RUN_SIZE || 250);
+const RUN_SIZE = Number(process.env.RELATIONSHIP_RUN_SIZE || 500);
 
 const readJson = (name, fallback) => {
   try {
@@ -339,6 +339,7 @@ export function buildTeamMetrics(edges, stakeByWallet) {
 }
 
 function buildReport(state, universe, history, current) {
+  const storageProbe = readJson("storage-relationship-probe.json", null);
   const facts = state.facts;
   const recipientCounts = new Map();
   for (const fact of facts) {
@@ -444,6 +445,8 @@ function buildReport(state, universe, history, current) {
         "fdao.io exposes /api/user/bind-code, /api/user/invite-records and /api/user/rank/:tokenId behind wallet login",
       contract:
         "The public staking ABI contains stake, unstake, price and reward functions but no referral getter.",
+      storageProbe:
+        "eth_createAccessList enumerates storage actually read by viewStakingInfo() for sampled wallets; values are checked against all observed staking addresses.",
     },
     evidenceSummary: {
       totalFirstStakeWallets: universe.length,
@@ -458,6 +461,7 @@ function buildReport(state, universe, history, current) {
         clusters.flatMap((cluster) => cluster.wallets),
       ).size,
       fixedReceiptRecipients: [...fixedRecipients],
+      storageProbe: storageProbe?.summary || null,
     },
     edges: dedupedEdges,
     behaviorClusters: clusters.slice(0, 100),
@@ -482,6 +486,9 @@ function buildReport(state, universe, history, current) {
       "首入回执中的资金接收方是固定合约、流动性池和销毁地址，尚未出现可唯一对应上级的10%奖励钱包。",
       "推荐绑定与邀请名单出现在项目方登录后的 API 中，说明组织树很可能主要保存在项目方后台。",
       "C级行为簇只能提示批量铺号或同一操盘批次，不能当成官方上下级关系。",
+      storageProbe?.summary?.knownParticipantAddressMatches === 0
+        ? `存储读取探针已检查${storageProbe.summary.sampledWallets}个钱包、${storageProbe.summary.accessedStorageKeys}个实际访问槽，未发现槽值等于另一质押钱包地址。`
+        : "存储读取探针如发现跨钱包地址值，仍须逐笔验证后才能升级为A级关系。",
     ],
   };
 }

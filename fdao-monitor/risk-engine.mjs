@@ -292,6 +292,7 @@ async function main() {
     teamMetrics: { available: false },
   });
   const releaseAudit = readJson("release-audit.json", null);
+  const flowAudit = readJson("unstake-flow-audit.json", null);
   if (!current) throw new Error("current.json is required");
 
   const events = [...historyState.events, ...(todayState.dayEvents || [])];
@@ -383,12 +384,26 @@ async function main() {
   const unstakeEvidence = unstakeTransactions.flatMap(
     (transactionHash) => evidenceCache.byTransaction[transactionHash] || [],
   );
+  const flowAuditComplete =
+    flowAudit?.auditedTransactions === unstakeTransactions.length;
+  const fundMovingTransactions = new Set(
+    flowAuditComplete
+      ? (flowAudit.rows || [])
+          .filter((row) => row.lpLocked > 0 || row.sentisFeeTransferred > 0)
+          .map((row) => row.tx)
+      : unstakeTransactions,
+  );
+  const fundMovingUnstakeEvidence = unstakeEvidence.filter((event) =>
+    fundMovingTransactions.has(event.tx),
+  );
   const cumulativeStakeUsd = sum(
     (history.daily || []).map((item) => item.stakeUsdAtCurrentPrice),
   );
-  const cumulativeUnstakeUsd = sum(
-    (history.daily || []).map((item) => item.unstakeUsdAtCurrentPrice),
-  );
+  const cumulativeUnstakeUsd = flowAuditComplete
+    ? Number(flowAudit.summary?.fundMovingGrossSentis || 0) * sentisUsd
+    : sum(
+        (history.daily || []).map((item) => item.unstakeUsdAtCurrentPrice),
+      );
   const period3 = completePeriod(history.daily || [], current.date, 3);
   const period7 = completePeriod(history.daily || [], current.date, 7);
   const period14 = completePeriod(history.daily || [], current.date, 14);
@@ -430,7 +445,10 @@ async function main() {
       excludesCurrentPartialDay: true,
     },
     exits: {
-      observedUnstakeTransactions: unstakeTransactions.length,
+      observedUnstakeTransactions: fundMovingTransactions.size,
+      emittedUnstakeTransactions: unstakeTransactions.length,
+      eventOnlyUnstakeTransactions:
+        Number(flowAudit?.summary?.eventOnlyTransactions || 0),
       decodedUnstakeEvents: unstakeEvidence.length,
       missingUnstakeTransactionHashes,
       cumulativeStakeUsdAtCurrentPrice: cumulativeStakeUsd,
@@ -439,7 +457,7 @@ async function main() {
         ? cumulativeUnstakeUsd / cumulativeStakeUsd
         : 0,
       chainFeeEvidence: EXIT_OPTIONS.map((option) => {
-        const matching = unstakeEvidence.filter(
+        const matching = fundMovingUnstakeEvidence.filter(
           (event) => event.releaseDays === option.days,
         );
         return {
@@ -463,6 +481,7 @@ async function main() {
         result: "LP tokens are locked on unstake and vest progressively over the selected 30/60/90-day period. release() returns the currently vested LP; the fee event's SENTIS amount is not the final payout.",
       },
       releaseAudit,
+      flowAudit,
       correction:
         "30/60/90 are linear release periods with observed 30%/20%/10% fees, not wallet-age eligibility milestones or cliff waits. Unstake locks LP; release() can claim the vested portion during the period and ultimately returns LP rather than a fixed SENTIS payout.",
     },
@@ -510,7 +529,7 @@ async function main() {
     limitations: [
       "Official referral and team trees remain off-chain or behind authenticated project APIs.",
       "USD entry cost is not immutable on-chain because SENTIS was not a stablecoin; the displayed USD P/L uses the user's contemporaneous screenshot price.",
-      "The site's 2% burn claim still needs transaction-level reconciliation; it is not silently deducted from the estimate without proof.",
+      "Across the currently audited unstake receipts, no direct META transfer to zero/0x1/dead was found. The site's 2% statement is not silently deducted without separate proof.",
       "Release returns LP, so a final cash amount cannot be fixed today: pool reserves, LP supply, token prices, transfer taxes and remove-liquidity execution can all change before release.",
     ],
   };

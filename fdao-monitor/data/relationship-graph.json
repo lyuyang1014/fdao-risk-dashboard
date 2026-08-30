@@ -1,16 +1,17 @@
 {
-  "updatedAt": "2026-08-30T10:36:02.714Z",
-  "coverage": 0.6539991768418164,
+  "updatedAt": "2026-08-30T10:39:44.057Z",
+  "coverage": 0.7225956921388393,
   "backfillDone": false,
   "relationshipStatus": "referral_not_exposed_by_stake_contract",
   "sources": {
     "chain": "BNB Smart Chain transaction input and receipts",
     "frontend": "fdao.io exposes /api/user/bind-code, /api/user/invite-records and /api/user/rank/:tokenId behind wallet login",
-    "contract": "The public staking ABI contains stake, unstake, price and reward functions but no referral getter."
+    "contract": "The public staking ABI contains stake, unstake, price and reward functions but no referral getter.",
+    "storageProbe": "eth_createAccessList enumerates storage actually read by viewStakingInfo() for sampled wallets; values are checked against all observed staking addresses."
   },
   "evidenceSummary": {
     "totalFirstStakeWallets": 7289,
-    "sampledFirstStakeTransactions": 4767,
+    "sampledFirstStakeTransactions": 5267,
     "calldataPatterns": [
       {
         "selector": "0x9cd441da",
@@ -20,17 +21,17 @@
         "addressFieldHits": 0
       },
       {
+        "selector": "0x4b8db9ff",
+        "inputBytes": 196,
+        "argumentWords": 6,
+        "count": 1499,
+        "addressFieldHits": 0
+      },
+      {
         "selector": "0xc38bde14",
         "inputBytes": 100,
         "argumentWords": 3,
         "count": 1309,
-        "addressFieldHits": 0
-      },
-      {
-        "selector": "0x4b8db9ff",
-        "inputBytes": 196,
-        "argumentWords": 6,
-        "count": 999,
         "addressFieldHits": 0
       },
       {
@@ -78,8 +79,8 @@
     ],
     "gradeAConfirmedEdges": 0,
     "gradeBRewardEdges": 0,
-    "gradeCBehaviorClusters": 46,
-    "walletsInBehaviorClusters": 530,
+    "gradeCBehaviorClusters": 66,
+    "walletsInBehaviorClusters": 814,
     "fixedReceiptRecipients": [
       "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
       "0x3690803f317915a9b68424f3b245102e2af0c51a",
@@ -89,7 +90,15 @@
       "0x98f0421fcb5129b352cc35c1ed15ae9081deb700",
       "0x0ed943ce24baebf257488771759f9bf482c39706",
       "0xf40bbdb6dbd48ce693bb9c4b18f9e495554747b9"
-    ]
+    ],
+    "storageProbe": {
+      "sampledWallets": 10,
+      "knownStakingWallets": 7289,
+      "accessedStorageKeys": 690,
+      "commonProxyStorageKeys": 6,
+      "variableProxyStorageKeys": 272,
+      "knownParticipantAddressMatches": 0
+    }
   },
   "edges": [],
   "behaviorClusters": [
@@ -155,6 +164,128 @@
       ]
     },
     {
+      "id": "amount:5947893:4570.37",
+      "type": "same_amount_window",
+      "detail": "5分钟内相同 META 数量 4570.37",
+      "walletCount": 216,
+      "firstTs": 1784367900,
+      "lastTs": 1784368199,
+      "stakeMeta": 987199.7479602211,
+      "wallets": [
+        "0x8514f4ab2234804dc7c1f9b8f2bd1ab500810e3e",
+        "0x84ad099ff04ec06fcf800897e9d69b192e13d357",
+        "0x843ca6c71434a76e52019eb6ce518bda9d8a2899",
+        "0x842fd126d64f615f3dc919c9950ab9fd98327978",
+        "0x84202b1be5fe75c0d4d0b353f778628b63fcfb03",
+        "0x833328e12ea613f89b0d7c358e1113568a8a2417",
+        "0x8323124599751137a32b8d1bf3e6a2e58164191a",
+        "0x82e66eaeb98bd4bf1b3ab181b38484699995eeba",
+        "0x82c7c7d93f58c2220a3ced6ede3e3c80edc8bed6",
+        "0x82bcb46b9f097dcc5677702defe1df3431894d93",
+        "0x8213453398eeb0d1c956f412f0e95179f75f39fd",
+        "0x81f440eba222d1f9f1ea6bfa4d3b3b6685149162",
+        "0x81affaed9c1a2fd37c90da8ee79c53a37ae7c5d1",
+        "0x81095934888aaed378d2dcfde94c7d05cf0cdc2f",
+        "0x810749234b5d0367d7b4229f6648e7aed3b38e6e",
+        "0x80f6a035b1612d759ac5dfea07f7b12afd30b834",
+        "0x80e807bb966148ecebbded1e0f471620e59a5426",
+        "0x8005c631f22fe65d9c6b95515aaa1e598765e00f",
+        "0x7f70e45e800c86ab05fe63d59579cf62ed6cbae0",
+        "0x7f65e387f1d12154e6f31e8199d513ad02ba2842",
+        "0x7f2ab86c5714bed2fd72c23dacdb8f3b86093007",
+        "0x7efed316566478402c5aefaf938150d0cff3835c",
+        "0x7ef39a5bf0d3f76aa17fc6ee9687b6074155f2f6",
+        "0x7eee2d908408fe3f6a476ae1a277dbfd837f6359",
+        "0x7eb4ccb2b41946e81bc8441900d3122f8e191541",
+        "0x7ea8f2eb6c5626f3515dee46b4605e039cc91585",
+        "0x7e7d30e2fbdadd1fc950208e6413606f15958568",
+        "0x7e15cee602e026c2a6e755563444ff0b8cc7b242",
+        "0x7df3d740e1669541b3b36adbc5880178d7a07d1a",
+        "0x7da6258c20accec09a081cea89b818a1c13cab8e",
+        "0x7d8217054c204087c80a980157a07398193838f5",
+        "0x7d382fbdf4f3e5fcfe0c861ece168e2b25968fd6",
+        "0x7d1ff59fcd2759a8d1dd0c1c475f8c2f6c8f8a2a",
+        "0x7c4fa4cd73eb42d829a4e2780343a6e9e3696c15",
+        "0x7c2039d028f2e35a7795963da868e502994000db",
+        "0x7c1cc8365d3668b337b021cd66f9098b16726727",
+        "0x7c047180e99d5d311159a7ca5414fce368871836",
+        "0x7bdcc6faa26215329995cd4d3d7c4a8a13a3acb7",
+        "0x7bb46d3ab93b8faf7cb273db9defe607e468b3fd",
+        "0x7b9e7cd792bdbfe5168003268fb404ec7b7fa614",
+        "0x7b595bfeb9fab2d62baa195ab69abe5c46b414a0",
+        "0x7ad399bbb036ff7409ace5ec148c4a362ee6c57d",
+        "0x7ab6184b71d6a706f064f4f4aef06c90c3819ccb",
+        "0x7a826bd6684023fa850a1dcf331dfae1beb892fa",
+        "0x7a8217d3a9f22a044d3f461a1151db904f84648f",
+        "0x7a75275cfaaded60e699284b03b53a79c9fe9262",
+        "0x7a2744cd1dd946daa28b73a23b729255cd53ade3",
+        "0x79fc021f669f827d82b111be88af002a253e543d",
+        "0x79f65500cfff55189c4d6de5fee680f129c271da",
+        "0x799683fecaa2e633a0961efd24aef5be45625554"
+      ]
+    },
+    {
+      "id": "amount:5947894:4570.37",
+      "type": "same_amount_window",
+      "detail": "5分钟内相同 META 数量 4570.37",
+      "walletCount": 197,
+      "firstTs": 1784368202,
+      "lastTs": 1784368497,
+      "stakeMeta": 900362.7330933498,
+      "wallets": [
+        "0x459f9c29fce8c696cb2fc76e58b7f4ca22b9e123",
+        "0x4588614ee3d152f7f00358fd4a7cd1ed4f273d59",
+        "0x45841507fef8ae91c7fb4f8cbd39aa83e23fe01b",
+        "0x452b4999e5dc5ac6575a898f1bcdd7197b831149",
+        "0x452406840b8b4a2576ae59011f544efd02fe8dab",
+        "0x44e535834705b2289c7ee7941de251e14f69b3e4",
+        "0x448cc7a50bdf1dac1565fab15f505adc07bcf291",
+        "0x447984f336d4f412df9c1734aaaf520f37e33267",
+        "0x4453c8b9570ea4288fbc05e420d1dce1802fa3bb",
+        "0x4436d7fe963355faf8f9256d09183046cee25abd",
+        "0x43e14ea2558062f8648955ff6551750806d3f388",
+        "0x43a85041af84ab22bb92716671c380067bd5ca0f",
+        "0x4359308a4dc9a2d5c8e94984cd322c10cdb1e12c",
+        "0x42ea5b128362c4304e605448d8bb85b0f92e443a",
+        "0x42d836abf88279c0870eca7ac1fc1258bb02a040",
+        "0x427bfe654518c08da436ee7dbe7bc5e74d2b7d15",
+        "0x4238dc8b32705a6a95d6c657f22ac55d6706bbbf",
+        "0x421091d1ca206962e85b51466d1cdf4cd7b9f270",
+        "0x41f4128eed4b8402cca0ee02162173047d241cdb",
+        "0x41a680f6b37468893ffacd9eb883b2127aae8c81",
+        "0x412f60a4708b7f807c2b49866d9ec77eae59d5c2",
+        "0x406ecee0050546c8ca51b42fd44bd29a26ef8841",
+        "0x3fe71b15d69375c9bb985bd3366c3a6cf17d0802",
+        "0x3fd77829b4c584381f49f54b08d4fcb392bc01e7",
+        "0x3f7add34d8fc65d477f43a4ba26a6554bb35e1fb",
+        "0x3f6285de6dac7f099b109ff244d7501fdddda062",
+        "0x3f5bc071c8c648f8a88f20c1010d27adc36379d1",
+        "0x3f4a3cd478037941641807fba0b16068805bdc77",
+        "0x3f26377fa0e50fffb9c830ade0cb56fed4c36e5a",
+        "0x3ede92cec03e904b6120e24edb6c4b3d549457f0",
+        "0x3ecf450a53a53611877c0d615473d722b73c58c3",
+        "0x3eaba01101723c4dde9d8b3b696d9c1ca6d42d76",
+        "0x3e0f0fbcb262bf2424aba31a66513a4c2ba7e1b1",
+        "0x3df2a680b8654c6fa245c04914e7da83e4404d47",
+        "0x3de0c8eaafa46b369551a03c93419203b0a42bb8",
+        "0x3d69b5da3d51510efd4a05c9e9cdf0c4cc63ca72",
+        "0x3d41dc140637157a5cefcbcb155d07a9c7fb5e4a",
+        "0x3ce791d3e0fcdbf4e332d69bec091c931d519246",
+        "0x3cd1e8ada74ff0a1fec8e6233120ba79dac0fbd5",
+        "0x3c00420b52798bd14bfdcf4ca4b52eb5dacecc4d",
+        "0x3bdf2b305ae0c7f87087ad5a582ac9c43da7ed46",
+        "0x3b8b9a8dcb81615ec0cdc308c6f9fdb4d40157ab",
+        "0x3b507a07f8da54b43675d91a31cd9ac4121f730c",
+        "0x3aa7682014767f9cf1f129b1f17ce37a8e7c353a",
+        "0x3a885c682dd6db9047f74726bf9a95d49cd7644b",
+        "0x3a0208079e8e96e956b2db1c034d0df057c28729",
+        "0x38cafc45789c08ab8ef63c8d2186ffdd65d6b85f",
+        "0x3892b125b4ac9840f242f350188c4bbb6f16fdfa",
+        "0x37a84825580142353e5aa59bdbd8065bb2fc44e5",
+        "0x374fa164237e4203b397f47d329779cd630dced8"
+      ]
+    },
+    {
       "id": "amount:5947891:4570.37",
       "type": "same_amount_window",
       "detail": "5分钟内相同 META 数量 4570.37",
@@ -216,67 +347,6 @@
       ]
     },
     {
-      "id": "amount:5947893:4570.37",
-      "type": "same_amount_window",
-      "detail": "5分钟内相同 META 数量 4570.37",
-      "walletCount": 162,
-      "firstTs": 1784367900,
-      "lastTs": 1784368122,
-      "stakeMeta": 740399.8109701659,
-      "wallets": [
-        "0x8514f4ab2234804dc7c1f9b8f2bd1ab500810e3e",
-        "0x84ad099ff04ec06fcf800897e9d69b192e13d357",
-        "0x843ca6c71434a76e52019eb6ce518bda9d8a2899",
-        "0x842fd126d64f615f3dc919c9950ab9fd98327978",
-        "0x84202b1be5fe75c0d4d0b353f778628b63fcfb03",
-        "0x833328e12ea613f89b0d7c358e1113568a8a2417",
-        "0x8323124599751137a32b8d1bf3e6a2e58164191a",
-        "0x82e66eaeb98bd4bf1b3ab181b38484699995eeba",
-        "0x82c7c7d93f58c2220a3ced6ede3e3c80edc8bed6",
-        "0x82bcb46b9f097dcc5677702defe1df3431894d93",
-        "0x8213453398eeb0d1c956f412f0e95179f75f39fd",
-        "0x81f440eba222d1f9f1ea6bfa4d3b3b6685149162",
-        "0x81affaed9c1a2fd37c90da8ee79c53a37ae7c5d1",
-        "0x81095934888aaed378d2dcfde94c7d05cf0cdc2f",
-        "0x810749234b5d0367d7b4229f6648e7aed3b38e6e",
-        "0x80f6a035b1612d759ac5dfea07f7b12afd30b834",
-        "0x80e807bb966148ecebbded1e0f471620e59a5426",
-        "0x8005c631f22fe65d9c6b95515aaa1e598765e00f",
-        "0x7f70e45e800c86ab05fe63d59579cf62ed6cbae0",
-        "0x7f65e387f1d12154e6f31e8199d513ad02ba2842",
-        "0x7f2ab86c5714bed2fd72c23dacdb8f3b86093007",
-        "0x7efed316566478402c5aefaf938150d0cff3835c",
-        "0x7ef39a5bf0d3f76aa17fc6ee9687b6074155f2f6",
-        "0x7eee2d908408fe3f6a476ae1a277dbfd837f6359",
-        "0x7eb4ccb2b41946e81bc8441900d3122f8e191541",
-        "0x7ea8f2eb6c5626f3515dee46b4605e039cc91585",
-        "0x7e7d30e2fbdadd1fc950208e6413606f15958568",
-        "0x7e15cee602e026c2a6e755563444ff0b8cc7b242",
-        "0x7df3d740e1669541b3b36adbc5880178d7a07d1a",
-        "0x7da6258c20accec09a081cea89b818a1c13cab8e",
-        "0x7d8217054c204087c80a980157a07398193838f5",
-        "0x7d382fbdf4f3e5fcfe0c861ece168e2b25968fd6",
-        "0x7d1ff59fcd2759a8d1dd0c1c475f8c2f6c8f8a2a",
-        "0x7c4fa4cd73eb42d829a4e2780343a6e9e3696c15",
-        "0x7c2039d028f2e35a7795963da868e502994000db",
-        "0x7c1cc8365d3668b337b021cd66f9098b16726727",
-        "0x7c047180e99d5d311159a7ca5414fce368871836",
-        "0x7bdcc6faa26215329995cd4d3d7c4a8a13a3acb7",
-        "0x7bb46d3ab93b8faf7cb273db9defe607e468b3fd",
-        "0x7b9e7cd792bdbfe5168003268fb404ec7b7fa614",
-        "0x7b595bfeb9fab2d62baa195ab69abe5c46b414a0",
-        "0x7ad399bbb036ff7409ace5ec148c4a362ee6c57d",
-        "0x7ab6184b71d6a706f064f4f4aef06c90c3819ccb",
-        "0x7a826bd6684023fa850a1dcf331dfae1beb892fa",
-        "0x7a8217d3a9f22a044d3f461a1151db904f84648f",
-        "0x7a75275cfaaded60e699284b03b53a79c9fe9262",
-        "0x7a2744cd1dd946daa28b73a23b729255cd53ade3",
-        "0x79fc021f669f827d82b111be88af002a253e543d",
-        "0x79f65500cfff55189c4d6de5fee680f129c271da",
-        "0x799683fecaa2e633a0961efd24aef5be45625554"
-      ]
-    },
-    {
       "id": "amount:5947891:9140.74",
       "type": "same_amount_window",
       "detail": "5分钟内相同 META 数量 9140.74",
@@ -328,6 +398,52 @@
       ]
     },
     {
+      "id": "amount:5947894:9140.74",
+      "type": "same_amount_window",
+      "detail": "5分钟内相同 META 数量 9140.74",
+      "walletCount": 35,
+      "firstTs": 1784368201,
+      "lastTs": 1784368483,
+      "stakeMeta": 319925.844246368,
+      "wallets": [
+        "0x463566eca178fcd5af4ac6b0e42f83f9c8d474e9",
+        "0x45ac62fa03b669acbcb6d138eec3bf8f23db9b8b",
+        "0x455b1301480d21fb7f540cb090acadb8d1dd5bba",
+        "0x438a98f07ce698d048e5e16c952c1b67e2b688fa",
+        "0x3ce4023f84e0036a4a7ae5362fbf62eb08b5acd8",
+        "0x3c93961f90ce84e63f0a630def043c6269b1099f",
+        "0x3b7efd57e06c6270ccd6321383f5de444f5dc31c",
+        "0x3b3dede97368b9e0e87f8afde3336b6581f5f3b5",
+        "0x3b34aa8ce91a24128e646719c1eb90d9a94daef8",
+        "0x385444b4a5573b1be9d1f2965aac0067acc40618",
+        "0x3736ab035fbc968a4e396e8cdf4d5a20dc539883",
+        "0x34fbe8d25e04b98388411c0405442501f1892f43",
+        "0x3248e630d9a0ce0ab890c6dc50a508fc81656030",
+        "0x31a578a2f607a05618e4ff9a1bf09f09ee93b94f",
+        "0x312712bb8c0b0b9f653c2c90f1546a68c5777559",
+        "0x2d93f716b3faa6e92daecc1741b44e85da93fe61",
+        "0x2cb38f3cdee106b8294a29104f7bd54b000125bc",
+        "0x2bff6e443aa48f2ff2d20bfce95a8dac75213ba3",
+        "0x2a82b46f22cc0f25425bbbd5027352e2e565954b",
+        "0x279bc8f991662d8694bb14a697de8714e70195d9",
+        "0x277b800cc8e8f6982fa78c5ccd7321fcebb2eb8f",
+        "0x24ce7d003dc1c90068824779c9680ea0ad0f24d7",
+        "0x24899e747c8eb04a294011314c1a5885ba53e9f4",
+        "0x2175eb5d1aab5163f54a96420349c20b7916a1c9",
+        "0x20a9d281283ab2014d5db541bdf2709d1868a2dc",
+        "0x1de01052c1739aa6d2ea9c38020ca0af1ba5e685",
+        "0x1c2124f69a421cfac0b75bbf72d10d40a191093a",
+        "0x1bea9468a579fa3d2e4d3c2d40173788544bb7ec",
+        "0x1ae9195d9221fe0f21feb45ceb234556bba26786",
+        "0x1a55c12a469d2b8607118bc2d1f7d390479bd6e6",
+        "0x19412112a056946fa90eb022cebd088fe932a80e",
+        "0x178356b70e4b16e04eff659b3d08b9496be7f393",
+        "0x1677c4e9675d51bf4ca21e379da96b19cb086ab0",
+        "0x114cd1fe6584ba728dacfc604e5479e5f7ae6e93",
+        "0x0c480fff074347192b1c0e0bf63af4c0096fc6a9"
+      ]
+    },
+    {
       "id": "amount:5947892:9140.74",
       "type": "same_amount_window",
       "detail": "5分钟内相同 META 数量 9140.74",
@@ -372,6 +488,49 @@
       ]
     },
     {
+      "id": "amount:5947894:22851.85",
+      "type": "same_amount_window",
+      "detail": "5分钟内相同 META 数量 22851.85",
+      "walletCount": 32,
+      "firstTs": 1784368237,
+      "lastTs": 1784368499,
+      "stakeMeta": 731259.0725631268,
+      "wallets": [
+        "0x3f59ad7fb3bbb9f25413066c9f051b7c5d6c9499",
+        "0x3e04dcb2b20dfdd19e654475e555072c0ab2a5e6",
+        "0x3b951bdddf53587b5b0f696e67bbfbecef4e1a2d",
+        "0x3a7750c075a9b3f6b02e274b71e4effb5ea52b13",
+        "0x39b4b0c082e712e847d00fd8088af541e7e002a1",
+        "0x372a83cf5ff98d390c897ffc78bccdf3e96e4fb5",
+        "0x359678dda69a5e526733bd132f6c0dee736a0eea",
+        "0x357779a7910229d6064c5bf1eed2334703fd4a82",
+        "0x3456ba8995b504c1d1f991982d363248b1bca5e8",
+        "0x344d4c4da39f68d5bd6e0d6a10d3880dbbfb465c",
+        "0x31634fe507155492c474d571c56293c417550610",
+        "0x2fb34f5a063cc44aaeb933b617c3c6ae7e45b9b0",
+        "0x2da9f9f2c41b9fe30a0d07aff7065b24e880f127",
+        "0x2718a80a8e433b08e93849aeafd28aa71a449cdc",
+        "0x258b4eb3b229a8f42a9dd600482913804cf30cb1",
+        "0x210d264fa9d2733e93e8b277df60deeb292710ad",
+        "0x201d2758d84a101dcb874f509c8e9357be254450",
+        "0x1c1960d9ba2c1c2fb43725b1f445c4dcc087f598",
+        "0x1b4c201472790fb3816f07e647a96a0f05579c6c",
+        "0x18c814104c9be6c6cd84d63e0a20d35f13a8bb2c",
+        "0x16cd27f230beaa900929c6d0aa9cf4978a0c6bc1",
+        "0x1408dec797a00c21496ccf9e17472c417c7251af",
+        "0x122e232072dc5bb8b053cfbbf720d785460b428f",
+        "0x10e3faf73eb6868406d6f2cf458d7b88e4b0015f",
+        "0x103d63715d60a67131ba0db35e787cfcd702d1a9",
+        "0x0f463eb22bba65f8d780e1bdb37a7cca1ed88588",
+        "0x0c92e7c70d40994606a633ec688025151003e947",
+        "0x0c1282dc17c0bfb46e1f2f1f442bd40e765cf67a",
+        "0x0ac6c2900d48831dfaa705da14ec918bb1cb4c0c",
+        "0x09decf71ba2e3e1e02dcf6e4e17357d7e716839e",
+        "0x09943d7a966de9b80dfa25693adc3e4d6e6d4c94",
+        "0x0936bf74cb3c052e4e6232e1e7f5f8f6a25988e0"
+      ]
+    },
+    {
       "id": "amount:5947891:22851.85",
       "type": "same_amount_window",
       "detail": "5分钟内相同 META 数量 22851.85",
@@ -412,13 +571,52 @@
       ]
     },
     {
+      "id": "amount:5947893:22851.85",
+      "type": "same_amount_window",
+      "detail": "5分钟内相同 META 数量 22851.85",
+      "walletCount": 28,
+      "firstTs": 1784367908,
+      "lastTs": 1784368197,
+      "stakeMeta": 639851.688492736,
+      "wallets": [
+        "0x832b12c2624c16950f304af2d0a30709c41c00a9",
+        "0x80a9919b4119d1b8759d2cac624cef112de4b784",
+        "0x808b821714f1537b7660f2eb93d1708c621418b7",
+        "0x7ce0a746889de17bc7f26aa0eafbdb5bd42a460c",
+        "0x7724f6db9af3e5bbff87ff5bfbd1c4601149d1e6",
+        "0x7676ba7eb79c8ccbc56ae00262a7d5ecb3149dad",
+        "0x761843330a2bad32aab9a3e55bf6bf4abbe1a689",
+        "0x7525b6b2cba1e56110741b510962fde660d81c21",
+        "0x736d219ba3ad03adc654e33bf8681fc0573942df",
+        "0x730bd7721df7cb44fe1eb1d4e8cddcbdc88220c4",
+        "0x7305ebf73279af66fdf49e4310b670076b2b871d",
+        "0x712e579549950b4ce5be02fde79be62d1e484cd3",
+        "0x6db6141c16431d03d0905feb694b3c50470ea13b",
+        "0x677e0e2979e86b2f810ecd93a084af714e055279",
+        "0x666ef6ea17e2d87da90b0685c8e00159c55ed1f7",
+        "0x6655bd0c2c0e9d4a1c01323ef77b2f6b99ae1be8",
+        "0x5f97baaa5549329dd090318051ea34dc9f1d7774",
+        "0x5da07df0f1179eb40f15fb51a89b0bc53b9bb101",
+        "0x5a1a8586330c8df9b56a65cd496b1b878a6d5cc2",
+        "0x5669ee8128b634db6185c502da5075e1122385e3",
+        "0x5649c1d953c1bdece3d5c8f1d02bb570075998c3",
+        "0x54a8e0f07dafe1033c70c170a260a4eac79c8e75",
+        "0x508ec6e4c98cc6cebf66a457d1d4dcee41babb97",
+        "0x4fcc70b1bd66e734e9909cd84f6a5d4bc4c5033b",
+        "0x4efe7171fc9dbe53b78d94385816e2c9fae25057",
+        "0x4d6bf9f03044d2c5c3262c53eafc5b0d35d6dd50",
+        "0x4bfce9d95457608bc70797e293ab5474f63f23d8",
+        "0x46ef4616ff232a25f98f7b8c5cd002316bb8d6e5"
+      ]
+    },
+    {
       "id": "amount:5947893:9140.74",
       "type": "same_amount_window",
       "detail": "5分钟内相同 META 数量 9140.74",
-      "walletCount": 23,
+      "walletCount": 28,
       "firstTs": 1784367907,
-      "lastTs": 1784368120,
-      "stakeMeta": 210236.98336189898,
+      "lastTs": 1784368191,
+      "stakeMeta": 255940.6753970944,
       "wallets": [
         "0x83380078bf54fbecfc1fa0e6823e3f1c6fb838c7",
         "0x8222ccffa6a87feb2a8b5ac55bdbf8f0ced168cb",
@@ -442,37 +640,80 @@
         "0x5f02c67c316d4fa7e7078b985f083aa12fc6b37d",
         "0x5c5aa7d368f86026a1a45cbc47314966f12cb346",
         "0x5a0662718f88f37ebafcee514188aded0eb5ba49",
-        "0x59f7c3b2c2897e4355e331ab0fafa9f6c1746f81"
+        "0x59f7c3b2c2897e4355e331ab0fafa9f6c1746f81",
+        "0x5870806e0586f3d8059d41ff4528db1faeb13c1a",
+        "0x55a8f09fba2e7497e3ef0c5c8480b0293298c2c0",
+        "0x553e014aff462b00039f445faba363184696bcd4",
+        "0x4c818ffd0e3755da012caca261a2a2105c61dd85",
+        "0x48caeb41962ce9e8f4efaeb9f46951797640605d"
       ]
     },
     {
-      "id": "amount:5947893:22851.85",
+      "id": "amount:5947895:4570.37",
       "type": "same_amount_window",
-      "detail": "5分钟内相同 META 数量 22851.85",
-      "walletCount": 19,
-      "firstTs": 1784367908,
-      "lastTs": 1784368116,
-      "stakeMeta": 434185.0743343566,
+      "detail": "5分钟内相同 META 数量 4570.37",
+      "walletCount": 26,
+      "firstTs": 1784368500,
+      "lastTs": 1784368537,
+      "stakeMeta": 118829.59929150812,
       "wallets": [
-        "0x832b12c2624c16950f304af2d0a30709c41c00a9",
-        "0x80a9919b4119d1b8759d2cac624cef112de4b784",
-        "0x808b821714f1537b7660f2eb93d1708c621418b7",
-        "0x7ce0a746889de17bc7f26aa0eafbdb5bd42a460c",
-        "0x7724f6db9af3e5bbff87ff5bfbd1c4601149d1e6",
-        "0x7676ba7eb79c8ccbc56ae00262a7d5ecb3149dad",
-        "0x761843330a2bad32aab9a3e55bf6bf4abbe1a689",
-        "0x7525b6b2cba1e56110741b510962fde660d81c21",
-        "0x736d219ba3ad03adc654e33bf8681fc0573942df",
-        "0x730bd7721df7cb44fe1eb1d4e8cddcbdc88220c4",
-        "0x7305ebf73279af66fdf49e4310b670076b2b871d",
-        "0x712e579549950b4ce5be02fde79be62d1e484cd3",
-        "0x6db6141c16431d03d0905feb694b3c50470ea13b",
-        "0x677e0e2979e86b2f810ecd93a084af714e055279",
-        "0x666ef6ea17e2d87da90b0685c8e00159c55ed1f7",
-        "0x6655bd0c2c0e9d4a1c01323ef77b2f6b99ae1be8",
-        "0x5f97baaa5549329dd090318051ea34dc9f1d7774",
-        "0x5da07df0f1179eb40f15fb51a89b0bc53b9bb101",
-        "0x5a1a8586330c8df9b56a65cd496b1b878a6d5cc2"
+        "0x09182b618ced42b37c5bfa26810c1a7224eb6eef",
+        "0x09166bb5e5622c14ac362e587905cee59d12b428",
+        "0x091238826e8a412e08920b1fa046002b7c851647",
+        "0x088dbb70b2f72b938780e0f00a032ff1fa8193a2",
+        "0x086014ed477990e02b234b7979c732d4232c6bb0",
+        "0x0823401c3676bf926738308fe565045985cb7286",
+        "0x07ff6c0816819599402fea82760b72160a7c4404",
+        "0x07cd966c775a154bba272ec2e9c2a205a54e6a7c",
+        "0x07b8b06bca301373b1ce64900c4bc38af6c4113b",
+        "0x0732d8b8bd33f8272dcd9df4ddf0d313c47cb6c0",
+        "0x072efe5132dcbca462d816447b59e00e6edbbb8f",
+        "0x070dd35ba20d14470d2c863c91bab660f02f0116",
+        "0x06fdad317d2a01781019689590f8fd027d0651c3",
+        "0x06f31c9d1581b133027a083a49abf00ffbfd68b0",
+        "0x05caaaaaf4b0386d68513c4de66aba4e65dfae13",
+        "0x051a8dd53e6b7f079a0d6462232ccc102aa6faf9",
+        "0x0507759e8aa2a4989c5e8e3177f838f631f4936f",
+        "0x048878edbb7b7f8c40ce9887e53f9f2e4c4bf439",
+        "0x0444329a99ab2a05f5e2a186ce38394bbb2c6739",
+        "0x04074b84651208632641738de5bbc0f0a7cb2761",
+        "0x03cd2c15da5d5bcbf4976cd9795418ebf18f52f9",
+        "0x035f9d3502276a5ec88681dc97e963a4e6f2112c",
+        "0x0357f7061285ba2a550469126c72599d5881faa7",
+        "0x0308999a7ebe1f0b58270bf052dffd6efcb685eb",
+        "0x02ee4088cb72cad2fc809258ed76b0354510fdd7",
+        "0x02c5d2a0b1d741853db4b7aecf4e85756d50993c"
+      ]
+    },
+    {
+      "id": "amount:5947894:13711.11",
+      "type": "same_amount_window",
+      "detail": "5分钟内相同 META 数量 13711.11",
+      "walletCount": 20,
+      "firstTs": 1784368200,
+      "lastTs": 1784368496,
+      "stakeMeta": 274222.1522111726,
+      "wallets": [
+        "0x4637bcf6167f3b241fa9013b5a6a867c9f867976",
+        "0x41aa589daed493d9a262a054277206b518f4c7da",
+        "0x3d9d8c77c6d88802c02124eda1d49e839c55a2a3",
+        "0x3becbbe7df9e2ac8ee00ec1f6740108386256107",
+        "0x3bc1d868e603e732221b051a19b2215824d2d29c",
+        "0x3b4c15a0978bb36bbff52f73f574884b62041f5f",
+        "0x377d4f4cf24d80c696a305f1f632a5f84e9c7f6d",
+        "0x362c018d1c685ab14a7ed4dc9b3c9c3cecf26234",
+        "0x34d02d25a1d7615958e8ebfa0b52c139728df552",
+        "0x34c026258ffe348000b0daa8cb74091ec6ad9285",
+        "0x2bdc0ed977babb5fa036e1091feb2ad47ca98ab7",
+        "0x2792d394def6c586172ec2d6dd371e8c42d071c9",
+        "0x23d6af000607c2349bfeeed0eee0d007e91cec60",
+        "0x23c043dae14a0363bc49f6177f041a4327064a23",
+        "0x2259c94676e36d3ea575623c210a5894ce728db9",
+        "0x211a75801e1787511bc3eefa843e470f3b931cc6",
+        "0x1e3949a6f6910bbf17ab0099d13d664b1a254834",
+        "0x0de0a61667b64c81eee2b3909d8748098cfa3150",
+        "0x0d2ec12a889951bf0281bc2d35ac8ec9dec920b9",
+        "0x09bbb5f6e9bfc19ac705369a27a870ff9acd0b94"
       ]
     },
     {
@@ -533,6 +774,34 @@
       ]
     },
     {
+      "id": "amount:5947894:18281.48",
+      "type": "same_amount_window",
+      "detail": "5分钟内相同 META 数量 18281.48",
+      "walletCount": 17,
+      "firstTs": 1784368212,
+      "lastTs": 1784368490,
+      "stakeMeta": 310785.10583932896,
+      "wallets": [
+        "0x4493a5707ada0ae924b4b5c85cfa6f847a2e3d5f",
+        "0x420b4ceb04cfd6955c3971a16aaaa5fd197bd140",
+        "0x38132eaf5a66af5c22185e0ba4f9a0cce44d3913",
+        "0x36c43dd017d70c1fd574cd121cca09cc52b36b20",
+        "0x353249a7b6ffd0eece5d17dbf0708187dc03f53a",
+        "0x3483456c5d732cff917c51452664e57eed961c6c",
+        "0x2d39c89ffc25421289466fb05670a9314e56c9a7",
+        "0x1ea8bfb9e99de7759e457703c85a34e9ddb0fe57",
+        "0x1e74e9518908ca2c9a828f6fe60e736b37ee4035",
+        "0x1d086d9d6106083cfa220e4c359eb7dd9ea8e6a8",
+        "0x176da366a4d186002e25d93506a9b4ef68b732ec",
+        "0x1508231307f9295f84890d374de25f988ee6a31e",
+        "0x12e4691bc38b1e089bce2c6cebdfca28e4ed62e3",
+        "0x11dd4b38cf2b184472f28837918e3ade13b233c8",
+        "0x0db51717ac6b4a96c740669033f417a4429b08a6",
+        "0x0bf875d2eecdf18cdf3e24eba543cebf516fe3b2",
+        "0x0aef95da90e83b6cbd7394d9d531335a22675c4f"
+      ]
+    },
+    {
       "id": "amount:5947890:4570.37",
       "type": "same_amount_window",
       "detail": "5分钟内相同 META 数量 4570.37",
@@ -581,6 +850,80 @@
         "0x8918fbd8f8d65ad32dc8fae77ab088804a295744",
         "0x881492e1e81f696096dcfe8a3921f8a57cb44224",
         "0x8633c880d1dc9b1a551fef89b03061502b0bbc84"
+      ]
+    },
+    {
+      "id": "amount:5947894:31992.6",
+      "type": "same_amount_window",
+      "detail": "5分钟内相同 META 数量 31992.6",
+      "walletCount": 14,
+      "firstTs": 1784368223,
+      "lastTs": 1784368477,
+      "stakeMeta": 447896.432190991,
+      "wallets": [
+        "0x4248b6d9903c0251a674468d9e78f019dcf2ab8f",
+        "0x4059f7b5cbae00120a7c9fe0b2b411d72ecc3052",
+        "0x3aa67699e7dbee365900e28f07c24c25d4f76f7b",
+        "0x374fb0d949982c6503a98e00998530911fb77ff1",
+        "0x2f5b7f84e07745ad1651ea259b188dc08ca05b72",
+        "0x27f4ead6d5286ad2b8a0243a3eedeab0a67dd457",
+        "0x275b4abe64070e0bcc0fc6ee001a219707c7efb5",
+        "0x225835abc13dc2620b523b655ab002d93353eab3",
+        "0x20b4381c688ba4999ff2aa874ae4f902bcd0a2f3",
+        "0x1e5380cb0173b9d073afab02a5ca49bee4173f83",
+        "0x1d5dd76d1b6697b5450d9533497fe0fcaced241e",
+        "0x13262b7c40a1d429185fb31597778081e743fd99",
+        "0x106265ab0e173e1df79b9d9466da0eb6592e4855",
+        "0x0d85ec8b37c2e02114f5f9b0874ea70155bf2b0f"
+      ]
+    },
+    {
+      "id": "amount:5947893:13711.11",
+      "type": "same_amount_window",
+      "detail": "5分钟内相同 META 数量 13711.11",
+      "walletCount": 14,
+      "firstTs": 1784367920,
+      "lastTs": 1784368196,
+      "stakeMeta": 191955.50654782087,
+      "wallets": [
+        "0x81876c902266df2b59f01ee2cd7adad320f93b38",
+        "0x7cf2c768568333da37073f68f091d4e225154101",
+        "0x6b40368b218e6066f0fb2adef1bacb8e3aa4ac1f",
+        "0x68b90eec49bfbb9fec5734aaafbdc6e933b74540",
+        "0x67c28e9614d51ba4d8717e048a17cf47df498ee7",
+        "0x678f0b1bbfcc1e151e0c7c2e5364303eed857640",
+        "0x6183300d57b04eb17a6199a403449c2b6e50c785",
+        "0x6135a3d5d91eeaf334e427e11ffb075a089e572b",
+        "0x60bee63e08dc3c21ad9d73be869ea9d20ab707a1",
+        "0x59ecffdb1ec73afb6d44646ae99d69375dce58f2",
+        "0x536fdef3316f592223800bedf6f165d191ea884a",
+        "0x52048cdd0d5a955d60a50224a5186d7469698a86",
+        "0x506c8caec9ef954802da665a7cc756756ce751a6",
+        "0x4742ec2a7f7e16fae3444521012bede4f1d9da92"
+      ]
+    },
+    {
+      "id": "amount:5947893:45703.71",
+      "type": "same_amount_window",
+      "detail": "5分钟内相同 META 数量 45703.71",
+      "walletCount": 13,
+      "firstTs": 1784367901,
+      "lastTs": 1784368186,
+      "stakeMeta": 594148.228828897,
+      "wallets": [
+        "0x84e1a1d52ab577a9479280d9e28fa8d64f814aee",
+        "0x83119c2f221d2950f5a4e885af1ab641cfa93e9a",
+        "0x8032fcc727652eeee89934acb60c7485bac9416c",
+        "0x7daeafb4891848977e4971fd9a05436855341807",
+        "0x73c4e23cd2feec7bde65fa8ee4e82113afb5fa6e",
+        "0x65fda610fe8a9cb5f70c149c8718d07676a48c0e",
+        "0x60284a8b855b16f600c8084359e4a57ad9d9e7bc",
+        "0x5e6e91f8f6c6f864afe99c3996b90750d2c02928",
+        "0x56b2a3e63e3a7eccdd55d3e7aa9c74d64f674048",
+        "0x51e0b1d711702c4c6e14de391a2b2a91df898ce8",
+        "0x4d7a46df4397964126f1dffc8740611316fff515",
+        "0x4d778f68c9f3a4bef3da60c27ef5873dd4198d5d",
+        "0x4a17fc58f75dd770a488201642ec7487b7bb7ad8"
       ]
     },
     {
@@ -652,24 +995,45 @@
       ]
     },
     {
-      "id": "amount:5947893:13711.11",
+      "id": "amount:5947894:45703.71",
       "type": "same_amount_window",
-      "detail": "5分钟内相同 META 数量 13711.11",
+      "detail": "5分钟内相同 META 数量 45703.71",
       "walletCount": 10,
-      "firstTs": 1784367920,
-      "lastTs": 1784368121,
-      "stakeMeta": 137111.07610558637,
+      "firstTs": 1784368214,
+      "lastTs": 1784368467,
+      "stakeMeta": 457037.09909915156,
       "wallets": [
-        "0x81876c902266df2b59f01ee2cd7adad320f93b38",
-        "0x7cf2c768568333da37073f68f091d4e225154101",
-        "0x6b40368b218e6066f0fb2adef1bacb8e3aa4ac1f",
-        "0x68b90eec49bfbb9fec5734aaafbdc6e933b74540",
-        "0x67c28e9614d51ba4d8717e048a17cf47df498ee7",
-        "0x678f0b1bbfcc1e151e0c7c2e5364303eed857640",
-        "0x6183300d57b04eb17a6199a403449c2b6e50c785",
-        "0x6135a3d5d91eeaf334e427e11ffb075a089e572b",
-        "0x60bee63e08dc3c21ad9d73be869ea9d20ab707a1",
-        "0x59ecffdb1ec73afb6d44646ae99d69375dce58f2"
+        "0x4461fbf45464b9a0333b0888c0a73563d3aebd7d",
+        "0x3ff912820646b84d1afc795373ddcf8036f5c838",
+        "0x33a2b4ec876a0626787f5fedeacf978c1bb73746",
+        "0x2c6b8abb45e6c3acb84d1e3225546ecec259c51d",
+        "0x2a13a861fffa1409421f30fd930fd5e3de35019d",
+        "0x269e9f1e1bdb005aef400720330aad1e1a9171ef",
+        "0x234ce526a601c2ecd033f9bba4666c966e151fd5",
+        "0x225cf68b56e6e293da17cf48713a3e382f52ac42",
+        "0x0f8ec6566bd9e425252fc257faee96226cdca2ba",
+        "0x0f32725a9aadb0de3734d69b487e24117a53e8e9"
+      ]
+    },
+    {
+      "id": "amount:5947893:18281.48",
+      "type": "same_amount_window",
+      "detail": "5分钟内相同 META 数量 18281.48",
+      "walletCount": 10,
+      "firstTs": 1784367926,
+      "lastTs": 1784368180,
+      "stakeMeta": 182814.7681407818,
+      "wallets": [
+        "0x80a87bbfd8a13ab8dd653ff3893c7e1c3460dfbe",
+        "0x804a670b4b8c3646a9fe3ec8fa398c6fca7b5578",
+        "0x784bf1df19377923ee28bd6ca32fb66f3fe2b6a9",
+        "0x6b1d39b483be694eb9efbb669fb923a6065f5ccf",
+        "0x68fb7819f79d8064a46a0117b375cbabf70e563f",
+        "0x5c14afbbe8217dabf79a8206e4fbfb67e59c5cbc",
+        "0x5b991259da65c2943b48dc1b63c33a31245d90a3",
+        "0x5747669608a9db60052366ac6e593d8aaf622e61",
+        "0x54e76664d8f3bcf2a4594545f08b477a8b22fb61",
+        "0x4bcb2e60a255699afb9244df42e9bd15ad0fe24f"
       ]
     },
     {
@@ -713,22 +1077,22 @@
       ]
     },
     {
-      "id": "amount:5947893:45703.71",
+      "id": "amount:5947893:36562.97",
       "type": "same_amount_window",
-      "detail": "5分钟内相同 META 数量 45703.71",
+      "detail": "5分钟内相同 META 数量 36562.97",
       "walletCount": 8,
-      "firstTs": 1784367901,
-      "lastTs": 1784368098,
-      "stakeMeta": 365629.6792793212,
+      "firstTs": 1784367932,
+      "lastTs": 1784368141,
+      "stakeMeta": 292503.77202300844,
       "wallets": [
-        "0x84e1a1d52ab577a9479280d9e28fa8d64f814aee",
-        "0x83119c2f221d2950f5a4e885af1ab641cfa93e9a",
-        "0x8032fcc727652eeee89934acb60c7485bac9416c",
-        "0x7daeafb4891848977e4971fd9a05436855341807",
-        "0x73c4e23cd2feec7bde65fa8ee4e82113afb5fa6e",
-        "0x65fda610fe8a9cb5f70c149c8718d07676a48c0e",
-        "0x60284a8b855b16f600c8084359e4a57ad9d9e7bc",
-        "0x5e6e91f8f6c6f864afe99c3996b90750d2c02928"
+        "0x7f1ccee562937f837631e0655ea1a8db116274ef",
+        "0x7b234d3ef23fbd1020b08ae019fec2f9fe1c4096",
+        "0x77464a5a9832399523c1e8f4e2836ab08077457d",
+        "0x63eb0d8abb18afefbeab1ae55f9013f3d69b0e8b",
+        "0x5de313723afde048ceb64292ff0f2476ee1ee31a",
+        "0x57dcc83c3608f785e17ffdbb096f65cab9bb6e7d",
+        "0x572402547fbe6d626f2bed80f79d107dd7674358",
+        "0x55ed323bb490513893feb71b17ba8842f19569c2"
       ]
     },
     {
@@ -747,6 +1111,24 @@
         "0x94fe83c6b67aeab2338d0f2536ea59bcde415a0d",
         "0x8b97a92bb37827b15c56b50096a999a46776bf94",
         "0x8964d402176f22241f87e6190f1220b78c543bc6"
+      ]
+    },
+    {
+      "id": "amount:5947894:36562.97",
+      "type": "same_amount_window",
+      "detail": "5分钟内相同 META 数量 36562.97",
+      "walletCount": 7,
+      "firstTs": 1784368218,
+      "lastTs": 1784368488,
+      "stakeMeta": 255940.80052013238,
+      "wallets": [
+        "0x43d57e78902322b4d6bb37c4640d452fb68b2173",
+        "0x40909707524500a69383b76a5531002127bf4be1",
+        "0x3eeb95ee64c56a0f38a2fc184816744c3945dd76",
+        "0x250b72a6747e71e4ff3972a0c506947c5ebdf63a",
+        "0x1811c44d39f1c33e2fed7376f3ac0fc6d3240d8d",
+        "0x0f95ac31f73330bedf21dd4bb08d50e44cdb7719",
+        "0x0b34bebb8bb84e67dd6c7b25d313d3dcc2c80aeb"
       ]
     },
     {
@@ -786,21 +1168,38 @@
       ]
     },
     {
-      "id": "amount:5947893:18281.48",
+      "id": "amount:5947894:27422.22",
       "type": "same_amount_window",
-      "detail": "5分钟内相同 META 数量 18281.48",
+      "detail": "5分钟内相同 META 数量 27422.22",
       "walletCount": 7,
-      "firstTs": 1784367926,
-      "lastTs": 1784368110,
-      "stakeMeta": 127970.33769854727,
+      "firstTs": 1784368250,
+      "lastTs": 1784368490,
+      "stakeMeta": 191955.5065478209,
       "wallets": [
-        "0x80a87bbfd8a13ab8dd653ff3893c7e1c3460dfbe",
-        "0x804a670b4b8c3646a9fe3ec8fa398c6fca7b5578",
-        "0x784bf1df19377923ee28bd6ca32fb66f3fe2b6a9",
-        "0x6b1d39b483be694eb9efbb669fb923a6065f5ccf",
-        "0x68fb7819f79d8064a46a0117b375cbabf70e563f",
-        "0x5c14afbbe8217dabf79a8206e4fbfb67e59c5cbc",
-        "0x5b991259da65c2943b48dc1b63c33a31245d90a3"
+        "0x3d804c29f7a8fec526ccafb9bfdfd28a1c7d970e",
+        "0x3bf4f9943bf45a3181ee61b97d8cdfc3477dab79",
+        "0x34deafc37634951d8c85aba1e5cc449d0be0d2f7",
+        "0x2a206cb9e980c0b24b9621595968d26dac89cbac",
+        "0x1752633d8acd3e981f9d4a551464ce4b7ee353d9",
+        "0x0b3bd96cdd26699269783ab1a7ebb45d711f6744",
+        "0x0b279fee758fdf65cc27a8c53a497d90ed545bf7"
+      ]
+    },
+    {
+      "id": "amount:5947893:91407.42",
+      "type": "same_amount_window",
+      "detail": "5分钟内相同 META 数量 91407.42",
+      "walletCount": 6,
+      "firstTs": 1784367957,
+      "lastTs": 1784368189,
+      "stakeMeta": 548444.5189189818,
+      "wallets": [
+        "0x7a9c677c47ff496e623ab740577e400709388ca5",
+        "0x75e5874b39d8aa9871f67c50a4b9b2deb49bbb21",
+        "0x7164bf1f6fe55db38231fe0aac2619f4c1e02841",
+        "0x5b76c944bb0b9b9067b1e438896a739e66d983ea",
+        "0x59174b0f1489b762f00e8ab2ced9c258f46ffdcf",
+        "0x48f7c127217421e91d9521aa713be60958c1f761"
       ]
     },
     {
@@ -821,6 +1220,23 @@
       ]
     },
     {
+      "id": "amount:5947893:27422.22",
+      "type": "same_amount_window",
+      "detail": "5分钟内相同 META 数量 27422.22",
+      "walletCount": 6,
+      "firstTs": 1784367911,
+      "lastTs": 1784368182,
+      "stakeMeta": 164533.29132670362,
+      "wallets": [
+        "0x830f938b7c891be6a0c38a5632fc3ea9f216ac36",
+        "0x7a277bf5da3981dda2c6ff0d04edf19bc5359d7b",
+        "0x78337eed7ad125983e9f080bf269057524824d2b",
+        "0x6d30a95ada80d4a446676408c3208995a94093f4",
+        "0x4cac71f455e1b143a48dc949a9d9f81144ba81aa",
+        "0x4aff7c6774d35a57a03bd98af39ab4788a28cdb9"
+      ]
+    },
+    {
       "id": "amount:5947891:54844.45",
       "type": "same_amount_window",
       "detail": "5分钟内相同 META 数量 54844.45",
@@ -837,19 +1253,19 @@
       ]
     },
     {
-      "id": "amount:5947893:36562.97",
+      "id": "amount:5947893:54844.45",
       "type": "same_amount_window",
-      "detail": "5分钟内相同 META 数量 36562.97",
+      "detail": "5分钟内相同 META 数量 54844.45",
       "walletCount": 5,
-      "firstTs": 1784367932,
-      "lastTs": 1784368098,
-      "stakeMeta": 182814.85751438027,
+      "firstTs": 1784367906,
+      "lastTs": 1784368174,
+      "stakeMeta": 274222.2415847712,
       "wallets": [
-        "0x7f1ccee562937f837631e0655ea1a8db116274ef",
-        "0x7b234d3ef23fbd1020b08ae019fec2f9fe1c4096",
-        "0x77464a5a9832399523c1e8f4e2836ab08077457d",
-        "0x63eb0d8abb18afefbeab1ae55f9013f3d69b0e8b",
-        "0x5de313723afde048ceb64292ff0f2476ee1ee31a"
+        "0x83dac61cf14dbb758c6b9dde3f972f71e1beb72c",
+        "0x6c79b8b05bdfb8e134f1a632f77c61c50aa36067",
+        "0x5984f59d0ac9850d580c35a2edf92a0ffba6dcab",
+        "0x54712c339d0ae15de293f1ea72464933bb45c9b4",
+        "0x4d3dbc72194712709da2227fc15f365c0b7e95b4"
       ]
     },
     {
@@ -868,18 +1284,18 @@
       ]
     },
     {
-      "id": "amount:5947893:91407.42",
+      "id": "amount:5947894:91407.42",
       "type": "same_amount_window",
       "detail": "5分钟内相同 META 数量 91407.42",
       "walletCount": 4,
-      "firstTs": 1784367957,
-      "lastTs": 1784368112,
+      "firstTs": 1784368357,
+      "lastTs": 1784368498,
       "stakeMeta": 365629.67927932116,
       "wallets": [
-        "0x7a9c677c47ff496e623ab740577e400709388ca5",
-        "0x75e5874b39d8aa9871f67c50a4b9b2deb49bbb21",
-        "0x7164bf1f6fe55db38231fe0aac2619f4c1e02841",
-        "0x5b76c944bb0b9b9067b1e438896a739e66d983ea"
+        "0x26fb6f3377fbe92d3bf0c4c7110151c7e194bc8d",
+        "0x260c541c1c8ac8f1e7bdc003cc27cc75fbab4454",
+        "0x1f15c8ee23bb572a398d01939332c2cd6e7870be",
+        "0x09867daf8ddeb40baa02a0a6b49e132e5e92d74a"
       ]
     },
     {
@@ -898,6 +1314,21 @@
       ]
     },
     {
+      "id": "amount:5947893:63985.19",
+      "type": "same_amount_window",
+      "detail": "5分钟内相同 META 数量 63985.19",
+      "walletCount": 4,
+      "firstTs": 1784368094,
+      "lastTs": 1784368196,
+      "stakeMeta": 255940.7468959733,
+      "wallets": [
+        "0x5ea41e49c2f7ad87f082ca4469d8329b86d7276b",
+        "0x5d2b9a39579713bab05a0260a89782dd1154a126",
+        "0x5542ac07526c54f686b5a847d8f7d6aef93c4f46",
+        "0x478c0d1b17584d515f9cfdc3eb003316581675e6"
+      ]
+    },
+    {
       "id": "amount:5947891:27422.22",
       "type": "same_amount_window",
       "detail": "5分钟内相同 META 数量 27422.22",
@@ -913,18 +1344,33 @@
       ]
     },
     {
-      "id": "amount:5947893:27422.22",
+      "id": "amount:5947895:18281.48",
       "type": "same_amount_window",
-      "detail": "5分钟内相同 META 数量 27422.22",
+      "detail": "5分钟内相同 META 数量 18281.48",
       "walletCount": 4,
-      "firstTs": 1784367911,
-      "lastTs": 1784368024,
-      "stakeMeta": 109688.86088446908,
+      "firstTs": 1784368516,
+      "lastTs": 1784368531,
+      "stakeMeta": 73125.90725631273,
       "wallets": [
-        "0x830f938b7c891be6a0c38a5632fc3ea9f216ac36",
-        "0x7a277bf5da3981dda2c6ff0d04edf19bc5359d7b",
-        "0x78337eed7ad125983e9f080bf269057524824d2b",
-        "0x6d30a95ada80d4a446676408c3208995a94093f4"
+        "0x06beb7e019336c4af349350108de92b4fa8aca6a",
+        "0x055e906f58de56c8fc5f592ca4ef2b0ecec8e97f",
+        "0x05092d30f64abd07a5aa3668bb608ffa889e94ed",
+        "0x03b00ffd1ca91949854d356dd6e0fd2b95a75d46"
+      ]
+    },
+    {
+      "id": "amount:5947895:9140.74",
+      "type": "same_amount_window",
+      "detail": "5分钟内相同 META 数量 9140.74",
+      "walletCount": 4,
+      "firstTs": 1784368511,
+      "lastTs": 1784368535,
+      "stakeMeta": 36562.95362815636,
+      "wallets": [
+        "0x078a85805a1e011b800d50f9c134bb0ae1937219",
+        "0x0538fe2eca854fb360dc875c75ff5df5ba087b66",
+        "0x04915d58c979bf33291b4f6bf1617bb80bac386c",
+        "0x0304ac393a53991e12f6f02ae4126c07bfbce046"
       ]
     },
     {
@@ -986,6 +1432,20 @@
       ]
     },
     {
+      "id": "amount:5947894:63985.19",
+      "type": "same_amount_window",
+      "detail": "5分钟内相同 META 数量 63985.19",
+      "walletCount": 3,
+      "firstTs": 1784368322,
+      "lastTs": 1784368409,
+      "stakeMeta": 191955.56017197997,
+      "wallets": [
+        "0x2db7befa248e8f5f9f00458d1f69edb4690cd631",
+        "0x2ccb682b73077bd7c3a30e1dfe7c0a297aa712b1",
+        "0x1d2b3a313e61bd5058f68e4dddfb3f4d56a2fd35"
+      ]
+    },
+    {
       "id": "amount:5947892:54844.45",
       "type": "same_amount_window",
       "detail": "5分钟内相同 META 数量 54844.45",
@@ -1014,6 +1474,20 @@
       ]
     },
     {
+      "id": "amount:5947894:41133.34",
+      "type": "same_amount_window",
+      "detail": "5分钟内相同 META 数量 41133.34",
+      "walletCount": 3,
+      "firstTs": 1784368300,
+      "lastTs": 1784368471,
+      "stakeMeta": 123400.02211918679,
+      "wallets": [
+        "0x33ab1e03e97f958594ec9f5d5b06a43a882b4e1c",
+        "0x328a9ba1d5406a0ffbf314b9506b1966bd5a85f2",
+        "0x0ead1367b2fbe6565c569988b6e37da47cdfcb93"
+      ]
+    },
+    {
       "id": "amount:5947890:22851.85",
       "type": "same_amount_window",
       "detail": "5分钟内相同 META 数量 22851.85",
@@ -1025,6 +1499,20 @@
         "0xffe5828b73f72632b5eeb7fac9f9d6b251218f26",
         "0xfebca40b98098cdb3af7f4a38f8c713f2fc6ba1e",
         "0xfe74d934e6a5fd88896a963526321864f8023e06"
+      ]
+    },
+    {
+      "id": "amount:5947895:22851.85",
+      "type": "same_amount_window",
+      "detail": "5分钟内相同 META 数量 22851.85",
+      "walletCount": 3,
+      "firstTs": 1784368508,
+      "lastTs": 1784368528,
+      "stakeMeta": 68555.53805279317,
+      "wallets": [
+        "0x07c3eed55846ac9ed806a0d51d7a03c5b1caa2c1",
+        "0x047fd9a7b5572664e67a5d1beb53136ddca02884",
+        "0x0400dac141618351c3105434a48a91589057e6b7"
       ]
     },
     {
@@ -1083,6 +1571,19 @@
       ]
     },
     {
+      "id": "block:110686127",
+      "type": "same_block",
+      "detail": "同一区块 110686127",
+      "walletCount": 2,
+      "firstTs": 1784368189,
+      "lastTs": 1784368189,
+      "stakeMeta": 95977.78902334983,
+      "wallets": [
+        "0x48f7c127217421e91d9521aa713be60958c1f761",
+        "0x48cd71b88d4d2a37531a36943385e72a0e66b31e"
+      ]
+    },
+    {
       "id": "block:110685924",
       "type": "same_block",
       "detail": "同一区块 110685924",
@@ -1132,6 +1633,19 @@
       "wallets": [
         "0xe5960ce87a6a193227635c77cf95dbf8cff1197f",
         "0xe59054deb8e33fa73ef1d80dcb105695d009ff31"
+      ]
+    },
+    {
+      "id": "block:110686786",
+      "type": "same_block",
+      "detail": "同一区块 110686786",
+      "walletCount": 2,
+      "firstTs": 1784368486,
+      "lastTs": 1784368486,
+      "stakeMeta": 9140.73840703909,
+      "wallets": [
+        "0x0bd308fcae5285d93f301792e05e13436c2a0574",
+        "0x0b87924f44bdeb55080513f23309c0c442aab0c1"
       ]
     }
   ],
@@ -1200,6 +1714,7 @@
     "批量质押交易会在同一calldata和多条质押事件中列出多个受益钱包；这些是共同受益人，不得误判为上下级。",
     "首入回执中的资金接收方是固定合约、流动性池和销毁地址，尚未出现可唯一对应上级的10%奖励钱包。",
     "推荐绑定与邀请名单出现在项目方登录后的 API 中，说明组织树很可能主要保存在项目方后台。",
-    "C级行为簇只能提示批量铺号或同一操盘批次，不能当成官方上下级关系。"
+    "C级行为簇只能提示批量铺号或同一操盘批次，不能当成官方上下级关系。",
+    "存储读取探针已检查10个钱包、690个实际访问槽，未发现槽值等于另一质押钱包地址。"
   ]
 }

@@ -51,6 +51,7 @@ function renderRelationships(report) {
     return;
   }
   const evidence = report.evidenceSummary || {};
+  const storageProbe = evidence.storageProbe;
   $("relationCoverage").textContent = pct(report.coverage);
   $("gradeA").textContent = num(evidence.gradeAConfirmedEdges);
   $("gradeB").textContent = num(evidence.gradeBRewardEdges);
@@ -61,7 +62,7 @@ function renderRelationships(report) {
       `${complete}。当前已有可用于构树的 A/B 级关系；团队数据只采用这些关系，C级行为不会混入。`;
   } else {
     $("relationshipExplain").innerHTML =
-      `<b>${complete}，但链上没有找到可确认的“钱包→推荐人”。</b> 已检查 ${num(evidence.sampledFirstStakeTransactions)} 笔首入交易：参数中没有推荐地址，回执也没有向可变上级支付的推荐奖励。项目网站把绑定码、邀请记录和等级放在登录后的后台接口，因此目前不能诚实计算团队规模、头部团队占比或官方V级。`;
+      `<b>${complete}，但链上没有找到可确认的“钱包→推荐人”。</b> 已检查 ${num(evidence.sampledFirstStakeTransactions)} 笔首入交易：参数中没有推荐地址，回执也没有向可变上级支付的推荐奖励。${storageProbe ? `另模拟检查了 ${num(storageProbe.sampledWallets)} 个钱包实际读取的 ${num(storageProbe.accessedStorageKeys)} 个存储槽，命中其他质押钱包地址 ${num(storageProbe.knownParticipantAddressMatches)} 个。` : ""} 项目网站把绑定码、邀请记录和等级放在登录后的后台接口，因此目前不能诚实计算团队规模、头部团队占比或官方V级。`;
   }
   $("selfThresholdBox").innerHTML = (
     report.levelDistribution?.selfThresholdsOnly || []
@@ -112,6 +113,7 @@ function renderRisk(report) {
     (option) => option.releaseDays === 90,
   );
   const releaseSummary = report.exits?.releaseAudit?.summary;
+  const flowSummary = report.exits?.flowAudit?.summary;
   const releaseProof = releaseSummary?.confirmedReleaseTransfers
     ? `后台已在链上找到 <b>${num(releaseSummary.confirmedReleaseTransfers)}</b> 笔实际 release() 返还LP交易，共返还 <b>${num(releaseSummary.confirmedReleasedLp, 4)} LP</b>。`
     : releaseSummary?.walletsWithReleasedLp
@@ -120,7 +122,7 @@ function renderRisk(report) {
       ? `已核到 <b>${num(releaseSummary.walletsWithReleasableLp)}</b> 个钱包当前已有线性释放的LP可领取；返还交易仍在继续索引。`
       : "已确认释放合约锁定的是META/SENTIS LP；实际返还交易仍在继续索引。";
   $("positionExplain").innerHTML = option90
-    ? `<b>真实退出链路不是“90天后固定拿回SENTIS”。</b> 如果今天选择90天：先另付 <b>${num(option90.chainQuotedFeeSentis, 2)} SENTIS（${usd(option90.feeUsd)}）</b>，同时锁入 <b>${num(option90.lockedLp, 2)} LP</b>。这些LP会在90天内线性变成可领取，期间可调用 release() 分批拿回，到第90天才全部释放。按今天池子储备，这批LP毛值约 <b>${usd(option90.currentLpValueUsd)}</b>，扣手续费后的当前等值约 <b>${usd(option90.currentEquivalentAfterFeeUsd)}</b>，对比截图参考成本约 <b class="${option90.pnlUsdVsReference >= 0 ? "good" : "bad"}">${usd(option90.pnlUsdVsReference)}（${pct(option90.pnlPctVsReference)}）</b>。全部LP价值至少要达到 <b>${usd(option90.breakEvenLpValueUsd)}</b> 才覆盖参考成本和该笔手续费。${releaseProof} 项目页面所称“2%销毁”尚未完成逐笔对账，因此暂不偷偷多扣，也不把它说成已确认到账损失。`
+    ? `<b>真实退出链路不是“90天后固定拿回SENTIS”。</b> 如果今天选择90天：先另付 <b>${num(option90.chainQuotedFeeSentis, 2)} SENTIS（${usd(option90.feeUsd)}）</b>，同时锁入 <b>${num(option90.lockedLp, 2)} LP</b>。这些LP会在90天内线性变成可领取，期间可调用 release() 分批拿回，到第90天才全部释放。按今天池子储备，这批LP毛值约 <b>${usd(option90.currentLpValueUsd)}</b>，扣手续费后的当前等值约 <b>${usd(option90.currentEquivalentAfterFeeUsd)}</b>，对比截图参考成本约 <b class="${option90.pnlUsdVsReference >= 0 ? "good" : "bad"}">${usd(option90.pnlUsdVsReference)}（${pct(option90.pnlPctVsReference)}）</b>。全部LP价值至少要达到 <b>${usd(option90.breakEvenLpValueUsd)}</b> 才覆盖参考成本和该笔手续费。${releaseProof} ${flowSummary ? `已逐笔审计 ${num(flowSummary.auditedTransactions)} 笔解押回执，其中真实移动资金 ${num(flowSummary.fundMovingTransactions)} 笔、仅发事件 ${num(flowSummary.eventOnlyTransactions)} 笔；直接META黑洞转账 ${num(flowSummary.transactionsWithDirectMetaBurn)} 笔。` : ""} 因此“2%销毁”暂不作为第二次扣款。`
     : "等待90天释放方案的链上报价。";
 
   const levelLabels = {

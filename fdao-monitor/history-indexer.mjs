@@ -131,6 +131,10 @@ const avg = (a) => (a.length ? a.reduce((s, v) => s + v, 0) / a.length : 0),
             : "≥$30k";
 let cur = read("current.json", null);
 if (!cur) throw Error("current missing");
+let flowAudit = read("unstake-flow-audit.json", { eventOnlyTransactions: [] }),
+  eventOnlyTransactions = new Set(
+    (flowAudit.eventOnlyTransactions || []).map((row) => row.tx),
+  );
 let s = read("history-state.json", {
   cursor: cur.indexing.dayStartBlock - 1,
   floor: CONTRACT_DEPLOYMENT_BLOCK,
@@ -185,6 +189,7 @@ for (let e of all) {
       sc: 0,
       sm: 0,
       uc: 0,
+      eoc: 0,
       ut: 0,
       stakes: [],
     };
@@ -195,6 +200,7 @@ for (let e of all) {
     stakeCount: 0,
     unstakeToken: 0,
     unstakeCount: 0,
+    eventOnlyUnstakeCount: 0,
     lastTs: 0,
   };
   if (e.kind === "stake") {
@@ -206,16 +212,22 @@ for (let e of all) {
     w.stakeMeta += e.meta;
     w.stakeCount++;
   } else {
-    x.uc++;
-    x.ut += e.token;
-    w.unstakeToken += e.token;
-    w.unstakeCount++;
+    if (eventOnlyTransactions.has(e.tx)) {
+      x.eoc++;
+      w.eventOnlyUnstakeCount++;
+    } else {
+      x.uc++;
+      x.ut += e.token;
+      w.unstakeToken += e.token;
+      w.unstakeCount++;
+    }
   }
   w.lastTs = Math.max(w.lastTs, e.ts);
   wm.set(e.user, w);
   m.set(d, x);
 }
-let daily = [...m.values()]
+let sentisPrice = Number(cur.market.sentisPrice || 0),
+  daily = [...m.values()]
     .map((x) => ({
       date: x.date,
       stakeWallets: x.w.size,
@@ -226,9 +238,10 @@ let daily = [...m.values()]
       avgPerStakeWallet: x.w.size ? (x.sm * p) / x.w.size : 0,
       medianStakeTxUsd: med(x.stakes),
       unstakeCount: x.uc,
+      eventOnlyUnstakeCount: x.eoc,
       unstakeToken: x.ut,
-      unstakeUsdAtCurrentPrice: x.ut * p,
-      netUsdAtCurrentPrice: (x.sm - x.ut) * p,
+      unstakeUsdAtCurrentPrice: x.ut * sentisPrice,
+      netUsdAtCurrentPrice: x.sm * p - x.ut * sentisPrice,
     }))
     .sort((a, b) => a.date.localeCompare(b.date)),
   completeDaily = daily.filter((x) => x.date !== cur.date),
@@ -255,13 +268,14 @@ let daily = [...m.values()]
 let wallets = [...wm.values()]
     .map((w) => {
       let stakeUsd = w.stakeMeta * p,
-        unstakeUsd = w.unstakeToken * p;
+        unstakeUsd = w.unstakeToken * sentisPrice;
       return {
         address: w.address,
         firstStakeTs: w.firstStakeTs,
         firstStakeDate: w.firstStakeTs ? date(w.firstStakeTs) : null,
         stakeCount: w.stakeCount,
         unstakeCount: w.unstakeCount,
+        eventOnlyUnstakeCount: w.eventOnlyUnstakeCount,
         stakeMeta: w.stakeMeta,
         stakeUsd,
         unstakeUsd,

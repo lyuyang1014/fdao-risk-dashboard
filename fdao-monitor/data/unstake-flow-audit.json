@@ -1,0 +1,1883 @@
+{
+  "updatedAt": "2026-08-30T10:39:14.827Z",
+  "methodologyVersion": 1,
+  "auditedTransactions": 42,
+  "expectedTransactions": 42,
+  "tokenAddresses": {
+    "SENTIS": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+    "META": "0x98f0421fcb5129b352cc35c1ed15ae9081deb700",
+    "LP": "0x4f49ad237a81ad403a88f34a12a8d1d53c2d7d89",
+    "Synox": "0x8e73501feb043c31d1c04d236e4712d9c7400391",
+    "release": "0xd62c3c1faaf8940496a12f5f15c9d0c3bae56b62"
+  },
+  "summary": {
+    "auditedTransactions": 42,
+    "fundMovingTransactions": 39,
+    "eventOnlyTransactions": 3,
+    "eventLp": 34286.54903848277,
+    "lpLocked": 30591.417400000002,
+    "fundMovingEventLp": 30591.417400000002,
+    "eventOnlyEventLp": 3695.1316384827765,
+    "fundMovingGrossSentis": 71246.19774653373,
+    "eventOnlyGrossSentis": 8536.910202725641,
+    "eventFeeSentis": 18144.28595207084,
+    "sentisFeeTransferred": 15583.21289125315,
+    "transactionsWithDirectMetaTransfer": 0,
+    "transactionsWithDirectMetaBurn": 0,
+    "directMetaBurned": 0,
+    "synoxTransferred": 13.551659328465924
+  },
+  "burnClaimStatus": "No direct META transfer to zero/0x1/dead appears in the audited unstake receipts. The frontend's 2% statement is therefore not modeled as an additional payout deduction; it may refer to token-internal accounting, a later operation or marketing wording that still needs separate proof.",
+  "eventOnlyTransactions": [
+    {
+      "tx": "0x70ea88cc952a528e67e2a8be576e60ec1655738de726dbe0a1e2b19c5a8527b4",
+      "txFrom": "0xb9a911df25f29cca9bc668e59aef9687535a91a7",
+      "selector": "0x9088261a",
+      "wallets": [
+        "0xf88258e46bcee85cb3302de3083010936d23ab39"
+      ],
+      "eventLp": 1731.564106239327,
+      "eventGrossSentis": 4000.4880209065786,
+      "eventFeeSentis": 1200.1464062719735
+    },
+    {
+      "tx": "0x4c4db1f0def60dddffb9b434dd8775aa28d6060f6d648377ba7f3295f34fe7e5",
+      "txFrom": "0xb9a911df25f29cca9bc668e59aef9687535a91a7",
+      "selector": "0x9088261a",
+      "wallets": [
+        "0xbfe86e01d764267f4316e741d9fb04351591466d"
+      ],
+      "eventLp": 865.8110472413757,
+      "eventGrossSentis": 2000.3135143902891,
+      "eventFeeSentis": 600.0940543170867
+    },
+    {
+      "tx": "0x580e40a8a38d87458d2ae882af2f2453c8cb2236997697596de112cfbdd2dd40",
+      "txFrom": "0xb9a911df25f29cca9bc668e59aef9687535a91a7",
+      "selector": "0x9088261a",
+      "wallets": [
+        "0x05e219f6efbbe777b216f0890779738c1fc0a9c5"
+      ],
+      "eventLp": 1097.756485002074,
+      "eventGrossSentis": 2536.108667428774,
+      "eventFeeSentis": 760.8326002286321
+    }
+  ],
+  "rows": [
+    {
+      "tx": "0x8a2ef511c4dd7d873499b2d9122a7b6fb01144a4feb985f80b9aed810f191123",
+      "txFrom": "0x343a7b381e9e1824f122d0a99f70ae9b7bae4f7a",
+      "selector": "0x372caeb8",
+      "wallets": [
+        "0x343a7b381e9e1824f122d0a99f70ae9b7bae4f7a"
+      ],
+      "releaseDays": [
+        30
+      ],
+      "eventLp": 5,
+      "eventFeeSentis": 3.494287831312497,
+      "eventGrossSentis": 11.647626104374991,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x343a7b381e9e1824f122d0a99f70ae9b7bae4f7a",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 2.4460014819187483,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x343a7b381e9e1824f122d0a99f70ae9b7bae4f7a",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 0.6988575662624995,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x343a7b381e9e1824f122d0a99f70ae9b7bae4f7a",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 0.34942878313124975,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 3.4942878313124974,
+      "lpLocked": 5,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0xfec6b2585a50725ea581ca9bb75cd597cd8a3a29111e72b340f7fbd00d181d17",
+      "txFrom": "0x88391e3a3e0693352ace8d37575f7333cd609a23",
+      "selector": "0x372caeb8",
+      "wallets": [
+        "0x88391e3a3e0693352ace8d37575f7333cd609a23"
+      ],
+      "releaseDays": [
+        30
+      ],
+      "eventLp": 2556.89,
+      "eventFeeSentis": 1792.0070512304467,
+      "eventGrossSentis": 5973.3568374348215,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x88391e3a3e0693352ace8d37575f7333cd609a23",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 1254.4049358613127,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x88391e3a3e0693352ace8d37575f7333cd609a23",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 358.4014102460893,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x88391e3a3e0693352ace8d37575f7333cd609a23",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 179.20070512304466,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 1792.0070512304467,
+      "lpLocked": 2556.89,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0x0a321f24565dd550d551ffbe649470ec385b17453d58abd6448dc9ee929a549d",
+      "txFrom": "0xc5e30a42d3d11b5214b848e14cc3a8a3d1d10b42",
+      "selector": "0x372caeb8",
+      "wallets": [
+        "0xc5e30a42d3d11b5214b848e14cc3a8a3d1d10b42"
+      ],
+      "releaseDays": [
+        30
+      ],
+      "eventLp": 1072.5824,
+      "eventFeeSentis": 751.9319197602085,
+      "eventGrossSentis": 2506.4397325340283,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0xc5e30a42d3d11b5214b848e14cc3a8a3d1d10b42",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 526.352343832146,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0xc5e30a42d3d11b5214b848e14cc3a8a3d1d10b42",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 150.3863839520417,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0xc5e30a42d3d11b5214b848e14cc3a8a3d1d10b42",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 75.19319197602086,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 751.9319197602085,
+      "lpLocked": 1072.5824,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0x1e23a16d6caf43d4751493d5ed84c0be0ef2736c2624c0aa799891f36b83796d",
+      "txFrom": "0x1c9cfbfeade58f89aff948accec788ce285d9f6a",
+      "selector": "0x372caeb8",
+      "wallets": [
+        "0x1c9cfbfeade58f89aff948accec788ce285d9f6a"
+      ],
+      "releaseDays": [
+        30
+      ],
+      "eventLp": 2145.8473,
+      "eventFeeSentis": 1504.2498056205652,
+      "eventGrossSentis": 5014.166018735218,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x1c9cfbfeade58f89aff948accec788ce285d9f6a",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 1052.9748639343957,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x1c9cfbfeade58f89aff948accec788ce285d9f6a",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 300.849961124113,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x1c9cfbfeade58f89aff948accec788ce285d9f6a",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 150.4249805620565,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 1504.2498056205652,
+      "lpLocked": 2145.8473,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0x6eb13405986eecb1681924bf2e6e254448ae2b38534aedbb0723f49507b735e2",
+      "txFrom": "0xe7530c78098312be6bdbfaed22f4f14ac5b7103b",
+      "selector": "0x372caeb8",
+      "wallets": [
+        "0xe7530c78098312be6bdbfaed22f4f14ac5b7103b"
+      ],
+      "releaseDays": [
+        30
+      ],
+      "eventLp": 1099.5011,
+      "eventFeeSentis": 770.6195895327755,
+      "eventGrossSentis": 2568.731965109251,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0xe7530c78098312be6bdbfaed22f4f14ac5b7103b",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 539.4337126729429,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0xe7530c78098312be6bdbfaed22f4f14ac5b7103b",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 154.1239179065551,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0xe7530c78098312be6bdbfaed22f4f14ac5b7103b",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 77.06195895327755,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 770.6195895327755,
+      "lpLocked": 1099.5011,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0x9c9bbf0f8c8c5a5dc758abb7930a0ae35dbc506e316be63405334693d5900b76",
+      "txFrom": "0x35c4b51484a8508a6091c269c2e93cdf37f66f59",
+      "selector": "0x372caeb8",
+      "wallets": [
+        "0x35c4b51484a8508a6091c269c2e93cdf37f66f59"
+      ],
+      "releaseDays": [
+        30
+      ],
+      "eventLp": 1133.2541,
+      "eventFeeSentis": 794.3679647611795,
+      "eventGrossSentis": 2647.893215870598,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x35c4b51484a8508a6091c269c2e93cdf37f66f59",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 556.0575753328256,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x35c4b51484a8508a6091c269c2e93cdf37f66f59",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 158.8735929522359,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x35c4b51484a8508a6091c269c2e93cdf37f66f59",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 79.43679647611795,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 794.3679647611795,
+      "lpLocked": 1133.2541,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0x07508bdb2b6a08472063a1ee3ce3c01e0119b183a6e9151c836a54a25d3286c9",
+      "txFrom": "0x46a34103a5ed03d40c7e0d3581091c5c9fcd9f51",
+      "selector": "0x372caeb8",
+      "wallets": [
+        "0x46a34103a5ed03d40c7e0d3581091c5c9fcd9f51"
+      ],
+      "releaseDays": [
+        30
+      ],
+      "eventLp": 1086.723,
+      "eventFeeSentis": 763.2385968959428,
+      "eventGrossSentis": 2544.128656319809,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x46a34103a5ed03d40c7e0d3581091c5c9fcd9f51",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 534.26701782716,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x46a34103a5ed03d40c7e0d3581091c5c9fcd9f51",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 152.64771937918857,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x46a34103a5ed03d40c7e0d3581091c5c9fcd9f51",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 76.32385968959429,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 763.2385968959428,
+      "lpLocked": 1086.723,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0x78db8e72d4c0f09e127473339828e25cac5815d4ccc8da59f07f57302bbb8bf2",
+      "txFrom": "0x465d32e33d4915f65b377f73a38c422e5542d0e6",
+      "selector": "0x372caeb8",
+      "wallets": [
+        "0x465d32e33d4915f65b377f73a38c422e5542d0e6"
+      ],
+      "releaseDays": [
+        30
+      ],
+      "eventLp": 2226.4419000000003,
+      "eventFeeSentis": 1548.9299816258517,
+      "eventGrossSentis": 5163.099938752839,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x465d32e33d4915f65b377f73a38c422e5542d0e6",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 1084.2509871380962,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x465d32e33d4915f65b377f73a38c422e5542d0e6",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 309.7859963251703,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x465d32e33d4915f65b377f73a38c422e5542d0e6",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 154.89299816258514,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 1548.9299816258517,
+      "lpLocked": 2226.4419000000003,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0x70d1816397829f50fb6600e47ba50437bcbce58b9e545541e225b35df362bce3",
+      "txFrom": "0x35be6896ab3d88a95e4d4ad040b30971b2685a02",
+      "selector": "0x372caeb8",
+      "wallets": [
+        "0x35be6896ab3d88a95e4d4ad040b30971b2685a02"
+      ],
+      "releaseDays": [
+        30
+      ],
+      "eventLp": 2556.89,
+      "eventFeeSentis": 1804.3831584017862,
+      "eventGrossSentis": 6014.610528005954,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x35be6896ab3d88a95e4d4ad040b30971b2685a02",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 1263.0682108812503,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x35be6896ab3d88a95e4d4ad040b30971b2685a02",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 360.87663168035726,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x35be6896ab3d88a95e4d4ad040b30971b2685a02",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 180.43831584017863,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 1804.383158401786,
+      "lpLocked": 2556.89,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0xb32d9a40c7b1cc9f4015b4a04d66c2e763bbd04c76060153a08671e4548a645e",
+      "txFrom": "0x71a6d13e237e29e37ef5b62f840acb2ba517ba89",
+      "selector": "0x372caeb8",
+      "wallets": [
+        "0x71a6d13e237e29e37ef5b62f840acb2ba517ba89"
+      ],
+      "releaseDays": [
+        30
+      ],
+      "eventLp": 1201.9711,
+      "eventFeeSentis": 860.2330172165719,
+      "eventGrossSentis": 2867.4433907219063,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x71a6d13e237e29e37ef5b62f840acb2ba517ba89",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 602.1631120516003,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x71a6d13e237e29e37ef5b62f840acb2ba517ba89",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 172.04660344331435,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x71a6d13e237e29e37ef5b62f840acb2ba517ba89",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 86.02330172165718,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 860.2330172165717,
+      "lpLocked": 1201.9711,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0x8782ac47dd267eadeb89b2bd7a212d7ce8776baa3ad7ab5173b90d903efea3dc",
+      "txFrom": "0x9b9b1ab3728695e4d78bba5947dc8be569ee09c8",
+      "selector": "0xee2d482f",
+      "wallets": [
+        "0x9b9b1ab3728695e4d78bba5947dc8be569ee09c8"
+      ],
+      "releaseDays": [
+        90
+      ],
+      "eventLp": 5,
+      "eventFeeSentis": 1.1570159349916302,
+      "eventGrossSentis": 11.570159349916304,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x9b9b1ab3728695e4d78bba5947dc8be569ee09c8",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 0.8099111544941413,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x9b9b1ab3728695e4d78bba5947dc8be569ee09c8",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 0.23140318699832607,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x9b9b1ab3728695e4d78bba5947dc8be569ee09c8",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 0.11570159349916304,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 1.1570159349916305,
+      "lpLocked": 5,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0x5153bff6a1120af28458ae06d1e169fa609705a64bbc97775193713fd4d41889",
+      "txFrom": "0x9b9b1ab3728695e4d78bba5947dc8be569ee09c8",
+      "selector": "0xee2d482f",
+      "wallets": [
+        "0x9b9b1ab3728695e4d78bba5947dc8be569ee09c8"
+      ],
+      "releaseDays": [
+        90
+      ],
+      "eventLp": 3,
+      "eventFeeSentis": 0.6942655322590977,
+      "eventGrossSentis": 6.942655322590978,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x9b9b1ab3728695e4d78bba5947dc8be569ee09c8",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 0.48598587258136844,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x9b9b1ab3728695e4d78bba5947dc8be569ee09c8",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 0.13885310645181956,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x9b9b1ab3728695e4d78bba5947dc8be569ee09c8",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 0.06942655322590978,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 0.6942655322590977,
+      "lpLocked": 3,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 1.5391361230016192
+    },
+    {
+      "tx": "0x67ca7f463763c3a904a68ea5d6fb399ed893db97f247dd52760acdae1a1f0169",
+      "txFrom": "0x1b118e8e6c42ad46a66707fdf015c678bcfb27cf",
+      "selector": "0xee2d482f",
+      "wallets": [
+        "0x1b118e8e6c42ad46a66707fdf015c678bcfb27cf"
+      ],
+      "releaseDays": [
+        30
+      ],
+      "eventLp": 6.0587,
+      "eventFeeSentis": 4.205992104904674,
+      "eventGrossSentis": 14.01997368301558,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x1b118e8e6c42ad46a66707fdf015c678bcfb27cf",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 2.9441944734332717,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x1b118e8e6c42ad46a66707fdf015c678bcfb27cf",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 0.8411984209809348,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x1b118e8e6c42ad46a66707fdf015c678bcfb27cf",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 0.4205992104904674,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 4.205992104904674,
+      "lpLocked": 6.0587,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 3.090112263865901
+    },
+    {
+      "tx": "0x352a26453b89d2f86f13f368e5bf843d38ea7cd40f37e2a54b49c18426e5fc03",
+      "txFrom": "0xf3d40242c3330817717547d26f031e06cbe7276c",
+      "selector": "0xee2d482f",
+      "wallets": [
+        "0xf3d40242c3330817717547d26f031e06cbe7276c"
+      ],
+      "releaseDays": [
+        30
+      ],
+      "eventLp": 1.0238,
+      "eventFeeSentis": 0.709620425335406,
+      "eventGrossSentis": 2.365401417784687,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0xf3d40242c3330817717547d26f031e06cbe7276c",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 0.4967342977347843,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0xf3d40242c3330817717547d26f031e06cbe7276c",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 0.1419240850670812,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0xf3d40242c3330817717547d26f031e06cbe7276c",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 0.0709620425335406,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 0.7096204253354061,
+      "lpLocked": 1.0238,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0.553577573095088
+    },
+    {
+      "tx": "0x3dac9f95c9b8a6ca40f65169834a28907058ed1d00d614290e56eb5755654ca8",
+      "txFrom": "0x4fcc70b1bd66e734e9909cd84f6a5d4bc4c5033b",
+      "selector": "0x372caeb8",
+      "wallets": [
+        "0x4fcc70b1bd66e734e9909cd84f6a5d4bc4c5033b"
+      ],
+      "releaseDays": [
+        90
+      ],
+      "eventLp": 2000,
+      "eventFeeSentis": 461.9847378140403,
+      "eventGrossSentis": 4619.847378140403,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x4fcc70b1bd66e734e9909cd84f6a5d4bc4c5033b",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 323.38931646982815,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x4fcc70b1bd66e734e9909cd84f6a5d4bc4c5033b",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 92.39694756280805,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x4fcc70b1bd66e734e9909cd84f6a5d4bc4c5033b",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 46.198473781404026,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 461.9847378140402,
+      "lpLocked": 2000,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0x931c715ff693430f4fdae517b45eca7b7ca6f2c21c035eaf1a5ff8b1dd7771f9",
+      "txFrom": "0x4fcc70b1bd66e734e9909cd84f6a5d4bc4c5033b",
+      "selector": "0x372caeb8",
+      "wallets": [
+        "0x4fcc70b1bd66e734e9909cd84f6a5d4bc4c5033b"
+      ],
+      "releaseDays": [
+        90
+      ],
+      "eventLp": 1000,
+      "eventFeeSentis": 230.99164752927425,
+      "eventGrossSentis": 2309.9164752927427,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x4fcc70b1bd66e734e9909cd84f6a5d4bc4c5033b",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 161.69415327049197,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x4fcc70b1bd66e734e9909cd84f6a5d4bc4c5033b",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 46.19832950585485,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x4fcc70b1bd66e734e9909cd84f6a5d4bc4c5033b",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 23.099164752927425,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 230.99164752927425,
+      "lpLocked": 1000,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0x70ea88cc952a528e67e2a8be576e60ec1655738de726dbe0a1e2b19c5a8527b4",
+      "txFrom": "0xb9a911df25f29cca9bc668e59aef9687535a91a7",
+      "selector": "0x9088261a",
+      "wallets": [
+        "0xf88258e46bcee85cb3302de3083010936d23ab39"
+      ],
+      "releaseDays": [
+        30
+      ],
+      "eventLp": 1731.564106239327,
+      "eventFeeSentis": 1200.1464062719735,
+      "eventGrossSentis": 4000.4880209065786,
+      "sentisFeeTransfers": [],
+      "sentisFeeTransferred": 0,
+      "lpLocked": 0,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0x4c4db1f0def60dddffb9b434dd8775aa28d6060f6d648377ba7f3295f34fe7e5",
+      "txFrom": "0xb9a911df25f29cca9bc668e59aef9687535a91a7",
+      "selector": "0x9088261a",
+      "wallets": [
+        "0xbfe86e01d764267f4316e741d9fb04351591466d"
+      ],
+      "releaseDays": [
+        30
+      ],
+      "eventLp": 865.8110472413757,
+      "eventFeeSentis": 600.0940543170867,
+      "eventGrossSentis": 2000.3135143902891,
+      "sentisFeeTransfers": [],
+      "sentisFeeTransferred": 0,
+      "lpLocked": 0,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0x580e40a8a38d87458d2ae882af2f2453c8cb2236997697596de112cfbdd2dd40",
+      "txFrom": "0xb9a911df25f29cca9bc668e59aef9687535a91a7",
+      "selector": "0x9088261a",
+      "wallets": [
+        "0x05e219f6efbbe777b216f0890779738c1fc0a9c5"
+      ],
+      "releaseDays": [
+        30
+      ],
+      "eventLp": 1097.756485002074,
+      "eventFeeSentis": 760.8326002286321,
+      "eventGrossSentis": 2536.108667428774,
+      "sentisFeeTransfers": [],
+      "sentisFeeTransferred": 0,
+      "lpLocked": 0,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0x2673b3028c1a230323d53f8033ee09e8fba40d52ef1262cfb4d4747e6023191d",
+      "txFrom": "0xc6f8650938c6eef5633d2250197c5985ccb13506",
+      "selector": "0x372caeb8",
+      "wallets": [
+        "0xc6f8650938c6eef5633d2250197c5985ccb13506"
+      ],
+      "releaseDays": [
+        30
+      ],
+      "eventLp": 10,
+      "eventFeeSentis": 6.957647284665472,
+      "eventGrossSentis": 23.192157615551572,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0xc6f8650938c6eef5633d2250197c5985ccb13506",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 4.870353099265831,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0xc6f8650938c6eef5633d2250197c5985ccb13506",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 1.3915294569330945,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0xc6f8650938c6eef5633d2250197c5985ccb13506",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 0.6957647284665472,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 6.957647284665472,
+      "lpLocked": 10,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0x31e13ce168d8e0bba40c4c1be28c54c296ca56c5d9a4aea0ecca405e010f063e",
+      "txFrom": "0x4fcc70b1bd66e734e9909cd84f6a5d4bc4c5033b",
+      "selector": "0x372caeb8",
+      "wallets": [
+        "0x4fcc70b1bd66e734e9909cd84f6a5d4bc4c5033b"
+      ],
+      "releaseDays": [
+        90
+      ],
+      "eventLp": 1000,
+      "eventFeeSentis": 231.02035448918963,
+      "eventGrossSentis": 2310.2035448918964,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x4fcc70b1bd66e734e9909cd84f6a5d4bc4c5033b",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 161.71424814243272,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x4fcc70b1bd66e734e9909cd84f6a5d4bc4c5033b",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 46.20407089783792,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x4fcc70b1bd66e734e9909cd84f6a5d4bc4c5033b",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 23.10203544891896,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 231.02035448918963,
+      "lpLocked": 1000,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0x9dfe2d3305e3ad2d8c1b4bae66d0c2621bdfe6e419e155c7626deac7016740a8",
+      "txFrom": "0x437b936122817ef9f55ed9ecda98e1522b072deb",
+      "selector": "0x372caeb8",
+      "wallets": [
+        "0x437b936122817ef9f55ed9ecda98e1522b072deb"
+      ],
+      "releaseDays": [
+        90
+      ],
+      "eventLp": 3,
+      "eventFeeSentis": 0.6946678230237018,
+      "eventGrossSentis": 6.946678230237017,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x437b936122817ef9f55ed9ecda98e1522b072deb",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 0.4862674761165912,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x437b936122817ef9f55ed9ecda98e1522b072deb",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 0.13893356460474035,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x437b936122817ef9f55ed9ecda98e1522b072deb",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 0.06946678230237018,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 0.6946678230237017,
+      "lpLocked": 3,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0x255168311237e7f3f5f2bb23da91dd4128a6d36df96e9511a82bbb598e1c4b1f",
+      "txFrom": "0x22c8f95e41399404b58d29df73d20ea8400f0fda",
+      "selector": "0x372caeb8",
+      "wallets": [
+        "0x22c8f95e41399404b58d29df73d20ea8400f0fda"
+      ],
+      "releaseDays": [
+        60
+      ],
+      "eventLp": 806.5880999999999,
+      "eventFeeSentis": 373.9010953517315,
+      "eventGrossSentis": 1869.5054767586576,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x22c8f95e41399404b58d29df73d20ea8400f0fda",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 261.73076674621205,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x22c8f95e41399404b58d29df73d20ea8400f0fda",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 74.78021907034629,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x22c8f95e41399404b58d29df73d20ea8400f0fda",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 37.390109535173146,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 373.9010953517315,
+      "lpLocked": 806.5880999999999,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0x0af3dd56c432461328c430fa96b76364f93857e713325f68445df7c1cb8d1599",
+      "txFrom": "0x60eee684db86c1e429669aa9e5f13531636777bf",
+      "selector": "0xee2d482f",
+      "wallets": [
+        "0x60eee684db86c1e429669aa9e5f13531636777bf"
+      ],
+      "releaseDays": [
+        30
+      ],
+      "eventLp": 10.77,
+      "eventFeeSentis": 7.476020338052634,
+      "eventGrossSentis": 24.920067793508778,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x60eee684db86c1e429669aa9e5f13531636777bf",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 5.233214236636844,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x60eee684db86c1e429669aa9e5f13531636777bf",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 1.4952040676105267,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x60eee684db86c1e429669aa9e5f13531636777bf",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 0.7476020338052634,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 7.476020338052633,
+      "lpLocked": 10.77,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 2.8408199771648674
+    },
+    {
+      "tx": "0x8fd1d395d800e4c3cc2b1915bff95efd9675a0238ed5ff6d3dd244ca61a8a26b",
+      "txFrom": "0x20633c089084112004cd889cea4f07e3e1fac9c9",
+      "selector": "0xee2d482f",
+      "wallets": [
+        "0x20633c089084112004cd889cea4f07e3e1fac9c9"
+      ],
+      "releaseDays": [
+        30
+      ],
+      "eventLp": 10,
+      "eventFeeSentis": 6.928739309464858,
+      "eventGrossSentis": 23.0957976982162,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x20633c089084112004cd889cea4f07e3e1fac9c9",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 4.850117516625401,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x20633c089084112004cd889cea4f07e3e1fac9c9",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 1.3857478618929717,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x20633c089084112004cd889cea4f07e3e1fac9c9",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 0.6928739309464859,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 6.928739309464858,
+      "lpLocked": 10,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 4.551852188293701
+    },
+    {
+      "tx": "0x18c2171cf82507e3d948e2e3b397700ff85b998a43008494c64da68ec28b273c",
+      "txFrom": "0x4fcc70b1bd66e734e9909cd84f6a5d4bc4c5033b",
+      "selector": "0x372caeb8",
+      "wallets": [
+        "0x4fcc70b1bd66e734e9909cd84f6a5d4bc4c5033b"
+      ],
+      "releaseDays": [
+        90
+      ],
+      "eventLp": 2000,
+      "eventFeeSentis": 463.4532757603174,
+      "eventGrossSentis": 4634.532757603175,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x4fcc70b1bd66e734e9909cd84f6a5d4bc4c5033b",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 324.41729303222223,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x4fcc70b1bd66e734e9909cd84f6a5d4bc4c5033b",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 92.6906551520635,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x4fcc70b1bd66e734e9909cd84f6a5d4bc4c5033b",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 46.34532757603175,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 463.4532757603175,
+      "lpLocked": 2000,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0x8b8e3e5fa5c01f857b5e5b4461d98692c1a9b42b77818e5518e1076f49df7e22",
+      "txFrom": "0xc6f8650938c6eef5633d2250197c5985ccb13506",
+      "selector": "0x372caeb8",
+      "wallets": [
+        "0xc6f8650938c6eef5633d2250197c5985ccb13506"
+      ],
+      "releaseDays": [
+        30
+      ],
+      "eventLp": 2556.89,
+      "eventFeeSentis": 1774.6209912849506,
+      "eventGrossSentis": 5915.403304283168,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0xc6f8650938c6eef5633d2250197c5985ccb13506",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 1242.2346938994656,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0xc6f8650938c6eef5633d2250197c5985ccb13506",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 354.9241982569901,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0xc6f8650938c6eef5633d2250197c5985ccb13506",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 177.46209912849505,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 1774.6209912849508,
+      "lpLocked": 2556.89,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0x0fcdbd33f5fe1a9f156a4e97781179d5be0e542c013ab3e7846ff33b47d96802",
+      "txFrom": "0x4fcc70b1bd66e734e9909cd84f6a5d4bc4c5033b",
+      "selector": "0x372caeb8",
+      "wallets": [
+        "0x4fcc70b1bd66e734e9909cd84f6a5d4bc4c5033b"
+      ],
+      "releaseDays": [
+        90
+      ],
+      "eventLp": 1000,
+      "eventFeeSentis": 231.4297635506179,
+      "eventGrossSentis": 2314.297635506179,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x4fcc70b1bd66e734e9909cd84f6a5d4bc4c5033b",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 162.0008344854325,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x4fcc70b1bd66e734e9909cd84f6a5d4bc4c5033b",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 46.285952710123574,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x4fcc70b1bd66e734e9909cd84f6a5d4bc4c5033b",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 23.142976355061787,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 231.42976355061788,
+      "lpLocked": 1000,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0xa18a8886d42d7f4837e8962b288e2abd69427800f8f1403e39b78c0995826f10",
+      "txFrom": "0x412f60a4708b7f807c2b49866d9ec77eae59d5c2",
+      "selector": "0x372caeb8",
+      "wallets": [
+        "0x412f60a4708b7f807c2b49866d9ec77eae59d5c2"
+      ],
+      "releaseDays": [
+        60
+      ],
+      "eventLp": 1,
+      "eventFeeSentis": 0.46338566259675323,
+      "eventGrossSentis": 2.316928312983766,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x412f60a4708b7f807c2b49866d9ec77eae59d5c2",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 0.32436996381772726,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x412f60a4708b7f807c2b49866d9ec77eae59d5c2",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 0.09267713251935064,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x412f60a4708b7f807c2b49866d9ec77eae59d5c2",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 0.04633856625967532,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 0.46338566259675323,
+      "lpLocked": 1,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0x01042ae21b429b321c9772ce8dd54e038cadf748ae9ac25ed2216da860e5c570",
+      "txFrom": "0x5adc4c2dce6c0a46aaeee59a1b7cfb6b26afd2b0",
+      "selector": "0x372caeb8",
+      "wallets": [
+        "0x5adc4c2dce6c0a46aaeee59a1b7cfb6b26afd2b0"
+      ],
+      "releaseDays": [
+        90
+      ],
+      "eventLp": 1111.1970999999999,
+      "eventFeeSentis": 257.22301217785565,
+      "eventGrossSentis": 2572.2301217785566,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x5adc4c2dce6c0a46aaeee59a1b7cfb6b26afd2b0",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 180.05610852449897,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x5adc4c2dce6c0a46aaeee59a1b7cfb6b26afd2b0",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 51.44460243557113,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x5adc4c2dce6c0a46aaeee59a1b7cfb6b26afd2b0",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 25.722301217785564,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 257.22301217785565,
+      "lpLocked": 1111.1970999999999,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0x8ce6221afc437933c85a764468ed2c01b8a0b8f930662cae80db2ffb6e766351",
+      "txFrom": "0x4fcc70b1bd66e734e9909cd84f6a5d4bc4c5033b",
+      "selector": "0x372caeb8",
+      "wallets": [
+        "0x4fcc70b1bd66e734e9909cd84f6a5d4bc4c5033b"
+      ],
+      "releaseDays": [
+        90
+      ],
+      "eventLp": 2500,
+      "eventFeeSentis": 581.4575077813333,
+      "eventGrossSentis": 5814.575077813333,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x4fcc70b1bd66e734e9909cd84f6a5d4bc4c5033b",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 407.0202554469334,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x4fcc70b1bd66e734e9909cd84f6a5d4bc4c5033b",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 116.29150155626667,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x4fcc70b1bd66e734e9909cd84f6a5d4bc4c5033b",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 58.14575077813333,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 581.4575077813333,
+      "lpLocked": 2500,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0xe44640af688b7cf24a2e20bc1aaed41c0c57b8eeab159c59bc4f109d5bc8ab95",
+      "txFrom": "0xb5bcb31f6472c9ecd8acdcc63386124cd2ab2306",
+      "selector": "0x372caeb8",
+      "wallets": [
+        "0xb5bcb31f6472c9ecd8acdcc63386124cd2ab2306"
+      ],
+      "releaseDays": [
+        90
+      ],
+      "eventLp": 1083.5888,
+      "eventFeeSentis": 251.69390597567434,
+      "eventGrossSentis": 2516.9390597567435,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0xb5bcb31f6472c9ecd8acdcc63386124cd2ab2306",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 176.18573418297203,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0xb5bcb31f6472c9ecd8acdcc63386124cd2ab2306",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 50.33878119513487,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0xb5bcb31f6472c9ecd8acdcc63386124cd2ab2306",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 25.169390597567435,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 251.69390597567434,
+      "lpLocked": 1083.5888,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0xd087eccb09ad8def1cd1176109e80f8eb8e8f3ce630630f22ff985b15cf259c2",
+      "txFrom": "0x5577258fe85dcb40dfe8da7819270884bd2d1b90",
+      "selector": "0x372caeb8",
+      "wallets": [
+        "0x5577258fe85dcb40dfe8da7819270884bd2d1b90"
+      ],
+      "releaseDays": [
+        90
+      ],
+      "eventLp": 380,
+      "eventFeeSentis": 89.93194173132483,
+      "eventGrossSentis": 899.3194173132481,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x5577258fe85dcb40dfe8da7819270884bd2d1b90",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 62.95235921192737,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x5577258fe85dcb40dfe8da7819270884bd2d1b90",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 17.986388346264963,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x5577258fe85dcb40dfe8da7819270884bd2d1b90",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 8.993194173132482,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 89.93194173132481,
+      "lpLocked": 380,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0xc30620a35870003c1eb27563a5b4f56c0ec32bd969638d33a0c0bb7b6cb18f46",
+      "txFrom": "0x10cacebe16e84ed4d9b1f6a51c643310515a79b9",
+      "selector": "0x372caeb8",
+      "wallets": [
+        "0x10cacebe16e84ed4d9b1f6a51c643310515a79b9"
+      ],
+      "releaseDays": [
+        30
+      ],
+      "eventLp": 3,
+      "eventFeeSentis": 2.10724398307088,
+      "eventGrossSentis": 7.024146610236265,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x10cacebe16e84ed4d9b1f6a51c643310515a79b9",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 1.475070788149616,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x10cacebe16e84ed4d9b1f6a51c643310515a79b9",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 0.42144879661417595,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x10cacebe16e84ed4d9b1f6a51c643310515a79b9",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 0.21072439830708797,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 2.10724398307088,
+      "lpLocked": 3,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0x124c7b5c70074f31b2b1830e46bd5974627bd89aa7eb9c7a5cb5f6e146d644f7",
+      "txFrom": "0x150e6dd1bdc49e143f5f188667a0ed78ad98e743",
+      "selector": "0xee2d482f",
+      "wallets": [
+        "0x150e6dd1bdc49e143f5f188667a0ed78ad98e743"
+      ],
+      "releaseDays": [
+        30
+      ],
+      "eventLp": 1,
+      "eventFeeSentis": 0.7004332203045601,
+      "eventGrossSentis": 2.3347774010152,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x150e6dd1bdc49e143f5f188667a0ed78ad98e743",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 0.49030325421319204,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x150e6dd1bdc49e143f5f188667a0ed78ad98e743",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 0.140086644060912,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x150e6dd1bdc49e143f5f188667a0ed78ad98e743",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 0.070043322030456,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 0.7004332203045601,
+      "lpLocked": 1,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0xbe38d07251054b1a624889cdf863e404fd5d371dd9950cd6965bc7740a66107e",
+      "txFrom": "0x49976e7f084b216d4bacb9b3f1f7d3120aaec407",
+      "selector": "0xee2d482f",
+      "wallets": [
+        "0x49976e7f084b216d4bacb9b3f1f7d3120aaec407"
+      ],
+      "releaseDays": [
+        30
+      ],
+      "eventLp": 1,
+      "eventFeeSentis": 0.7004411476911752,
+      "eventGrossSentis": 2.3348038256372505,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x49976e7f084b216d4bacb9b3f1f7d3120aaec407",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 0.49030880338382266,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x49976e7f084b216d4bacb9b3f1f7d3120aaec407",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 0.14008822953823505,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x49976e7f084b216d4bacb9b3f1f7d3120aaec407",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 0.07004411476911752,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 0.7004411476911753,
+      "lpLocked": 1,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0.4575775891585135
+    },
+    {
+      "tx": "0xb472f2d80c2332ff907080a3265340efd93d3e5528a57e2cfc87f61e63cbf729",
+      "txFrom": "0x49976e7f084b216d4bacb9b3f1f7d3120aaec407",
+      "selector": "0xee2d482f",
+      "wallets": [
+        "0x49976e7f084b216d4bacb9b3f1f7d3120aaec407"
+      ],
+      "releaseDays": [
+        30
+      ],
+      "eventLp": 0.1,
+      "eventFeeSentis": 0.0700441974248449,
+      "eventGrossSentis": 0.23348065808281632,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x49976e7f084b216d4bacb9b3f1f7d3120aaec407",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 0.04903093819739143,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x49976e7f084b216d4bacb9b3f1f7d3120aaec407",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 0.01400883948496898,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x49976e7f084b216d4bacb9b3f1f7d3120aaec407",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 0.007004419742484491,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 0.0700441974248449,
+      "lpLocked": 0.1,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0x0eb2ff928ca054468a6db86319528ed671e3b4fa0f424ea1642ebcd281828001",
+      "txFrom": "0x60eee684db86c1e429669aa9e5f13531636777bf",
+      "selector": "0xee2d482f",
+      "wallets": [
+        "0x60eee684db86c1e429669aa9e5f13531636777bf"
+      ],
+      "releaseDays": [
+        30
+      ],
+      "eventLp": 1,
+      "eventFeeSentis": 0.698024246517378,
+      "eventGrossSentis": 2.32674748839126,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x60eee684db86c1e429669aa9e5f13531636777bf",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 0.4886169725621647,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x60eee684db86c1e429669aa9e5f13531636777bf",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 0.1396048493034756,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x60eee684db86c1e429669aa9e5f13531636777bf",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 0.0698024246517378,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 0.6980242465173782,
+      "lpLocked": 1,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0.25481202826275573
+    },
+    {
+      "tx": "0x0b9d34afc52b258865b8c0e276114b73b706840aef37b606feba4eb1882a0dba",
+      "txFrom": "0x60eee684db86c1e429669aa9e5f13531636777bf",
+      "selector": "0xee2d482f",
+      "wallets": [
+        "0x60eee684db86c1e429669aa9e5f13531636777bf"
+      ],
+      "releaseDays": [
+        30
+      ],
+      "eventLp": 1,
+      "eventFeeSentis": 0.697935787070972,
+      "eventGrossSentis": 2.3264526235699066,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x60eee684db86c1e429669aa9e5f13531636777bf",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 0.4885550509496804,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x60eee684db86c1e429669aa9e5f13531636777bf",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 0.1395871574141944,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x60eee684db86c1e429669aa9e5f13531636777bf",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 0.0697935787070972,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 0.697935787070972,
+      "lpLocked": 1,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0x4036f6d0429dfe80d07a9e870664aaad5b54cf940965644191e14e4b7e87aa06",
+      "txFrom": "0x60eee684db86c1e429669aa9e5f13531636777bf",
+      "selector": "0xee2d482f",
+      "wallets": [
+        "0x60eee684db86c1e429669aa9e5f13531636777bf"
+      ],
+      "releaseDays": [
+        30
+      ],
+      "eventLp": 1,
+      "eventFeeSentis": 0.6980430451975359,
+      "eventGrossSentis": 2.326810150658453,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x60eee684db86c1e429669aa9e5f13531636777bf",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 0.48863013163827507,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x60eee684db86c1e429669aa9e5f13531636777bf",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 0.13960860903950717,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x60eee684db86c1e429669aa9e5f13531636777bf",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 0.06980430451975358,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 0.6980430451975359,
+      "lpLocked": 1,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0.26377158562347885
+    },
+    {
+      "tx": "0xd5ac86a9430acd2e219e60747510793a0131204e86d3b7b2fe91120a683bd165",
+      "txFrom": "0x60eee684db86c1e429669aa9e5f13531636777bf",
+      "selector": "0xee2d482f",
+      "wallets": [
+        "0x60eee684db86c1e429669aa9e5f13531636777bf"
+      ],
+      "releaseDays": [
+        30
+      ],
+      "eventLp": 0.1,
+      "eventFeeSentis": 0.06980430451975358,
+      "eventGrossSentis": 0.2326810150658453,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x60eee684db86c1e429669aa9e5f13531636777bf",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 0.048863013163827504,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x60eee684db86c1e429669aa9e5f13531636777bf",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 0.013960860903950717,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x60eee684db86c1e429669aa9e5f13531636777bf",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 0.006980430451975359,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 0.06980430451975357,
+      "lpLocked": 0.1,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0x130a52d88c0e0a4b909ac24e92b959b9a25fada41c9943e8280f7fdfeaef37a2",
+      "txFrom": "0xc15b82af587b6153ba71ddbc3dc3bd2763347e39",
+      "selector": "0x372caeb8",
+      "wallets": [
+        "0xc15b82af587b6153ba71ddbc3dc3bd2763347e39"
+      ],
+      "releaseDays": [
+        30
+      ],
+      "eventLp": 10,
+      "eventFeeSentis": 7.0199605831083645,
+      "eventGrossSentis": 23.399868610361214,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0xc15b82af587b6153ba71ddbc3dc3bd2763347e39",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 4.913972408175854,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0xc15b82af587b6153ba71ddbc3dc3bd2763347e39",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 1.4039921166216727,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0xc15b82af587b6153ba71ddbc3dc3bd2763347e39",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 0.7019960583108363,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 7.019960583108364,
+      "lpLocked": 10,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    }
+  ]
+}
