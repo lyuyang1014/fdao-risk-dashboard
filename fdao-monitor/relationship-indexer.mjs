@@ -7,8 +7,23 @@ const FDAO = "0xc5424eb1061bd9e147788c527c95ac27710bfa41";
 const META = "0x98f0421fcb5129b352cc35c1ed15ae9081deb700";
 const TRANSFER_TOPIC =
   "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef";
-const RPC =
-  process.env.BSC_PUBLIC_RPC_URL || "https://bsc-dataseed-public.bnbchain.org";
+const STAKE_TOPICS = new Set([
+  "0x3e451024d3d4ca4a6f8985802ef8887d16b5f1b2c495e5ace458437b21d18505",
+  "0x05a5b88949c1b7e7b6f52ca8bb014e695c3f9bc8893e0f75a3699a1519507e5c",
+  "0x95b92b7b8f8d5c56d72e536e955714d166392387f565da17b314fbb8e73280a1",
+]);
+const UNSTAKE_TOPICS = new Set([
+  "0x9d4ddcf7be95a56327247eeb36efb79783c00d13defcd5a572d1e3e0d8bf57d5",
+  "0x7baf0db25f935f5cb985caf351c40c4ecfd6a3b4ee3c8e3360183b8f051ed97e",
+  "0xc4915ee1bfb9fe5fca0991eeb563dea7da3fe05fb9265ffc22a49c16cc9ff58e",
+]);
+const RPCS = [
+  process.env.BSC_PUBLIC_RPC_URL,
+  "https://bsc-dataseed-public.bnbchain.org",
+  "https://bsc-dataseed1.bnbchain.org",
+  "https://bsc-dataseed.binance.org",
+  "https://bsc-rpc.publicnode.com",
+].filter(Boolean);
 const RUN_SIZE = Number(process.env.RELATIONSHIP_RUN_SIZE || 250);
 
 const readJson = (name, fallback) => {
@@ -69,16 +84,29 @@ async function fetchFacts(entries, knownWallets) {
         },
       );
     }
-    const response = await fetch(RPC, {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(requests),
-    });
-    const payload = await response.json();
-    if (!Array.isArray(payload)) {
-      throw new Error(`BSC batch RPC failed: ${JSON.stringify(payload)}`);
+    const byId = new Map();
+    let lastError = null;
+    for (const rpcUrl of RPCS) {
+      try {
+        const response = await fetch(rpcUrl, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(requests),
+        });
+        const payload = await response.json();
+        if (!Array.isArray(payload)) {
+          throw new Error(`BSC batch RPC failed: ${JSON.stringify(payload)}`);
+        }
+        for (const item of payload) {
+          if (item?.result != null && !byId.has(item.id)) byId.set(item.id, item);
+        }
+        if (requests.every((request) => byId.has(request.id))) break;
+      } catch (error) {
+        lastError = error;
+      }
+      await new Promise((resolve) => setTimeout(resolve, 250));
     }
-    const byId = new Map(payload.map((item) => [item.id, item]));
+    if (!byId.size && lastError) throw lastError;
     for (let index = 0; index < chunk.length; index++) {
       const entry = chunk[index];
       const tx = byId.get(index * 2 + 1)?.result;
@@ -86,15 +114,28 @@ async function fetchFacts(entries, knownWallets) {
       if (!tx || !receipt) continue;
       const self = entry.user.toLowerCase();
       const directEventAddresses = [];
+      const coStakedWallets = [];
       const knownWalletTransfers = [];
       const receiptRecipients = new Set();
       for (const log of receipt.logs || []) {
         const contract = log.address.toLowerCase();
         if (contract === FDAO) {
-          for (const topic of (log.topics || []).slice(1)) {
-            const address = topicAddress(topic);
-            if (address && address !== self && knownWallets.has(address)) {
-              directEventAddresses.push(address);
+          const eventTopic = log.topics?.[0]?.toLowerCase();
+          if (STAKE_TOPICS.has(eventTopic)) {
+            const beneficiary = topicAddress(log.topics?.[1]);
+            if (
+              beneficiary &&
+              beneficiary !== self &&
+              knownWallets.has(beneficiary)
+            ) {
+              coStakedWallets.push(beneficiary);
+            }
+          } else if (!UNSTAKE_TOPICS.has(eventTopic)) {
+            for (const topic of (log.topics || []).slice(1)) {
+              const address = topicAddress(topic);
+              if (address && address !== self && knownWallets.has(address)) {
+                directEventAddresses.push(address);
+              }
             }
           }
         }
@@ -127,6 +168,7 @@ async function fetchFacts(entries, knownWallets) {
           self,
         ),
         directEventAddresses: [...new Set(directEventAddresses)],
+        coStakedWallets: [...new Set(coStakedWallets)],
         knownWalletTransfers,
         receiptRecipients: [...receiptRecipients],
       });
@@ -134,6 +176,32 @@ async function fetchFacts(entries, knownWallets) {
     await new Promise((resolve) => setTimeout(resolve, 250));
   }
   return facts;
+}
+
+export function confirmedDirectParents(fact) {
+  const eventAddresses = new Set(fact.directEventAddresses || []);
+  const coStaked = new Set(fact.coStakedWallets || []);
+  return (fact.calldataAddressCandidates || [])
+    .map((hit) => hit.address)
+    .filter(
+      (address, index, addresses) =>
+        eventAddresses.has(address) &&
+        !coStaked.has(address) &&
+        addresses.indexOf(address) === index,
+    );
+}
+
+export function selectPending(universe, facts, attemptsByUser, runSize) {
+  const completed = new Set(facts.map((fact) => fact.user));
+  return universe
+    .filter((entry) => !completed.has(entry.user))
+    .sort(
+      (left, right) =>
+        Number(attemptsByUser[left.user] || 0) -
+          Number(attemptsByUser[right.user] || 0) ||
+        left.ts - right.ts,
+    )
+    .slice(0, runSize);
 }
 
 export function buildBehaviorClusters(facts) {
@@ -285,24 +353,14 @@ function buildReport(state, universe, history, current) {
   );
   const edges = [];
   for (const fact of facts) {
-    for (const hit of fact.calldataAddressCandidates) {
-      edges.push({
-        child: fact.user,
-        parent: hit.address,
-        grade: "A",
-        evidence: "calldata_address_field",
-        tx: fact.tx,
-        detail: `首入 calldata 第 ${hit.wordIndex + 1} 个参数为已参与钱包`,
-      });
-    }
-    for (const parent of fact.directEventAddresses) {
+    for (const parent of confirmedDirectParents(fact)) {
       edges.push({
         child: fact.user,
         parent,
         grade: "A",
-        evidence: "fdao_event_topic",
+        evidence: "calldata_and_non_stake_event",
         tx: fact.tx,
-        detail: "FDAO 首入事件 topic 直接出现另一参与钱包",
+        detail: "首入calldata与非质押业务事件同时确认同一已参与钱包",
       });
     }
     for (const transfer of fact.knownWalletTransfers) {
@@ -420,6 +478,7 @@ function buildReport(state, universe, history, current) {
         },
     conclusions: [
       "首入质押参数目前只有金额和质押类型，没有稳定的推荐人地址字段。",
+      "批量质押交易会在同一calldata和多条质押事件中列出多个受益钱包；这些是共同受益人，不得误判为上下级。",
       "首入回执中的资金接收方是固定合约、流动性池和销毁地址，尚未出现可唯一对应上级的10%奖励钱包。",
       "推荐绑定与邀请名单出现在项目方登录后的 API 中，说明组织树很可能主要保存在项目方后台。",
       "C级行为簇只能提示批量铺号或同一操盘批次，不能当成官方上下级关系。",
@@ -445,24 +504,49 @@ async function main() {
   const universe = [...firstByWallet.values()];
   const knownWallets = new Set(universe.map((entry) => entry.user));
   const state = readJson("relationship-state.json", {
-    version: 1,
+    version: 3,
     cursor: 0,
     facts: [],
+    attemptsByUser: {},
   });
-  if (state.version !== 1 || state.cursor > universe.length) {
-    state.version = 1;
+  if (state.version === 1 || state.version === 2) {
+    state.version = 3;
+    state.attemptsByUser = {};
+    state.facts = (state.facts || [])
+      .filter(
+        (fact) =>
+          !(fact.calldataAddressCandidates || []).length &&
+          !(fact.directEventAddresses || []).length,
+      )
+      .map((fact) => ({ ...fact, coStakedWallets: [] }));
+  } else if (state.version !== 3) {
+    state.version = 3;
     state.cursor = 0;
     state.facts = [];
+    state.attemptsByUser = {};
   }
-  const next = universe.slice(state.cursor, state.cursor + RUN_SIZE);
+  state.attemptsByUser ||= {};
+  const next = selectPending(
+    universe,
+    state.facts,
+    state.attemptsByUser,
+    RUN_SIZE,
+  );
+  let fresh = [];
   if (next.length) {
-    const fresh = await fetchFacts(next, knownWallets);
+    fresh = await fetchFacts(next, knownWallets);
     const byUser = new Map(state.facts.map((fact) => [fact.user, fact]));
     for (const fact of fresh) byUser.set(fact.user, fact);
     state.facts = [...byUser.values()].sort((a, b) => a.ts - b.ts);
-    state.cursor += next.length;
+    const successfulUsers = new Set(fresh.map((fact) => fact.user));
+    for (const entry of next) {
+      if (successfulUsers.has(entry.user)) delete state.attemptsByUser[entry.user];
+      else
+        state.attemptsByUser[entry.user] =
+          Number(state.attemptsByUser[entry.user] || 0) + 1;
+    }
   }
-  state.cursor = Math.min(state.cursor, universe.length);
+  state.cursor = state.facts.length;
   state.updatedAt = new Date().toISOString();
   const report = buildReport(state, universe, history, current);
   writeJson("relationship-state.json", state);
@@ -472,6 +556,9 @@ async function main() {
       {
         ok: true,
         processed: state.facts.length,
+        requested: next.length,
+        succeeded: fresh.length,
+        retryQueue: Object.keys(state.attemptsByUser).length,
         total: universe.length,
         coverage: report.coverage,
         gradeA: report.evidenceSummary.gradeAConfirmedEdges,

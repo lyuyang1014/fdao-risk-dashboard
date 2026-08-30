@@ -3,7 +3,9 @@ import test from "node:test";
 import {
   buildBehaviorClusters,
   buildTeamMetrics,
+  confirmedDirectParents,
   findAddressWords,
+  selectPending,
 } from "./relationship-indexer.mjs";
 
 test("findAddressWords only accepts known participating wallets", () => {
@@ -19,6 +21,45 @@ test("findAddressWords only accepts known participating wallets", () => {
       "0x2222222222222222222222222222222222222222",
     ),
     [{ wordIndex: 0, address: parent }],
+  );
+});
+
+test("batch co-beneficiaries are not misclassified as referral parents", () => {
+  const other = "0x1111111111111111111111111111111111111111";
+  const fact = {
+    calldataAddressCandidates: [{ wordIndex: 4, address: other }],
+    directEventAddresses: [],
+    coStakedWallets: [other],
+  };
+  assert.deepEqual(confirmedDirectParents(fact), []);
+});
+
+test("a matching calldata and non-stake event address can be A-grade", () => {
+  const parent = "0x1111111111111111111111111111111111111111";
+  const fact = {
+    calldataAddressCandidates: [{ wordIndex: 1, address: parent }],
+    directEventAddresses: [parent],
+    coStakedWallets: [],
+  };
+  assert.deepEqual(confirmedDirectParents(fact), [parent]);
+});
+
+test("selectPending revisits skipped wallets before declaring coverage", () => {
+  const universe = [
+    { user: "a", ts: 1 },
+    { user: "b", ts: 2 },
+    { user: "c", ts: 3 },
+    { user: "d", ts: 4 },
+  ];
+  const selected = selectPending(
+    universe,
+    [{ user: "a" }],
+    { b: 2, c: 1 },
+    2,
+  );
+  assert.deepEqual(
+    selected.map((entry) => entry.user),
+    ["d", "c"],
   );
 });
 
