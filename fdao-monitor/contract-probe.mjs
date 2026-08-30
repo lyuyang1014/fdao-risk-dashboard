@@ -1,6 +1,7 @@
 import fs from "node:fs";
-const RPC = process.env.NODEREAL_RPC_URL;
-if (!RPC) throw Error("NODEREAL_RPC_URL is required");
+const RPC =
+  process.env.BSC_PUBLIC_RPC_URL ||
+  "https://bsc-dataseed-public.bnbchain.org";
 const PROXY = "0xC5424Eb1061bD9e147788c527c95ac27710bFA41";
 const BEACON_SLOT =
   "0xa3f0ad74e5423aebfd80d3ef4346578335a9a72aeaee59ff6cb3582b35133d50";

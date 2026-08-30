@@ -29,21 +29,21 @@ jobs:
         run: test -n "$NODEREAL_RPC_URL"
       - name: Update live chain index
         run: node fdao-monitor/indexer6.mjs
-      - name: Backfill launch-to-date daily history
-        continue-on-error: true
-        run: node fdao-monitor/history-indexer.mjs
       - name: Audit matured LP releases
         continue-on-error: true
         run: node fdao-monitor/release-audit.mjs
-      - name: Build position and sell-risk assessment
-        continue-on-error: true
-        run: node fdao-monitor/risk-engine.mjs
       - name: Compare META with FSD at the same age
         continue-on-error: true
         run: node fdao-monitor/peer-comparison.mjs
       - name: Probe contracts and frontend calls
         continue-on-error: true
         run: node fdao-monitor/contract-probe.mjs
+      - name: Backfill launch-to-date daily history
+        continue-on-error: true
+        run: node fdao-monitor/history-indexer.mjs
+      - name: Build position and sell-risk assessment
+        continue-on-error: true
+        run: node fdao-monitor/risk-engine.mjs
       - name: Rebuild graded relationship evidence
         continue-on-error: true
         run: node fdao-monitor/relationship-indexer.mjs

@@ -18,7 +18,6 @@ const UNSTAKE_TOPICS = new Set([
 const VIEW_STAKING_INFO = "0xb46fb85f";
 const VIEW_UNSTAKE_FEE = "0x33da64cd";
 const RPC =
-  process.env.NODEREAL_RPC_URL ||
   process.env.BSC_PUBLIC_RPC_URL ||
   "https://bsc-dataseed-public.bnbchain.org";
 const REFERENCE_SENTIS_USD = 0.2179;

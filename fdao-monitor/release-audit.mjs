@@ -10,10 +10,10 @@ const TRANSFER_TOPIC =
 const MY_INFOS = "0xc81a81d9";
 const RELEASABLE = "0xa3f8eace";
 const RELEASE_CALL = "0x86d1a69f";
-const RPC =
-  process.env.NODEREAL_RPC_URL ||
+const PUBLIC_RPC =
   process.env.BSC_PUBLIC_RPC_URL ||
   "https://bsc-dataseed-public.bnbchain.org";
+const INDEXING_RPC = process.env.NODEREAL_RPC_URL || PUBLIC_RPC;
 const HAS_INDEXING_RPC = Boolean(process.env.NODEREAL_RPC_URL);
 
 const readJson = (name, fallback) => {
@@ -45,11 +45,11 @@ const words = (data) => {
   return result;
 };
 
-async function rpc(method, params, retries = 4) {
+async function rpc(method, params, retries = 4, url = PUBLIC_RPC) {
   let lastError;
   for (let attempt = 0; attempt < retries; attempt++) {
     try {
-      const response = await fetch(RPC, {
+      const response = await fetch(url, {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ jsonrpc: "2.0", id: 1, method, params }),
@@ -116,14 +116,19 @@ async function scanReleaseTransfers(fromBlock, toBlock) {
   const transfers = [];
   for (let start = fromBlock; start <= toBlock; start += 50000) {
     const end = Math.min(toBlock, start + 49999);
-    const logs = await rpc("eth_getLogs", [
-      {
-        address: PAIR,
-        fromBlock: hex(start),
-        toBlock: hex(end),
-        topics: [TRANSFER_TOPIC, topicAddress(RELEASE)],
-      },
-    ]);
+    const logs = await rpc(
+      "eth_getLogs",
+      [
+        {
+          address: PAIR,
+          fromBlock: hex(start),
+          toBlock: hex(end),
+          topics: [TRANSFER_TOPIC, topicAddress(RELEASE)],
+        },
+      ],
+      4,
+      INDEXING_RPC,
+    );
     for (const log of logs) {
       const transaction = await rpc("eth_getTransactionByHash", [
         log.transactionHash,
@@ -132,6 +137,7 @@ async function scanReleaseTransfers(fromBlock, toBlock) {
         transaction?.to?.toLowerCase() === RELEASE &&
         transaction?.input?.toLowerCase().startsWith(RELEASE_CALL);
       transfers.push({
+        id: `${log.transactionHash}:${log.logIndex}`,
         tx: log.transactionHash,
         block: number(log.blockNumber),
         from: RELEASE,
@@ -159,6 +165,7 @@ async function main() {
   const cache = readJson("unstake-evidence-cache.json", {
     byTransaction: {},
   });
+  const previous = readJson("release-audit.json", null);
   const events = Object.values(cache.byTransaction || {}).flat();
   const now = Math.floor(Date.now() / 1000);
   const wallets = [...new Set(events.map((event) => event.wallet))];
@@ -186,11 +193,30 @@ async function main() {
         (event) => event.timestamp + event.releaseDays * 86400,
       ),
     );
-    const fromBlock = await blockAt(earliestMaturity, latestBlock);
-    const transfers = await scanReleaseTransfers(fromBlock, latestBlock);
+    const initialBlock = await blockAt(earliestMaturity, latestBlock);
+    const previousTransfers = previous?.transferScan?.transfers || [];
+    const fromBlock =
+      previous?.transferScan?.status === "complete_through_latest_block" &&
+      Number.isFinite(Number(previous.transferScan.throughBlock))
+        ? Number(previous.transferScan.throughBlock) + 1
+        : initialBlock;
+    const newTransfers =
+      fromBlock <= latestBlock
+        ? await scanReleaseTransfers(fromBlock, latestBlock)
+        : [];
+    const byId = new Map(
+      [...previousTransfers, ...newTransfers].map((item) => [
+        item.id || `${item.tx}:${item.to}:${item.lpAmount}`,
+        item,
+      ]),
+    );
+    const transfers = [...byId.values()];
     transferScan = {
       status: "complete_through_latest_block",
-      fromBlock,
+      fromBlock: Math.min(
+        initialBlock,
+        Number(previous?.transferScan?.fromBlock || initialBlock),
+      ),
       throughBlock: latestBlock,
       transfers,
     };
