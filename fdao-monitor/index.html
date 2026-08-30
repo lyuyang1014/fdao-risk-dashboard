@@ -429,7 +429,7 @@
       <div class="sec">
         <h3>你的已知钱包：现在退出会赚还是亏？</h3>
         <p class="intro">
-          SENTIS投入量、质押LP和退出手续费由链上读取；美元成本使用你交易后截图中的SENTIS价格，只是参考，不冒充链上事实。
+          SENTIS投入量、质押LP、手续费和释放合约由链上读取；美元成本使用你交易后截图中的SENTIS价格，只是参考，不冒充链上事实。解押后锁的是LP，LP会在所选30/60/90天周期内线性释放，不是到期固定返还一笔SENTIS。
         </p>
         <div class="grid">
           <div class="card">
@@ -454,16 +454,17 @@
             <thead>
               <tr>
                 <th>释放选择</th>
-                <th>链上手续费</th>
-                <th>预计净得SENTIS*</th>
-                <th>按现价折算</th>
+                <th>费率</th>
+                <th>另付手续费</th>
+                <th>锁入/最终释放LP</th>
+                <th>LP今日毛值</th>
+                <th>扣费当前等值*</th>
                 <th>参考盈亏</th>
-                <th>SENTIS保本价</th>
               </tr>
             </thead>
             <tbody id="exitOptions">
               <tr>
-                <td colspan="6">等待链上报价</td>
+                <td colspan="7">等待链上报价</td>
               </tr>
             </tbody>
           </table>

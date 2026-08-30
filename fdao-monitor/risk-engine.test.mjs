@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   assessRisk,
+  buildExitOptions,
   completePeriod,
   parseUnstakeEvidence,
 } from "./risk-engine.mjs";
@@ -45,7 +46,51 @@ test("parseUnstakeEvidence decodes the fee ratio from an FDAO event", () => {
   assert.equal(event.releaseDays, 90);
   assert.equal(event.grossSentis, 2000);
   assert.equal(event.feeSentis, 200);
+  assert.equal(event.synoxAmount, 0);
   assert.equal(event.feeRate, 0.1);
+});
+
+test("parseUnstakeEvidence keeps the extra Synox amount in six-word events", () => {
+  const hex = (value) => BigInt(value).toString(16).padStart(64, "0");
+  const receipt = {
+    transactionHash: "0xsynox",
+    logs: [
+      {
+        address: "0xC5424Eb1061bD9e147788c527c95ac27710bFA41",
+        topics: [
+          "0x7baf0db25f935f5cb985caf351c40c4ecfd6a3b4ee3c8e3360183b8f051ed97e",
+          "0x" + "0".repeat(24) + "2".repeat(40),
+        ],
+        data:
+          "0x" +
+          hex(1n * 10n ** 18n) +
+          hex(30) +
+          hex(10n * 10n ** 18n) +
+          hex(3n * 10n ** 18n) +
+          hex(25n * 10n ** 16n) +
+          hex(1234),
+      },
+    ],
+  };
+  const [event] = parseUnstakeEvidence([receipt]);
+  assert.equal(event.synoxAmount, 0.25);
+  assert.equal(event.timestamp, 1234);
+});
+
+test("buildExitOptions values the returned LP and subtracts the separate SENTIS fee", () => {
+  const [option] = buildExitOptions({
+    feeQuotes: [{ days: 90, feeRate: 0.1, feeSentis: 100 }],
+    stakedLp: 10,
+    pairSupply: 100,
+    poolLiquidityUsd: 1000,
+    sentisUsd: 0.2,
+    referenceCostUsd: 90,
+  });
+  assert.equal(option.currentLpValueUsd, 100);
+  assert.equal(option.feeUsd, 20);
+  assert.equal(option.currentEquivalentAfterFeeUsd, 80);
+  assert.equal(option.pnlUsdVsReference, -10);
+  assert.equal(option.breakEvenLpValueUsd, 110);
 });
 
 test("assessRisk becomes orange when two independent orange signals exist", () => {

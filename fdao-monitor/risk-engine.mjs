@@ -22,6 +22,7 @@ const RPC =
   process.env.BSC_PUBLIC_RPC_URL ||
   "https://bsc-dataseed-public.bnbchain.org";
 const REFERENCE_SENTIS_USD = 0.2179;
+const EVIDENCE_CACHE_VERSION = 2;
 const EXIT_OPTIONS = [
   { days: 30, feeRate: 0.3 },
   { days: 60, feeRate: 0.2 },
@@ -137,13 +138,54 @@ export function parseUnstakeEvidence(receiptList) {
         releaseDays: Number(BigInt(decoded[1])),
         grossSentis,
         feeSentis,
-        netSentis: grossSentis - feeSentis,
+        synoxAmount: decoded.length >= 6 ? units(decoded[4]) : 0,
         feeRate: grossSentis ? feeSentis / grossSentis : null,
         timestamp: Number(BigInt(decoded.at(-1))),
       });
     }
   }
   return evidence;
+}
+
+export function buildExitOptions({
+  feeQuotes,
+  stakedLp,
+  pairSupply,
+  poolLiquidityUsd,
+  sentisUsd,
+  referenceCostUsd,
+}) {
+  const currentLpValueUsd = pairSupply
+    ? (Number(poolLiquidityUsd || 0) * Number(stakedLp || 0)) /
+      Number(pairSupply)
+    : 0;
+  const currentLpUnitValueUsd = stakedLp
+    ? currentLpValueUsd / Number(stakedLp)
+    : 0;
+  return feeQuotes.map((quote) => {
+    const feeUsd = Number(quote.feeSentis || 0) * Number(sentisUsd || 0);
+    const currentEquivalentAfterFeeUsd = currentLpValueUsd - feeUsd;
+    const pnlUsdVsReference =
+      currentEquivalentAfterFeeUsd - Number(referenceCostUsd || 0);
+    return {
+      releaseDays: quote.days,
+      feeRate: quote.feeRate,
+      chainQuotedFeeSentis: quote.feeSentis,
+      feeUsd,
+      lockedLp: stakedLp,
+      currentLpValueUsd,
+      currentLpUnitValueUsd,
+      currentEquivalentAfterFeeUsd,
+      pnlUsdVsReference,
+      pnlPctVsReference: referenceCostUsd
+        ? currentEquivalentAfterFeeUsd / referenceCostUsd - 1
+        : null,
+      breakEvenLpValueUsd: Number(referenceCostUsd || 0) + feeUsd,
+      breakEvenLpUnitValueUsd: stakedLp
+        ? (Number(referenceCostUsd || 0) + feeUsd) / Number(stakedLp)
+        : null,
+    };
+  });
 }
 
 export function assessRisk({
@@ -250,6 +292,7 @@ async function main() {
   const relationship = readJson("relationship-graph.json", {
     teamMetrics: { available: false },
   });
+  const releaseAudit = readJson("release-audit.json", null);
   if (!current) throw new Error("current.json is required");
 
   const events = [...historyState.events, ...(todayState.dayEvents || [])];
@@ -264,9 +307,13 @@ async function main() {
   const missingUnstakeTransactionHashes = unstakeEvents.length
     ? unstakeEvents.length - unstakeTransactions.length
     : 0;
-  const evidenceCache = readJson("unstake-evidence-cache.json", {
+  const storedEvidenceCache = readJson("unstake-evidence-cache.json", {
     byTransaction: {},
   });
+  const evidenceCache =
+    storedEvidenceCache.version === EVIDENCE_CACHE_VERSION
+      ? storedEvidenceCache
+      : { version: EVIDENCE_CACHE_VERSION, byTransaction: {} };
   const uncachedTransactions = unstakeTransactions.filter(
     (transactionHash) => !evidenceCache.byTransaction[transactionHash],
   );
@@ -325,23 +372,13 @@ async function main() {
   const costSentis = sentisTransfer?.amount || 0;
   const referenceCostUsd = costSentis * REFERENCE_SENTIS_USD;
   const sentisUsd = Number(current.market.sentisPrice || 0);
-  const exitOptions = feeQuotes.map((quote) => {
-    const grossSentis = quote.feeRate ? quote.feeSentis / quote.feeRate : 0;
-    const netSentis = grossSentis - quote.feeSentis;
-    const currentNetUsd = netSentis * sentisUsd;
-    return {
-      releaseDays: quote.days,
-      feeRate: quote.feeRate,
-      chainQuotedFeeSentis: quote.feeSentis,
-      chainImpliedGrossSentis: grossSentis,
-      netSentisBeforePossibleBurn: netSentis,
-      currentNetUsdBeforePossibleBurn: currentNetUsd,
-      pnlUsdVsReference: currentNetUsd - referenceCostUsd,
-      pnlPctVsReference: referenceCostUsd
-        ? currentNetUsd / referenceCostUsd - 1
-        : null,
-      breakEvenSentisUsd: netSentis ? referenceCostUsd / netSentis : null,
-    };
+  const exitOptions = buildExitOptions({
+    feeQuotes,
+    stakedLp,
+    pairSupply: current.protocol.pairSupply,
+    poolLiquidityUsd: current.market.liquidity,
+    sentisUsd,
+    referenceCostUsd,
   });
 
   const unstakeEvidence = unstakeTransactions.flatMap(
@@ -374,7 +411,7 @@ async function main() {
 
   const report = {
     updatedAt: new Date().toISOString(),
-    methodologyVersion: 1,
+    methodologyVersion: 2,
     chainScope: "BNB Smart Chain",
     scale: {
       exitPoolLiquidityUsd: current.market.liquidity,
@@ -418,10 +455,17 @@ async function main() {
             : null,
           grossSentis: sum(matching.map((event) => event.grossSentis)),
           feeSentis: sum(matching.map((event) => event.feeSentis)),
+          synoxAmount: sum(matching.map((event) => event.synoxAmount)),
         };
       }),
+      releaseMechanism: {
+        releaseContract: "0xd62c3c1faaf8940496a12f5f15c9d0c3bae56b62",
+        lockToken: "0x4f49ad237a81ad403a88f34a12a8d1d53c2d7d89",
+        result: "LP tokens are locked on unstake and vest progressively over the selected 30/60/90-day period. release() returns the currently vested LP; the fee event's SENTIS amount is not the final payout.",
+      },
+      releaseAudit,
       correction:
-        "30/60/90 are release choices with observed 30%/20%/10% fees, not wallet-age eligibility milestones. Existing events prove 90-day choices occurred before wallets were 90 days old.",
+        "30/60/90 are linear release periods with observed 30%/20%/10% fees, not wallet-age eligibility milestones or cliff waits. Unstake locks LP; release() can claim the vested portion during the period and ultimately returns LP rather than a fixed SENTIS payout.",
     },
     userPosition: {
       wallet: USER,
@@ -444,10 +488,12 @@ async function main() {
         rewardMeta,
         sentisUsd,
         metaUsd: current.market.metaPrice,
+        pairSupply: current.protocol.pairSupply,
+        poolLiquidityUsd: current.market.liquidity,
       },
       exitOptions,
       caveat:
-        "The fee quote is read directly from viewUnStakeLPFee. The site also states a 2% burn; final cash received remains a range until a completed release withdrawal is decoded on-chain.",
+        "The fee quote is read directly from viewUnStakeLPFee. The current-equivalent estimate values the locked LP at today's pool liquidity and subtracts the separately paid SENTIS fee. LP vests progressively during the chosen period. Final cash depends on the pool when each vested portion is claimed and liquidity is removed; the site's 2% burn claim is not yet reconciled transaction-by-transaction.",
     },
     assessment,
     sellTriggers: [
@@ -465,7 +511,8 @@ async function main() {
     limitations: [
       "Official referral and team trees remain off-chain or behind authenticated project APIs.",
       "USD entry cost is not immutable on-chain because SENTIS was not a stablecoin; the displayed USD P/L uses the user's contemporaneous screenshot price.",
-      "A final 2% burn and release withdrawals still need transaction-level reconciliation before net proceeds are exact.",
+      "The site's 2% burn claim still needs transaction-level reconciliation; it is not silently deducted from the estimate without proof.",
+      "Release returns LP, so a final cash amount cannot be fixed today: pool reserves, LP supply, token prices, transfer taxes and remove-liquidity execution can all change before release.",
     ],
   };
   writeJson("risk-assessment.json", report);

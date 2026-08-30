@@ -105,14 +105,22 @@ function renderRisk(report) {
     .map((option) => {
       const pnlClass = option.pnlUsdVsReference >= 0 ? "good" : "bad";
       const pnlSign = option.pnlUsdVsReference >= 0 ? "+" : "";
-      return `<tr><td>${option.releaseDays}天</td><td>${pct(option.feeRate)}</td><td>${num(option.netSentisBeforePossibleBurn, 2)}</td><td>${usd(option.currentNetUsdBeforePossibleBurn)}</td><td class="${pnlClass}">${pnlSign}${usd(option.pnlUsdVsReference)} · ${pnlSign}${pct(option.pnlPctVsReference)}</td><td>$${num(option.breakEvenSentisUsd, 4)}</td></tr>`;
+      return `<tr><td>${option.releaseDays}天</td><td>${pct(option.feeRate)}</td><td>${num(option.chainQuotedFeeSentis, 2)}<br><span class="sub">${usd(option.feeUsd)}</span></td><td>${num(option.lockedLp, 2)}</td><td>${usd(option.currentLpValueUsd)}</td><td>${usd(option.currentEquivalentAfterFeeUsd)}</td><td class="${pnlClass}">${pnlSign}${usd(option.pnlUsdVsReference)} · ${pnlSign}${pct(option.pnlPctVsReference)}</td></tr>`;
     })
     .join("");
   const option90 = position.exitOptions?.find(
     (option) => option.releaseDays === 90,
   );
+  const releaseSummary = report.exits?.releaseAudit?.summary;
+  const releaseProof = releaseSummary?.confirmedReleaseTransfers
+    ? `后台已在链上找到 <b>${num(releaseSummary.confirmedReleaseTransfers)}</b> 笔实际 release() 返还LP交易，共返还 <b>${num(releaseSummary.confirmedReleasedLp, 4)} LP</b>。`
+    : releaseSummary?.walletsWithReleasedLp
+      ? `释放合约当前记录：已有 <b>${num(releaseSummary.walletsWithReleasedLp)}</b> 个钱包领取过累计 <b>${num(releaseSummary.contractRecordedReleasedLp, 4)} LP</b>；后台正在继续定位每笔返还交易哈希。`
+    : releaseSummary?.walletsWithReleasableLp
+      ? `已核到 <b>${num(releaseSummary.walletsWithReleasableLp)}</b> 个钱包当前已有线性释放的LP可领取；返还交易仍在继续索引。`
+      : "已确认释放合约锁定的是META/SENTIS LP；实际返还交易仍在继续索引。";
   $("positionExplain").innerHTML = option90
-    ? `链上报价目前显示：选择90天释放、扣除10%链上手续费后，约为 <b>${num(option90.netSentisBeforePossibleBurn, 2)} SENTIS</b>，按现价约 <b>${usd(option90.currentNetUsdBeforePossibleBurn)}</b>，对比截图参考成本约 <b class="${option90.pnlUsdVsReference >= 0 ? "good" : "bad"}">${usd(option90.pnlUsdVsReference)}</b>。SENTIS约需达到 <b>$${num(option90.breakEvenSentisUsd, 4)}</b> 才能覆盖该参考成本。*项目页面另称最终有2%销毁，实际到账可能再低一些，仍需用完成释放的链上交易确认。`
+    ? `<b>真实退出链路不是“90天后固定拿回SENTIS”。</b> 如果今天选择90天：先另付 <b>${num(option90.chainQuotedFeeSentis, 2)} SENTIS（${usd(option90.feeUsd)}）</b>，同时锁入 <b>${num(option90.lockedLp, 2)} LP</b>。这些LP会在90天内线性变成可领取，期间可调用 release() 分批拿回，到第90天才全部释放。按今天池子储备，这批LP毛值约 <b>${usd(option90.currentLpValueUsd)}</b>，扣手续费后的当前等值约 <b>${usd(option90.currentEquivalentAfterFeeUsd)}</b>，对比截图参考成本约 <b class="${option90.pnlUsdVsReference >= 0 ? "good" : "bad"}">${usd(option90.pnlUsdVsReference)}（${pct(option90.pnlPctVsReference)}）</b>。全部LP价值至少要达到 <b>${usd(option90.breakEvenLpValueUsd)}</b> 才覆盖参考成本和该笔手续费。${releaseProof} 项目页面所称“2%销毁”尚未完成逐笔对账，因此暂不偷偷多扣，也不把它说成已确认到账损失。`
     : "等待90天释放方案的链上报价。";
 
   const levelLabels = {

@@ -98,6 +98,7 @@ function parse(l) {
         rtype: num(w[1]),
         token: unit(w[2]),
         fee: unit(w[3]),
+        synox: w.length >= 6 ? unit(w[4]) : 0,
         ts: num(w.at(-1)),
         tx: l.transactionHash,
       };

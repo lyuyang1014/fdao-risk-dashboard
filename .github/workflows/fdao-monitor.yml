@@ -32,6 +32,9 @@ jobs:
       - name: Backfill launch-to-date daily history
         continue-on-error: true
         run: node fdao-monitor/history-indexer.mjs
+      - name: Audit matured LP releases
+        continue-on-error: true
+        run: node fdao-monitor/release-audit.mjs
       - name: Build position and sell-risk assessment
         continue-on-error: true
         run: node fdao-monitor/risk-engine.mjs
