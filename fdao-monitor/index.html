@@ -382,6 +382,51 @@
         <div class="call danger" id="scaleExplain">等待独立资产核算。</div>
       </div>
       <div class="sec">
+        <h3>META 与 FSD：上线后同天数对比</h3>
+        <p class="intro">
+          FSD 是 First Shot DAO（合约 0x2Eca…3E59）。两者都用 SENTIS
+          交易池，所以这里直接比较链上池子储备，不采用项目方宣传数字。META交易池在5月27日已存在；7月18日按公开质押阶段起点计算，不等同于“代币刚创建”。
+        </p>
+        <div class="call" id="metaLaunchAudit">正在核验7月18日的链上含义。</div>
+        <div class="grid">
+          <div class="card">
+            <div class="label">FSD 第1→43天价格</div>
+            <div class="value" id="fsdReturn43">—</div>
+          </div>
+          <div class="card">
+            <div class="label">META 第1→43天价格</div>
+            <div class="value" id="metaReturn43">—</div>
+          </div>
+          <div class="card">
+            <div class="label">FSD 第43天池子</div>
+            <div class="value" id="fsdLiquidity43">—</div>
+          </div>
+          <div class="card">
+            <div class="label">META 第43天池子</div>
+            <div class="value" id="metaLiquidity43">—</div>
+          </div>
+        </div>
+        <div class="card tw">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>公开阶段</th>
+                <th>FSD价格（SENTIS）</th>
+                <th>META价格（SENTIS）</th>
+                <th>FSD池子（SENTIS）</th>
+                <th>META池子（SENTIS）</th>
+              </tr>
+            </thead>
+            <tbody id="peerRows">
+              <tr>
+                <td colspan="5">等待链上同期快照</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="call danger" id="peerVerdict">等待同期判断。</div>
+      </div>
+      <div class="sec">
         <h3>你的已知钱包：现在退出会赚还是亏？</h3>
         <p class="intro">
           SENTIS投入量、质押LP和退出手续费由链上读取；美元成本使用你交易后截图中的SENTIS价格，只是参考，不冒充链上事实。

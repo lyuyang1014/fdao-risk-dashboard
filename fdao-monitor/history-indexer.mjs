@@ -2,6 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 const D = "fdao-monitor/data",
   A = "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
+  CONTRACT_DEPLOYMENT_BLOCK = 100549415,
+  BACKFILL_SPAN = 4000000,
   RPC = process.env.NODEREAL_RPC_URL;
 if (!RPC) throw Error("NODEREAL_RPC_URL is required");
 fs.mkdirSync(D, { recursive: true });
@@ -130,23 +132,27 @@ let cur = read("current.json", null);
 if (!cur) throw Error("current missing");
 let s = read("history-state.json", {
   cursor: cur.indexing.dayStartBlock - 1,
-  floor: 112795756,
+  floor: CONTRACT_DEPLOYMENT_BLOCK,
   events: [],
   done: false,
 });
 if (!s.source || s.source !== "nodereal") {
   s = {
     cursor: cur.indexing.dayStartBlock - 1,
-    floor: 112795756,
+    floor: CONTRACT_DEPLOYMENT_BLOCK,
     events: [],
     done: false,
     source: "nodereal",
   };
 }
+if (s.floor > CONTRACT_DEPLOYMENT_BLOCK) {
+  s.floor = CONTRACT_DEPLOYMENT_BLOCK;
+  s.done = false;
+}
 let ids = new Set(s.events.map((e) => e.id));
 if (!s.done) {
   let to = s.cursor,
-    from = Math.max(s.floor, to - 499999),
+    from = Math.max(s.floor, to - BACKFILL_SPAN + 1),
     ls = await logs(from, to);
   for (let l of ls) {
     let e = parse(l);
@@ -328,6 +334,9 @@ let out = {
   backfillDone: s.done,
   coverage: walletOut.coverage,
   firstObservedDate: daily[0]?.date || null,
+  firstObservedBlock: all[0]?.block || null,
+  firstObservedTransaction: all[0]?.tx || null,
+  contractDeploymentBlock: CONTRACT_DEPLOYMENT_BLOCK,
   totalObservedStakeWallets: new Set(
     all.filter((e) => e.kind === "stake").map((e) => e.user),
   ).size,

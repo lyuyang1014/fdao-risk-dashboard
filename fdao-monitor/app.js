@@ -3,6 +3,7 @@ const HIST = "./data/history-daily.json";
 const WAL = "./data/wallet-analytics.json";
 const REL = "./data/relationship-graph.json";
 const RISK = "./data/risk-assessment.json";
+const PEER = "./data/peer-comparison.json";
 const $ = (id) => document.getElementById(id);
 const usd = (value) => {
   let number = Number(value);
@@ -143,6 +144,31 @@ function renderRisk(report) {
     .join("");
 }
 
+function renderPeerComparison(report) {
+  if (!report) {
+    $("peerVerdict").textContent = "FSD同期数据尚未生成，后台会继续重试。";
+    return;
+  }
+  const fsd = report.assets.fsd;
+  const meta = report.assets.meta;
+  $("metaLaunchAudit").textContent = report.launchAudit.conclusion;
+  $("fsdReturn43").textContent = pct(fsd.sameAge.priceReturn);
+  $("metaReturn43").textContent = pct(meta.sameAge.priceReturn);
+  $("fsdLiquidity43").textContent =
+    `${num(fsd.sameAge.endingLiquiditySentis / 1e6, 2)}M SENTIS`;
+  $("metaLiquidity43").textContent =
+    `${num(meta.sameAge.endingLiquiditySentis / 1e6, 2)}M SENTIS`;
+  const metaByDay = new Map(meta.series.map((item) => [item.day, item]));
+  $("peerRows").innerHTML = fsd.series
+    .map((fsdPoint) => {
+      const metaPoint = metaByDay.get(fsdPoint.day);
+      return `<tr><td>第${fsdPoint.day}天</td><td>${num(fsdPoint.priceSentis, 4)}</td><td>${num(metaPoint?.priceSentis, 4)}</td><td>${num(fsdPoint.liquiditySentis / 1e6, 2)}M</td><td>${num(metaPoint?.liquiditySentis / 1e6, 2)}M</td></tr>`;
+    })
+    .join("");
+  $("peerVerdict").innerHTML =
+    `<b>链上结论：同第43天，FSD价格相对第1天上涨 ${pct(fsd.sameAge.priceReturn)}，META为 ${pct(meta.sameAge.priceReturn)}；两者池子绝对规模只差 ${pct(Math.abs(report.verdict.day43LiquidityDifference))}。</b> 所以“META同期一定更好”目前不成立。更重要的是，FSD第43天后又从约 ${num(fsd.sameAge.endingPriceSentis, 2)} SENTIS 跌至当前约 ${num(fsd.current.priceSentis, 2)} SENTIS，回撤 ${pct(fsd.current.priceChangeSinceDay43)}。早期表现强不能证明后期安全。`;
+}
+
 async function load() {
   try {
     const timestamp = Date.now();
@@ -152,12 +178,14 @@ async function load() {
       walletResponse,
       relationResponse,
       riskResponse,
+      peerResponse,
     ] = await Promise.all([
       fetch(`${DATA}?t=${timestamp}`, { cache: "no-store" }),
       fetch(`${HIST}?t=${timestamp}`, { cache: "no-store" }),
       fetch(`${WAL}?t=${timestamp}`, { cache: "no-store" }),
       fetch(`${REL}?t=${timestamp}`, { cache: "no-store" }),
       fetch(`${RISK}?t=${timestamp}`, { cache: "no-store" }),
+      fetch(`${PEER}?t=${timestamp}`, { cache: "no-store" }),
     ]);
     if (!currentResponse.ok) throw new Error("实时数据读取失败");
     const current = await currentResponse.json();
@@ -169,6 +197,7 @@ async function load() {
       ? await relationResponse.json()
       : null;
     const riskAssessment = riskResponse.ok ? await riskResponse.json() : null;
+    const peerComparison = peerResponse.ok ? await peerResponse.json() : null;
 
     $("price").textContent = "$" + current.market.metaPrice.toFixed(4);
     $("liq").textContent = usd(current.market.liquidity);
@@ -232,6 +261,7 @@ async function load() {
 
     renderRelationships(relationships);
     renderRisk(riskAssessment);
+    renderPeerComparison(peerComparison);
     chart(historyData.daily || []);
     $("totalWallets").textContent = num(historyData.totalObservedStakeWallets);
     $("avg7").textContent = usd(
