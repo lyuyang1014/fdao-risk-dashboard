@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-08-30T09:51:58.071Z",
-  "coverage": 0.5750786891316423,
+  "updatedAt": "2026-08-30T09:53:20.673Z",
+  "coverage": 0.4593222664288654,
   "backfillDone": false,
   "relationshipStatus": "referral_not_exposed_by_stake_contract",
   "sources": {
@@ -9,28 +9,28 @@
     "contract": "The public staking ABI contains stake, unstake, price and reward functions but no referral getter."
   },
   "evidenceSummary": {
-    "totalFirstStakeWallets": 5401,
-    "sampledFirstStakeTransactions": 3106,
+    "totalFirstStakeWallets": 7289,
+    "sampledFirstStakeTransactions": 3348,
     "calldataPatterns": [
       {
         "selector": "0x9cd441da",
         "inputBytes": 68,
         "argumentWords": 2,
-        "count": 1759,
+        "count": 1907,
         "addressFieldHits": 0
       },
       {
         "selector": "0xc38bde14",
         "inputBytes": 100,
         "argumentWords": 3,
-        "count": 1315,
+        "count": 1313,
         "addressFieldHits": 0
       },
       {
         "selector": "0xd0b4d220",
         "inputBytes": 68,
         "argumentWords": 2,
-        "count": 13,
+        "count": 109,
         "addressFieldHits": 0
       },
       {
@@ -71,8 +71,8 @@
     ],
     "gradeAConfirmedEdges": 0,
     "gradeBRewardEdges": 0,
-    "gradeCBehaviorClusters": 4,
-    "walletsInBehaviorClusters": 14,
+    "gradeCBehaviorClusters": 5,
+    "walletsInBehaviorClusters": 17,
     "fixedReceiptRecipients": [
       "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
       "0x3690803f317915a9b68424f3b245102e2af0c51a",
@@ -143,6 +143,20 @@
         "0xec9b687c165af044d045debe3c92250714988e29",
         "0x84929de7a503ca923f324843107d3769a2f392c8"
       ]
+    },
+    {
+      "id": "amount:5949639:366.89",
+      "type": "same_amount_window",
+      "detail": "5分钟内相同 META 数量 366.89",
+      "walletCount": 3,
+      "firstTs": 1784891845,
+      "lastTs": 1784891972,
+      "stakeMeta": 1100.6745084302138,
+      "wallets": [
+        "0x45cd88da03e4e0995da8ae9f17db9de07361b3a2",
+        "0xa79244510683d510e7c1bbd5cde48cfcb0c40e6a",
+        "0x4ecaafd975780e2f273abf24ca21d9af05e30644"
+      ]
     }
   ],
   "levelDistribution": {
@@ -152,47 +166,47 @@
       {
         "level": "V1",
         "selfUsd": 2000,
-        "walletsMeetingSelfThreshold": 1162
+        "walletsMeetingSelfThreshold": 1868
       },
       {
         "level": "V2",
         "selfUsd": 4000,
-        "walletsMeetingSelfThreshold": 732
+        "walletsMeetingSelfThreshold": 1201
       },
       {
         "level": "V3",
         "selfUsd": 8000,
-        "walletsMeetingSelfThreshold": 322
+        "walletsMeetingSelfThreshold": 596
       },
       {
         "level": "V4",
         "selfUsd": 15000,
-        "walletsMeetingSelfThreshold": 110
+        "walletsMeetingSelfThreshold": 230
       },
       {
         "level": "V5",
         "selfUsd": 30000,
-        "walletsMeetingSelfThreshold": 29
+        "walletsMeetingSelfThreshold": 67
       },
       {
         "level": "V6",
         "selfUsd": 40000,
-        "walletsMeetingSelfThreshold": 20
+        "walletsMeetingSelfThreshold": 46
       },
       {
         "level": "V7",
         "selfUsd": 50000,
-        "walletsMeetingSelfThreshold": 12
+        "walletsMeetingSelfThreshold": 36
       },
       {
         "level": "V8",
         "selfUsd": 60000,
-        "walletsMeetingSelfThreshold": 8
+        "walletsMeetingSelfThreshold": 25
       },
       {
         "level": "V9",
         "selfUsd": 80000,
-        "walletsMeetingSelfThreshold": 5
+        "walletsMeetingSelfThreshold": 18
       }
     ],
     "warning": "Meeting the personal stake threshold does not mean the wallet has reached that official V level."
