@@ -3,7 +3,7 @@ import path from "node:path";
 const D = "fdao-monitor/data",
   A = "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
   CONTRACT_DEPLOYMENT_BLOCK = 100549415,
-  BACKFILL_SPAN = 4000000,
+  BACKFILL_SPAN = 1000000,
   RPC = process.env.NODEREAL_RPC_URL;
 if (!RPC) throw Error("NODEREAL_RPC_URL is required");
 fs.mkdirSync(D, { recursive: true });

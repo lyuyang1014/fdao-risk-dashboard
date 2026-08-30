@@ -259,7 +259,7 @@ if (head > s.lastBlock) {
   merge(s.dayEvents, await logsRange(s.lastBlock + 1, head));
   s.lastBlock = head;
 }
-const BACK = NODE_REAL_RPC ? 4000000 : 50000;
+const BACK = NODE_REAL_RPC ? 500000 : 50000;
 if (!s.dayBackfillDone) {
   let to = s.dayBackfillCursor,
     from = Math.max(s.dayStartBlock, to - BACK + 1);
