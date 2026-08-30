@@ -11,7 +11,9 @@ const A = {
   },
   FDAO_DEPLOYMENT_BLOCK = 100549415;
 const RPC = "https://bsc-dataseed.binance.org/",
-  LOGS = ["https://public.1rpc.io/bnb", "https://bsc-rpc.publicnode.com"];
+  LOGS = ["https://public.1rpc.io/bnb", "https://bsc-rpc.publicnode.com"],
+  NODE_REAL_RPC = process.env.NODEREAL_RPC_URL || null,
+  ENGINE = NODE_REAL_RPC ? "nodereal-index-v1" : "bsc-batch-v1";
 const DEX = "https://api.dexscreener.com/latest/dex/pairs/bsc/" + A.PAIR,
   PAP = "https://api.dexpaprika.com/networks/bsc/pools/" + A.PAIR;
 const T = {
@@ -83,6 +85,21 @@ async function batch(url, reqs) {
   return out;
 }
 async function logsRange(from, to) {
+  if (NODE_REAL_RPC) {
+    const out = [];
+    for (let start = from; start <= to; start += 50000) {
+      const end = Math.min(to, start + 49999);
+      const filter = {
+        address: A.FDAO,
+        fromBlock: hx(start),
+        toBlock: hx(end),
+        topics: [ALL],
+      };
+      out.push(...(await rpc("eth_getLogs", [filter], NODE_REAL_RPC, 3)));
+      await wait(350);
+    }
+    return out;
+  }
   let filters = [],
     id = 1;
   for (let a = from; a <= to; a += 50) {
@@ -213,10 +230,10 @@ function merge(arr, ls) {
 }
 let old = read("state.json", {}),
   today = dateHK(),
-  reset = old.engine !== "bsc-batch-v1" || old.date !== today,
+  reset = old.engine !== ENGINE || old.date !== today,
   s = reset
     ? {
-        engine: "bsc-batch-v1",
+        engine: ENGINE,
         date: today,
         dayStartBlock: null,
         lastBlock: null,
@@ -242,7 +259,7 @@ if (head > s.lastBlock) {
   merge(s.dayEvents, await logsRange(s.lastBlock + 1, head));
   s.lastBlock = head;
 }
-const BACK = 50000;
+const BACK = NODE_REAL_RPC ? 4000000 : 50000;
 if (!s.dayBackfillDone) {
   let to = s.dayBackfillCursor,
     from = Math.max(s.dayStartBlock, to - BACK + 1);
