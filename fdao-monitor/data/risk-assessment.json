@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-30T09:31:40.139Z",
+  "updatedAt": "2026-08-30T09:32:37.923Z",
   "methodologyVersion": 1,
   "chainScope": "BNB Smart Chain",
   "scale": {
@@ -139,42 +139,42 @@
       {
         "releaseDays": 30,
         "feeRate": 0.3,
-        "chainQuotedFeeSentis": 4309.523587651373,
-        "chainImpliedGrossSentis": 14365.078625504579,
-        "netSentisBeforePossibleBurn": 10055.555037853206,
-        "currentNetUsdBeforePossibleBurn": 2156.6491511141207,
-        "pnlUsdVsReference": -832.230717465879,
-        "pnlPctVsReference": -0.27844234430916326,
-        "breakEvenSentisUsd": 0.2972366873164771
+        "chainQuotedFeeSentis": 4309.527301505885,
+        "chainImpliedGrossSentis": 14365.091005019616,
+        "netSentisBeforePossibleBurn": 10055.563703513732,
+        "currentNetUsdBeforePossibleBurn": 2156.65100966786,
+        "pnlUsdVsReference": -832.2288589121399,
+        "pnlPctVsReference": -0.27844172248633303,
+        "breakEvenSentisUsd": 0.2972364311645294
       },
       {
         "releaseDays": 60,
         "feeRate": 0.2,
-        "chainQuotedFeeSentis": 2873.015725100915,
-        "chainImpliedGrossSentis": 14365.078625504575,
-        "netSentisBeforePossibleBurn": 11492.06290040366,
-        "currentNetUsdBeforePossibleBurn": 2464.7418869875655,
-        "pnlUsdVsReference": -524.1379815924342,
-        "pnlPctVsReference": -0.17536267921047266,
-        "breakEvenSentisUsd": 0.26008210140191756
+        "chainQuotedFeeSentis": 2873.018201003923,
+        "chainImpliedGrossSentis": 14365.091005019614,
+        "netSentisBeforePossibleBurn": 11492.072804015692,
+        "currentNetUsdBeforePossibleBurn": 2464.7440110489824,
+        "pnlUsdVsReference": -524.1358575310173,
+        "pnlPctVsReference": -0.17536196855580932,
+        "breakEvenSentisUsd": 0.26008187726896326
       },
       {
         "releaseDays": 90,
         "feeRate": 0.1,
-        "chainQuotedFeeSentis": 1436.5078625504575,
-        "chainImpliedGrossSentis": 14365.078625504575,
-        "netSentisBeforePossibleBurn": 12928.570762954118,
-        "currentNetUsdBeforePossibleBurn": 2772.834622861011,
-        "pnlUsdVsReference": -216.04524571898855,
-        "pnlPctVsReference": -0.07228301411178173,
-        "breakEvenSentisUsd": 0.23118409013503785
+        "chainQuotedFeeSentis": 1436.5091005019615,
+        "chainImpliedGrossSentis": 14365.091005019614,
+        "netSentisBeforePossibleBurn": 12928.581904517652,
+        "currentNetUsdBeforePossibleBurn": 2772.837012430105,
+        "pnlUsdVsReference": -216.04285614989476,
+        "pnlPctVsReference": -0.0722822146252855,
+        "breakEvenSentisUsd": 0.23118389090574515
       }
     ],
     "caveat": "The fee quote is read directly from viewUnStakeLPFee. The site also states a 2% burn; final cash received remains a range until a completed release withdrawal is decoded on-chain."
   },
   "assessment": {
     "level": "orange",
-    "action": "停止追加，准备退出方案；若再出现一个红色信号，优先执行退出。",
+    "action": "停止追加，准备退出方案；任一核心指标进入红色就优先执行退出。",
     "rewardCoverage": 0.970832512850312,
     "signals": [
       {
@@ -229,8 +229,8 @@
     },
     {
       "level": "red",
-      "rule": "7日新增跌到前期70%以下、真实解押超过新增25%、或LP资产覆盖低于75%；任意两项同时发生。",
-      "action": "优先降低风险，不等待账面回本。"
+      "rule": "任一核心指标进入红色即触发退出优先级；任意两项同时进入红色，总灯升级为红色。",
+      "action": "优先降低风险，不等待账面回本；两项同时出现时按紧急情况处理。"
     }
   ],
   "limitations": [
