@@ -17,6 +17,7 @@ const BURN_ADDRESSES = new Set([
   "0x000000000000000000000000000000000000dead",
 ]);
 const RPCS = [
+  process.env.NODEREAL_RPC_URL,
   process.env.BSC_PUBLIC_RPC_URL,
   "https://bsc-dataseed1.bnbchain.org",
   "https://bsc-dataseed-public.bnbchain.org",

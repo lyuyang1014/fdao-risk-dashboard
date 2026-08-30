@@ -32,13 +32,16 @@ jobs:
       - name: Audit matured LP releases
         continue-on-error: true
         run: node fdao-monitor/release-audit.mjs
-      - name: Audit unstake token flows
-        continue-on-error: true
-        run: node fdao-monitor/unstake-flow-audit.mjs
       - name: Backfill launch-to-date daily history
         continue-on-error: true
         run: node fdao-monitor/history-indexer.mjs
-      - name: Build position and sell-risk assessment
+      - name: Refresh unstake receipt evidence
+        continue-on-error: true
+        run: node fdao-monitor/risk-engine.mjs
+      - name: Audit unstake token flows
+        continue-on-error: true
+        run: node fdao-monitor/unstake-flow-audit.mjs
+      - name: Build final position and sell-risk assessment
         continue-on-error: true
         run: node fdao-monitor/risk-engine.mjs
       - name: Probe relationship storage reads
