@@ -2,7 +2,9 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   assessRisk,
+  buildExitDecision,
   buildExitOptions,
+  buildExitScenarios,
   completePeriod,
   parseUnstakeEvidence,
 } from "./risk-engine.mjs";
@@ -91,6 +93,27 @@ test("buildExitOptions values the returned LP and subtracts the separate SENTIS 
   assert.equal(option.currentEquivalentAfterFeeUsd, 80);
   assert.equal(option.pnlUsdVsReference, -10);
   assert.equal(option.breakEvenLpValueUsd, 110);
+});
+
+test("buildExitScenarios shows net profit and loss after each quoted fee", () => {
+  const exitOptions = [
+    { releaseDays: 60, currentLpValueUsd: 100, feeUsd: 20 },
+    { releaseDays: 90, currentLpValueUsd: 100, feeUsd: 10 },
+  ];
+  const [down, flat] = buildExitScenarios(exitOptions, 90, [0.5, 1]);
+  assert.equal(down.options[1].pnlUsd, -50);
+  assert.equal(flat.options[1].pnlUsd, 0);
+  assert.equal(flat.options[0].pnlUsd, -10);
+});
+
+test("buildExitDecision uses 60 days as the orange-stage balance", () => {
+  const decision = buildExitDecision("orange", [
+    { releaseDays: 30, currentLpValueUsd: 100, feeUsd: 30 },
+    { releaseDays: 60, currentLpValueUsd: 100, feeUsd: 20 },
+    { releaseDays: 90, currentLpValueUsd: 100, feeUsd: 10 },
+  ]);
+  assert.equal(decision.recommendedDays, 60);
+  assert.equal(decision.tradeoffs.extra60Vs90PctOfCurrentLp, 0.1);
 });
 
 test("assessRisk becomes orange when two independent orange signals exist", () => {

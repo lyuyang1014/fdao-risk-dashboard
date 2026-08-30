@@ -187,6 +187,80 @@ export function buildExitOptions({
   });
 }
 
+export function buildExitScenarios(
+  exitOptions,
+  referenceCostUsd,
+  valueMultipliers = [0.5, 0.7, 0.85, 1, 1.15, 1.3],
+) {
+  const currentLpValueUsd = Number(exitOptions?.[0]?.currentLpValueUsd || 0);
+  return valueMultipliers.map((multiplier) => ({
+    lpValueChange: Number(multiplier) - 1,
+    projectedLpValueUsd: currentLpValueUsd * Number(multiplier),
+    options: (exitOptions || []).map((option) => {
+      const netUsd =
+        currentLpValueUsd * Number(multiplier) - Number(option.feeUsd || 0);
+      const pnlUsd = netUsd - Number(referenceCostUsd || 0);
+      return {
+        releaseDays: option.releaseDays,
+        netUsd,
+        pnlUsd,
+        pnlPct: referenceCostUsd
+          ? netUsd / Number(referenceCostUsd) - 1
+          : null,
+      };
+    }),
+  }));
+}
+
+export function buildExitDecision(riskLevel, exitOptions) {
+  const byDays = new Map(
+    (exitOptions || []).map((option) => [option.releaseDays, option]),
+  );
+  const option30 = byDays.get(30);
+  const option60 = byDays.get(60);
+  const option90 = byDays.get(90);
+  const lpValue = Number(option90?.currentLpValueUsd || 0);
+  const extra60Vs90 = Math.max(
+    0,
+    Number(option60?.feeUsd || 0) - Number(option90?.feeUsd || 0),
+  );
+  const extra30Vs60 = Math.max(
+    0,
+    Number(option30?.feeUsd || 0) - Number(option60?.feeUsd || 0),
+  );
+  const tradeoffs = {
+    extra60Vs90FeeUsd: extra60Vs90,
+    extra60Vs90PctOfCurrentLp: lpValue ? extra60Vs90 / lpValue : null,
+    extra30Vs60FeeUsd: extra30Vs60,
+    extra30Vs60PctOfCurrentLp: lpValue ? extra30Vs60 / lpValue : null,
+  };
+  if (riskLevel === "red") {
+    return {
+      recommendedDays: 30,
+      mode: "capital_preservation",
+      tradeoffs,
+      summary:
+        "红色阶段优先缩短风险暴露，不应只为省手续费等待90天；30天最紧急，若手续费承受不了则至少采用60天。",
+    };
+  }
+  if (riskLevel === "orange") {
+    return {
+      recommendedDays: 60,
+      mode: "balanced_exit",
+      tradeoffs,
+      summary:
+        "橙色阶段以60天作为风险与手续费的折中；90天只适合愿意多承担30天合约和池子风险、换取较低手续费的人。",
+    };
+  }
+  return {
+    recommendedDays: 90,
+    mode: "fee_minimizing",
+    tradeoffs,
+    summary:
+      "未进入橙红阶段时，90天手续费最低，但仍应预先设置红色触发线，不能把线性释放期当作保本承诺。",
+  };
+}
+
 export function assessRisk({
   custodyCoverage,
   period7,
@@ -422,6 +496,8 @@ async function main() {
       : 0,
     relationshipAvailable: Boolean(relationship.teamMetrics?.available),
   });
+  const exitScenarios = buildExitScenarios(exitOptions, referenceCostUsd);
+  const exitDecision = buildExitDecision(assessment.level, exitOptions);
 
   const report = {
     updatedAt: new Date().toISOString(),
@@ -510,6 +586,8 @@ async function main() {
         poolLiquidityUsd: current.market.liquidity,
       },
       exitOptions,
+      exitScenarios,
+      exitDecision,
       caveat:
         "The fee quote is read directly from viewUnStakeLPFee. The current-equivalent estimate values the locked LP at today's pool liquidity and subtracts the separately paid SENTIS fee. LP vests progressively during the chosen period. Final cash depends on the pool when each vested portion is claimed and liquidity is removed; the site's 2% burn claim is not yet reconciled transaction-by-transaction.",
     },

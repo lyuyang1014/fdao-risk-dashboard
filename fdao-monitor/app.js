@@ -109,6 +109,28 @@ function renderRisk(report) {
       return `<tr><td>${option.releaseDays}天</td><td>${pct(option.feeRate)}</td><td>${num(option.chainQuotedFeeSentis, 2)}<br><span class="sub">${usd(option.feeUsd)}</span></td><td>${num(option.lockedLp, 2)}</td><td>${usd(option.currentLpValueUsd)}</td><td>${usd(option.currentEquivalentAfterFeeUsd)}</td><td class="${pnlClass}">${pnlSign}${usd(option.pnlUsdVsReference)} · ${pnlSign}${pct(option.pnlPctVsReference)}</td></tr>`;
     })
     .join("");
+  $("exitScenarios").innerHTML = (position.exitScenarios || [])
+    .map((scenario) => {
+      const byDays = new Map(
+        (scenario.options || []).map((option) => [option.releaseDays, option]),
+      );
+      const cell = (days) => {
+        const option = byDays.get(days);
+        if (!option) return "—";
+        const pnlClass = option.pnlUsd >= 0 ? "good" : "bad";
+        const sign = option.pnlUsd >= 0 ? "+" : "";
+        return `${usd(option.netUsd)}<br><span class="${pnlClass}">${sign}${usd(option.pnlUsd)} · ${sign}${pct(option.pnlPct)}</span>`;
+      };
+      const changeSign = scenario.lpValueChange > 0 ? "+" : "";
+      return `<tr><td>${changeSign}${pct(scenario.lpValueChange)}</td><td>${usd(scenario.projectedLpValueUsd)}</td><td>${cell(30)}</td><td>${cell(60)}</td><td>${cell(90)}</td></tr>`;
+    })
+    .join("");
+  const decision = position.exitDecision;
+  if (decision) {
+    const tradeoffs = decision.tradeoffs || {};
+    $("exitDecision").innerHTML =
+      `<b>当前数据对应的默认方案：${decision.recommendedDays}天。</b> ${decision.summary} 60天相对90天多付约 <b>${usd(tradeoffs.extra60Vs90FeeUsd)}</b>；相当于今天LP毛值的 <b>${pct(tradeoffs.extra60Vs90PctOfCurrentLp)}</b>。如果多等30天造成的剩余LP损失超过这笔差额，60天会比90天更有利。`;
+  }
   const option90 = position.exitOptions?.find(
     (option) => option.releaseDays === 90,
   );

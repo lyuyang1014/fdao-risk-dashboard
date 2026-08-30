@@ -149,6 +149,9 @@ async function main() {
   const fsd43 = result.fsd.sameAge;
   const meta43 = result.meta.sameAge;
   const firstObservedDate = history.firstObservedDate || null;
+  const preLaunchDays = (history.daily || []).filter(
+    (item) => publicLaunchDay && item.date < publicLaunchDay.date,
+  );
   const report = {
     updatedAt: new Date().toISOString(),
     methodologyVersion: 1,
@@ -166,13 +169,19 @@ async function main() {
       firstObservedFdaoStakeBlock: history.firstObservedBlock || null,
       firstObservedFdaoStakeTransaction:
         history.firstObservedTransaction || null,
+      preLaunchActivity: preLaunchDays.map((item) => ({
+        date: item.date,
+        stakeWallets: item.stakeWallets,
+        stakeTransactions: item.stakeCount,
+        stakeMeta: item.stakeMeta,
+      })),
       publicLaunchDate: publicLaunchDay?.date || null,
       publicLaunchWallets: publicLaunchDay?.stakeWallets || null,
       publicLaunchTransactions: publicLaunchDay?.stakeCount || null,
       publicLaunchMeta: publicLaunchDay?.stakeMeta || null,
       conclusion:
         publicLaunchDay?.date === "2026-07-18"
-          ? `META交易池在5月27日已上链。7月17日只有1个测试钱包、2笔极小质押；7月18日跃升至${publicLaunchDay.stakeWallets}个钱包、${publicLaunchDay.stakeCount}笔质押，因此7月18日确实是公开质押阶段起点。`
+          ? `META交易池在5月27日已上链，5月28日出现1个钱包的2笔极小测试质押，7月17日又有1个测试钱包；7月18日才跃升至${publicLaunchDay.stakeWallets}个钱包、${publicLaunchDay.stakeCount}笔质押，因此7月18日是公开放量起点，不是合约第一次活动。`
           : "META交易池在5月27日已上链；7月18日暂按用户提供的公开阶段日期比较，FDAO全历史仍在回填核验。",
     },
     sameAgeWindowDays: 43,

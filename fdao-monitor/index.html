@@ -469,6 +469,28 @@
             </tbody>
           </table>
         </div>
+        <p class="intro">
+          下面不是价格预测，而是假设你最终拿回的整批LP总价值相对今天变化，用同一口径比较手续费后的结果。
+        </p>
+        <div class="card tw">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>LP总价值情景</th>
+                <th>LP毛值</th>
+                <th>30天净值 / 盈亏</th>
+                <th>60天净值 / 盈亏</th>
+                <th>90天净值 / 盈亏</th>
+              </tr>
+            </thead>
+            <tbody id="exitScenarios">
+              <tr>
+                <td colspan="5">等待情景测算</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="call danger" id="exitDecision">等待退出方案判断。</div>
         <div class="call danger" id="positionExplain">等待链上报价。</div>
       </div>
       <div class="sec">
@@ -617,6 +639,6 @@
         核心预警组合：新钱包下降、人均投入下降、未来低费到期本金上升、实际解押上升、LP缩水。本页用于风险观察，不构成投资建议。
       </div>
     </div>
-    <script src="./app.js?v=9"></script>
+    <script src="./app.js?v=10"></script>
   </body>
 </html>
