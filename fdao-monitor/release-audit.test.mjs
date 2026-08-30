@@ -22,5 +22,5 @@ test("decodeMyInfos decodes releasable, locked and released LP", () => {
 
 test("release history accelerates only after stake history is complete", () => {
   assert.equal(releaseBackfillSpan({ done: false }), 250000);
-  assert.equal(releaseBackfillSpan({ done: true }), 2000000);
+  assert.equal(releaseBackfillSpan({ done: true }), 750000);
 });
