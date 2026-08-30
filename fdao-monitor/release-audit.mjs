@@ -11,7 +11,7 @@ const MY_INFOS = "0xc81a81d9";
 const RELEASABLE = "0xa3f8eace";
 const RELEASE_CALL = "0x86d1a69f";
 const RELEASE_BACKFILL_SPAN = 250000;
-const RELEASE_BACKFILL_SPAN_AFTER_HISTORY = 750000;
+const RELEASE_BACKFILL_SPAN_AFTER_HISTORY = 2000000;
 const PUBLIC_RPC =
   process.env.BSC_PUBLIC_RPC_URL ||
   "https://bsc-dataseed-public.bnbchain.org";
@@ -205,6 +205,8 @@ async function main() {
     const earliestUnstakeTimestamp = Math.min(
       ...events.map((event) => Number(event.timestamp)),
     );
+    // Vesting is linear and can become claimable during the selected period,
+    // so the only safe lower bound is the earliest observed unstake itself.
     const floorBlock = observedUnstakeBlocks.length
       ? Math.min(...observedUnstakeBlocks)
       : await blockAt(earliestUnstakeTimestamp, latestBlock);
