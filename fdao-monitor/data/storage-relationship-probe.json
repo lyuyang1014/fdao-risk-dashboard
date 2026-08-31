@@ -1,35 +1,25 @@
 {
-  "updatedAt": "2026-08-30T10:39:27.828Z",
+  "updatedAt": "2026-08-31T10:42:24.249Z",
   "methodologyVersion": 1,
   "method": "eth_createAccessList was used to enumerate storage actually read by viewStakingInfo() for each sampled wallet; each value was then checked against every observed staking wallet address.",
   "summary": {
     "sampledWallets": 10,
     "knownStakingWallets": 7289,
-    "accessedStorageKeys": 690,
-    "commonProxyStorageKeys": 6,
-    "variableProxyStorageKeys": 272,
+    "accessedStorageKeys": 651,
+    "commonProxyStorageKeys": 8,
+    "variableProxyStorageKeys": 257,
     "knownParticipantAddressMatches": 0
   },
   "knownParticipantAddressMatches": [],
   "wallets": [
     {
       "wallet": "0x0e39420fcdb05c5378c7d1f955dc546b5f5a85b6",
-      "gasUsed": "0x1de9e",
+      "gasUsed": "0x1fabc",
       "accessedContracts": 12,
-      "accessedStorageKeys": 24,
-      "proxyStorageKeys": 12,
+      "accessedStorageKeys": 27,
+      "proxyStorageKeys": 15,
       "knownParticipantMatches": [],
       "addressLikeValues": [
-        {
-          "contract": "0x9d103f8cdbb32a9f8261a9c6fb8fdd293cfbbe94",
-          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0x6b6d336a54dab2a3fcab94faf5563c668b86aecb"
-        },
-        {
-          "contract": "0xf15d38e25fb2717cbac469a46b7265c0fc90cbc1",
-          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xeea682874a16ccd994df69f4dcb11f63633854a4"
-        },
         {
           "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
           "key": "0xf567498961616b2fec7f42d5523258740c70e86e462ac545c98cb16be0a8d7f8",
@@ -46,20 +36,30 @@
           "address": "0x72e09ebd9b24f47730b651889a4ed984cba53d90"
         },
         {
+          "contract": "0x8ca182f96908f9b6fd47dbd85e7fc3d5053def8a",
+          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "address": "0xb8439adf7955915b03db8b31985c833cf15b28d8"
+        },
+        {
           "contract": "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
           "key": "0x405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace",
           "address": "0x4f49ad237a81ad403a88f34a12a8d1d53c2d7d89"
         },
         {
-          "contract": "0x8ca182f96908f9b6fd47dbd85e7fc3d5053def8a",
+          "contract": "0x9d103f8cdbb32a9f8261a9c6fb8fdd293cfbbe94",
           "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xb8439adf7955915b03db8b31985c833cf15b28d8"
+          "address": "0x6b6d336a54dab2a3fcab94faf5563c668b86aecb"
+        },
+        {
+          "contract": "0xf15d38e25fb2717cbac469a46b7265c0fc90cbc1",
+          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "address": "0xeea682874a16ccd994df69f4dcb11f63633854a4"
         }
       ]
     },
     {
       "wallet": "0x60eee684db86c1e429669aa9e5f13531636777bf",
-      "gasUsed": "0x618d1",
+      "gasUsed": "0x6168b",
       "accessedContracts": 12,
       "accessedStorageKeys": 117,
       "proxyStorageKeys": 105,
@@ -71,11 +71,6 @@
           "address": "0x4f49ad237a81ad403a88f34a12a8d1d53c2d7d89"
         },
         {
-          "contract": "0xf15d38e25fb2717cbac469a46b7265c0fc90cbc1",
-          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xeea682874a16ccd994df69f4dcb11f63633854a4"
-        },
-        {
           "contract": "0x9d103f8cdbb32a9f8261a9c6fb8fdd293cfbbe94",
           "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
           "address": "0x6b6d336a54dab2a3fcab94faf5563c668b86aecb"
@@ -99,6 +94,11 @@
           "contract": "0x8ca182f96908f9b6fd47dbd85e7fc3d5053def8a",
           "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
           "address": "0xb8439adf7955915b03db8b31985c833cf15b28d8"
+        },
+        {
+          "contract": "0xf15d38e25fb2717cbac469a46b7265c0fc90cbc1",
+          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "address": "0xeea682874a16ccd994df69f4dcb11f63633854a4"
         }
       ]
     },
@@ -111,21 +111,6 @@
       "knownParticipantMatches": [],
       "addressLikeValues": [
         {
-          "contract": "0xf15d38e25fb2717cbac469a46b7265c0fc90cbc1",
-          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xeea682874a16ccd994df69f4dcb11f63633854a4"
-        },
-        {
-          "contract": "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
-          "key": "0x405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace",
-          "address": "0x4f49ad237a81ad403a88f34a12a8d1d53c2d7d89"
-        },
-        {
-          "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
-          "key": "0xf567498961616b2fec7f42d5523258740c70e86e462ac545c98cb16be0a8d7fa",
-          "address": "0x72e09ebd9b24f47730b651889a4ed984cba53d90"
-        },
-        {
           "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
           "key": "0xf567498961616b2fec7f42d5523258740c70e86e462ac545c98cb16be0a8d7f8",
           "address": "0x55d398326f99059ff775485246999027b3197955"
@@ -136,40 +121,40 @@
           "address": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e"
         },
         {
-          "contract": "0x8ca182f96908f9b6fd47dbd85e7fc3d5053def8a",
-          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xb8439adf7955915b03db8b31985c833cf15b28d8"
+          "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
+          "key": "0xf567498961616b2fec7f42d5523258740c70e86e462ac545c98cb16be0a8d7fa",
+          "address": "0x72e09ebd9b24f47730b651889a4ed984cba53d90"
+        },
+        {
+          "contract": "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
+          "key": "0x405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace",
+          "address": "0x4f49ad237a81ad403a88f34a12a8d1d53c2d7d89"
         },
         {
           "contract": "0x9d103f8cdbb32a9f8261a9c6fb8fdd293cfbbe94",
           "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
           "address": "0x6b6d336a54dab2a3fcab94faf5563c668b86aecb"
+        },
+        {
+          "contract": "0x8ca182f96908f9b6fd47dbd85e7fc3d5053def8a",
+          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "address": "0xb8439adf7955915b03db8b31985c833cf15b28d8"
+        },
+        {
+          "contract": "0xf15d38e25fb2717cbac469a46b7265c0fc90cbc1",
+          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "address": "0xeea682874a16ccd994df69f4dcb11f63633854a4"
         }
       ]
     },
     {
       "wallet": "0x02eaccdc70543f5c7b08d0add9560aa979ea0e3a",
-      "gasUsed": "0x4d2ee",
+      "gasUsed": "0x4f541",
       "accessedContracts": 12,
-      "accessedStorageKeys": 90,
-      "proxyStorageKeys": 78,
+      "accessedStorageKeys": 93,
+      "proxyStorageKeys": 81,
       "knownParticipantMatches": [],
       "addressLikeValues": [
-        {
-          "contract": "0xf15d38e25fb2717cbac469a46b7265c0fc90cbc1",
-          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xeea682874a16ccd994df69f4dcb11f63633854a4"
-        },
-        {
-          "contract": "0x8ca182f96908f9b6fd47dbd85e7fc3d5053def8a",
-          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xb8439adf7955915b03db8b31985c833cf15b28d8"
-        },
-        {
-          "contract": "0x9d103f8cdbb32a9f8261a9c6fb8fdd293cfbbe94",
-          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0x6b6d336a54dab2a3fcab94faf5563c668b86aecb"
-        },
         {
           "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
           "key": "0xf567498961616b2fec7f42d5523258740c70e86e462ac545c98cb16be0a8d7f8",
@@ -186,24 +171,44 @@
           "address": "0x72e09ebd9b24f47730b651889a4ed984cba53d90"
         },
         {
+          "contract": "0x8ca182f96908f9b6fd47dbd85e7fc3d5053def8a",
+          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "address": "0xb8439adf7955915b03db8b31985c833cf15b28d8"
+        },
+        {
           "contract": "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
           "key": "0x405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace",
           "address": "0x4f49ad237a81ad403a88f34a12a8d1d53c2d7d89"
+        },
+        {
+          "contract": "0xf15d38e25fb2717cbac469a46b7265c0fc90cbc1",
+          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "address": "0xeea682874a16ccd994df69f4dcb11f63633854a4"
+        },
+        {
+          "contract": "0x9d103f8cdbb32a9f8261a9c6fb8fdd293cfbbe94",
+          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "address": "0x6b6d336a54dab2a3fcab94faf5563c668b86aecb"
         }
       ]
     },
     {
       "wallet": "0x921d1522c8539b6b452e35fe105915ab6b47a84f",
-      "gasUsed": "0x4d2ee",
+      "gasUsed": "0x4f541",
       "accessedContracts": 12,
-      "accessedStorageKeys": 90,
-      "proxyStorageKeys": 78,
+      "accessedStorageKeys": 93,
+      "proxyStorageKeys": 81,
       "knownParticipantMatches": [],
       "addressLikeValues": [
         {
           "contract": "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
           "key": "0x405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace",
           "address": "0x4f49ad237a81ad403a88f34a12a8d1d53c2d7d89"
+        },
+        {
+          "contract": "0xf15d38e25fb2717cbac469a46b7265c0fc90cbc1",
+          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "address": "0xeea682874a16ccd994df69f4dcb11f63633854a4"
         },
         {
           "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
@@ -221,44 +226,49 @@
           "address": "0x72e09ebd9b24f47730b651889a4ed984cba53d90"
         },
         {
-          "contract": "0x9d103f8cdbb32a9f8261a9c6fb8fdd293cfbbe94",
-          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0x6b6d336a54dab2a3fcab94faf5563c668b86aecb"
-        },
-        {
-          "contract": "0xf15d38e25fb2717cbac469a46b7265c0fc90cbc1",
-          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xeea682874a16ccd994df69f4dcb11f63633854a4"
-        },
-        {
           "contract": "0x8ca182f96908f9b6fd47dbd85e7fc3d5053def8a",
           "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
           "address": "0xb8439adf7955915b03db8b31985c833cf15b28d8"
+        },
+        {
+          "contract": "0x9d103f8cdbb32a9f8261a9c6fb8fdd293cfbbe94",
+          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "address": "0x6b6d336a54dab2a3fcab94faf5563c668b86aecb"
         }
       ]
     },
     {
       "wallet": "0x4b470289546801271be6a68c70b85aed850a334a",
-      "gasUsed": "0x4d2ee",
+      "gasUsed": "0x4f541",
       "accessedContracts": 12,
-      "accessedStorageKeys": 90,
-      "proxyStorageKeys": 78,
+      "accessedStorageKeys": 93,
+      "proxyStorageKeys": 81,
       "knownParticipantMatches": [],
       "addressLikeValues": [
-        {
-          "contract": "0x9d103f8cdbb32a9f8261a9c6fb8fdd293cfbbe94",
-          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0x6b6d336a54dab2a3fcab94faf5563c668b86aecb"
-        },
         {
           "contract": "0x8ca182f96908f9b6fd47dbd85e7fc3d5053def8a",
           "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
           "address": "0xb8439adf7955915b03db8b31985c833cf15b28d8"
         },
         {
+          "contract": "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
+          "key": "0x405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace",
+          "address": "0x4f49ad237a81ad403a88f34a12a8d1d53c2d7d89"
+        },
+        {
           "contract": "0xf15d38e25fb2717cbac469a46b7265c0fc90cbc1",
           "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
           "address": "0xeea682874a16ccd994df69f4dcb11f63633854a4"
+        },
+        {
+          "contract": "0x9d103f8cdbb32a9f8261a9c6fb8fdd293cfbbe94",
+          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "address": "0x6b6d336a54dab2a3fcab94faf5563c668b86aecb"
+        },
+        {
+          "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
+          "key": "0xf567498961616b2fec7f42d5523258740c70e86e462ac545c98cb16be0a8d7fa",
+          "address": "0x72e09ebd9b24f47730b651889a4ed984cba53d90"
         },
         {
           "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
@@ -269,41 +279,31 @@
           "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
           "key": "0xf567498961616b2fec7f42d5523258740c70e86e462ac545c98cb16be0a8d7f9",
           "address": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e"
-        },
-        {
-          "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
-          "key": "0xf567498961616b2fec7f42d5523258740c70e86e462ac545c98cb16be0a8d7fa",
-          "address": "0x72e09ebd9b24f47730b651889a4ed984cba53d90"
-        },
-        {
-          "contract": "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
-          "key": "0x405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace",
-          "address": "0x4f49ad237a81ad403a88f34a12a8d1d53c2d7d89"
         }
       ]
     },
     {
       "wallet": "0xdb61bd66836e3de5669bc24cb2e48fd28001faee",
-      "gasUsed": "0x22472",
+      "gasUsed": "0x246c5",
       "accessedContracts": 12,
-      "accessedStorageKeys": 30,
-      "proxyStorageKeys": 18,
+      "accessedStorageKeys": 33,
+      "proxyStorageKeys": 21,
       "knownParticipantMatches": [],
       "addressLikeValues": [
-        {
-          "contract": "0xf15d38e25fb2717cbac469a46b7265c0fc90cbc1",
-          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xeea682874a16ccd994df69f4dcb11f63633854a4"
-        },
-        {
-          "contract": "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
-          "key": "0x405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace",
-          "address": "0x4f49ad237a81ad403a88f34a12a8d1d53c2d7d89"
-        },
         {
           "contract": "0x9d103f8cdbb32a9f8261a9c6fb8fdd293cfbbe94",
           "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
           "address": "0x6b6d336a54dab2a3fcab94faf5563c668b86aecb"
+        },
+        {
+          "contract": "0x8ca182f96908f9b6fd47dbd85e7fc3d5053def8a",
+          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "address": "0xb8439adf7955915b03db8b31985c833cf15b28d8"
+        },
+        {
+          "contract": "0xf15d38e25fb2717cbac469a46b7265c0fc90cbc1",
+          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "address": "0xeea682874a16ccd994df69f4dcb11f63633854a4"
         },
         {
           "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
@@ -321,18 +321,18 @@
           "address": "0x72e09ebd9b24f47730b651889a4ed984cba53d90"
         },
         {
-          "contract": "0x8ca182f96908f9b6fd47dbd85e7fc3d5053def8a",
-          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xb8439adf7955915b03db8b31985c833cf15b28d8"
+          "contract": "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
+          "key": "0x405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace",
+          "address": "0x4f49ad237a81ad403a88f34a12a8d1d53c2d7d89"
         }
       ]
     },
     {
       "wallet": "0x899fd4a3262c0a21c7a3db145a89b645784bf933",
-      "gasUsed": "0x2d011",
+      "gasUsed": "0x2021f",
       "accessedContracts": 12,
-      "accessedStorageKeys": 45,
-      "proxyStorageKeys": 33,
+      "accessedStorageKeys": 27,
+      "proxyStorageKeys": 15,
       "knownParticipantMatches": [],
       "addressLikeValues": [
         {
@@ -351,11 +351,6 @@
           "address": "0x72e09ebd9b24f47730b651889a4ed984cba53d90"
         },
         {
-          "contract": "0x8ca182f96908f9b6fd47dbd85e7fc3d5053def8a",
-          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xb8439adf7955915b03db8b31985c833cf15b28d8"
-        },
-        {
           "contract": "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
           "key": "0x405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace",
           "address": "0x4f49ad237a81ad403a88f34a12a8d1d53c2d7d89"
@@ -369,17 +364,32 @@
           "contract": "0xf15d38e25fb2717cbac469a46b7265c0fc90cbc1",
           "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
           "address": "0xeea682874a16ccd994df69f4dcb11f63633854a4"
+        },
+        {
+          "contract": "0x8ca182f96908f9b6fd47dbd85e7fc3d5053def8a",
+          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "address": "0xb8439adf7955915b03db8b31985c833cf15b28d8"
         }
       ]
     },
     {
       "wallet": "0xf8026c785135bf129ba4dfd4ea9eaa3beb08b9f2",
-      "gasUsed": "0x2d011",
+      "gasUsed": "0x2021f",
       "accessedContracts": 12,
-      "accessedStorageKeys": 45,
-      "proxyStorageKeys": 33,
+      "accessedStorageKeys": 27,
+      "proxyStorageKeys": 15,
       "knownParticipantMatches": [],
       "addressLikeValues": [
+        {
+          "contract": "0x9d103f8cdbb32a9f8261a9c6fb8fdd293cfbbe94",
+          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "address": "0x6b6d336a54dab2a3fcab94faf5563c668b86aecb"
+        },
+        {
+          "contract": "0xf15d38e25fb2717cbac469a46b7265c0fc90cbc1",
+          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "address": "0xeea682874a16ccd994df69f4dcb11f63633854a4"
+        },
         {
           "contract": "0x8ca182f96908f9b6fd47dbd85e7fc3d5053def8a",
           "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
@@ -389,11 +399,6 @@
           "contract": "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
           "key": "0x405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace",
           "address": "0x4f49ad237a81ad403a88f34a12a8d1d53c2d7d89"
-        },
-        {
-          "contract": "0xf15d38e25fb2717cbac469a46b7265c0fc90cbc1",
-          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xeea682874a16ccd994df69f4dcb11f63633854a4"
         },
         {
           "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
@@ -409,46 +414,21 @@
           "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
           "key": "0xf567498961616b2fec7f42d5523258740c70e86e462ac545c98cb16be0a8d7fa",
           "address": "0x72e09ebd9b24f47730b651889a4ed984cba53d90"
-        },
-        {
-          "contract": "0x9d103f8cdbb32a9f8261a9c6fb8fdd293cfbbe94",
-          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0x6b6d336a54dab2a3fcab94faf5563c668b86aecb"
         }
       ]
     },
     {
       "wallet": "0xd7b5af1c72c23e09fc95a74f974ea3ce9ba460eb",
-      "gasUsed": "0x2d011",
+      "gasUsed": "0x2021f",
       "accessedContracts": 12,
-      "accessedStorageKeys": 45,
-      "proxyStorageKeys": 33,
+      "accessedStorageKeys": 27,
+      "proxyStorageKeys": 15,
       "knownParticipantMatches": [],
       "addressLikeValues": [
-        {
-          "contract": "0x8ca182f96908f9b6fd47dbd85e7fc3d5053def8a",
-          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xb8439adf7955915b03db8b31985c833cf15b28d8"
-        },
         {
           "contract": "0x9d103f8cdbb32a9f8261a9c6fb8fdd293cfbbe94",
           "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
           "address": "0x6b6d336a54dab2a3fcab94faf5563c668b86aecb"
-        },
-        {
-          "contract": "0xf15d38e25fb2717cbac469a46b7265c0fc90cbc1",
-          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xeea682874a16ccd994df69f4dcb11f63633854a4"
-        },
-        {
-          "contract": "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
-          "key": "0x405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace",
-          "address": "0x4f49ad237a81ad403a88f34a12a8d1d53c2d7d89"
-        },
-        {
-          "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
-          "key": "0xf567498961616b2fec7f42d5523258740c70e86e462ac545c98cb16be0a8d7f8",
-          "address": "0x55d398326f99059ff775485246999027b3197955"
         },
         {
           "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
@@ -459,6 +439,26 @@
           "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
           "key": "0xf567498961616b2fec7f42d5523258740c70e86e462ac545c98cb16be0a8d7fa",
           "address": "0x72e09ebd9b24f47730b651889a4ed984cba53d90"
+        },
+        {
+          "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
+          "key": "0xf567498961616b2fec7f42d5523258740c70e86e462ac545c98cb16be0a8d7f8",
+          "address": "0x55d398326f99059ff775485246999027b3197955"
+        },
+        {
+          "contract": "0x8ca182f96908f9b6fd47dbd85e7fc3d5053def8a",
+          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "address": "0xb8439adf7955915b03db8b31985c833cf15b28d8"
+        },
+        {
+          "contract": "0xf15d38e25fb2717cbac469a46b7265c0fc90cbc1",
+          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "address": "0xeea682874a16ccd994df69f4dcb11f63633854a4"
+        },
+        {
+          "contract": "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
+          "key": "0x405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace",
+          "address": "0x4f49ad237a81ad403a88f34a12a8d1d53c2d7d89"
         }
       ]
     }
