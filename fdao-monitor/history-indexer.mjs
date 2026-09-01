@@ -1,5 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
+import {
+  inferThroughBlock,
+  nextForwardRange,
+} from "./history-forward-range.mjs";
 const D = "fdao-monitor/data",
   A = "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
   CONTRACT_DEPLOYMENT_BLOCK = 100549415,
@@ -168,6 +172,25 @@ if (!s.done) {
   }
   s.cursor = from - 1;
   if (from <= s.floor) s.done = true;
+}
+if (s.done) {
+  s.throughBlock = inferThroughBlock(s);
+  const forwardRange = nextForwardRange({
+    state: s,
+    targetBlock: cur.indexing.dayStartBlock - 1,
+    span: BACKFILL_SPAN,
+  });
+  if (forwardRange) {
+    const forwardLogs = await logs(forwardRange.from, forwardRange.to);
+    for (const log of forwardLogs) {
+      const event = parse(log);
+      if (!ids.has(event.id)) {
+        s.events.push(event);
+        ids.add(event.id);
+      }
+    }
+    s.throughBlock = forwardRange.to;
+  }
 }
 let all = [...s.events],
   today = read("state.json", {});
