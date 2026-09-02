@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-02T15:53:02.045Z",
+  "updatedAt": "2026-09-02T16:03:55.669Z",
   "coverage": 1,
   "backfillDone": true,
   "relationshipStatus": "referral_not_exposed_by_stake_contract",
@@ -10,14 +10,14 @@
     "storageProbe": "eth_createAccessList enumerates storage actually read by viewStakingInfo() for sampled wallets; values are checked against all observed staking addresses."
   },
   "evidenceSummary": {
-    "totalFirstStakeWallets": 7540,
-    "sampledFirstStakeTransactions": 7540,
+    "totalFirstStakeWallets": 7682,
+    "sampledFirstStakeTransactions": 7682,
     "calldataPatterns": [
       {
         "selector": "0x9cd441da",
         "inputBytes": 68,
         "argumentWords": 2,
-        "count": 3167,
+        "count": 3266,
         "addressFieldHits": 0
       },
       {
@@ -31,7 +31,7 @@
         "selector": "0xc38bde14",
         "inputBytes": 100,
         "argumentWords": 3,
-        "count": 1367,
+        "count": 1410,
         "addressFieldHits": 0
       },
       {
@@ -2040,47 +2040,47 @@
       {
         "level": "V1",
         "selfUsd": 2000,
-        "walletsMeetingSelfThreshold": 1949
+        "walletsMeetingSelfThreshold": 1985
       },
       {
         "level": "V2",
         "selfUsd": 4000,
-        "walletsMeetingSelfThreshold": 1244
+        "walletsMeetingSelfThreshold": 1267
       },
       {
         "level": "V3",
         "selfUsd": 8000,
-        "walletsMeetingSelfThreshold": 627
+        "walletsMeetingSelfThreshold": 635
       },
       {
         "level": "V4",
         "selfUsd": 15000,
-        "walletsMeetingSelfThreshold": 248
+        "walletsMeetingSelfThreshold": 254
       },
       {
         "level": "V5",
         "selfUsd": 30000,
-        "walletsMeetingSelfThreshold": 68
+        "walletsMeetingSelfThreshold": 70
       },
       {
         "level": "V6",
         "selfUsd": 40000,
-        "walletsMeetingSelfThreshold": 48
+        "walletsMeetingSelfThreshold": 50
       },
       {
         "level": "V7",
         "selfUsd": 50000,
-        "walletsMeetingSelfThreshold": 40
+        "walletsMeetingSelfThreshold": 41
       },
       {
         "level": "V8",
         "selfUsd": 60000,
-        "walletsMeetingSelfThreshold": 27
+        "walletsMeetingSelfThreshold": 29
       },
       {
         "level": "V9",
         "selfUsd": 80000,
-        "walletsMeetingSelfThreshold": 18
+        "walletsMeetingSelfThreshold": 20
       }
     ],
     "warning": "Meeting the personal stake threshold does not mean the wallet has reached that official V level."
