@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-09T15:51:40.221Z",
+  "updatedAt": "2026-09-09T16:03:37.267Z",
   "coverage": 1,
   "backfillDone": true,
   "relationshipStatus": "referral_not_exposed_by_stake_contract",
@@ -10,21 +10,21 @@
     "storageProbe": "eth_createAccessList enumerates storage actually read by viewStakingInfo() for sampled wallets; values are checked against all observed staking addresses."
   },
   "evidenceSummary": {
-    "totalFirstStakeWallets": 8227,
-    "sampledFirstStakeTransactions": 8227,
+    "totalFirstStakeWallets": 8326,
+    "sampledFirstStakeTransactions": 8326,
     "calldataPatterns": [
       {
         "selector": "0x9cd441da",
         "inputBytes": 68,
         "argumentWords": 2,
-        "count": 3643,
+        "count": 3723,
         "addressFieldHits": 0
       },
       {
         "selector": "0xc38bde14",
         "inputBytes": 100,
         "argumentWords": 3,
-        "count": 1578,
+        "count": 1597,
         "addressFieldHits": 0
       },
       {
@@ -86,8 +86,8 @@
     ],
     "gradeAConfirmedEdges": 0,
     "gradeBRewardEdges": 0,
-    "gradeCBehaviorClusters": 90,
-    "walletsInBehaviorClusters": 925,
+    "gradeCBehaviorClusters": 91,
+    "walletsInBehaviorClusters": 928,
     "fixedReceiptRecipients": [
       "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
       "0x3690803f317915a9b68424f3b245102e2af0c51a",
@@ -1806,6 +1806,20 @@
       ]
     },
     {
+      "id": "amount:5963087:1080.22",
+      "type": "same_amount_window",
+      "detail": "5分钟内相同 META 数量 1080.22",
+      "walletCount": 3,
+      "firstTs": 1788926250,
+      "lastTs": 1788926390,
+      "stakeMeta": 3240.6579554790374,
+      "wallets": [
+        "0x1dc27a35e6fb714e030354e819cd9babaf554ee1",
+        "0xb79da369cba7b7450b4a326411ceedea6711c0a6",
+        "0xa7ad8e8aee46ba38696259260f80ad1a3f0943e8"
+      ]
+    },
+    {
       "id": "amount:5947904:1064.35",
       "type": "same_amount_window",
       "detail": "5分钟内相同 META 数量 1064.35",
@@ -2040,22 +2054,22 @@
       {
         "level": "V1",
         "selfUsd": 2000,
-        "walletsMeetingSelfThreshold": 2060
+        "walletsMeetingSelfThreshold": 2082
       },
       {
         "level": "V2",
         "selfUsd": 4000,
-        "walletsMeetingSelfThreshold": 1325
+        "walletsMeetingSelfThreshold": 1339
       },
       {
         "level": "V3",
         "selfUsd": 8000,
-        "walletsMeetingSelfThreshold": 646
+        "walletsMeetingSelfThreshold": 648
       },
       {
         "level": "V4",
         "selfUsd": 15000,
-        "walletsMeetingSelfThreshold": 241
+        "walletsMeetingSelfThreshold": 242
       },
       {
         "level": "V5",
@@ -2070,7 +2084,7 @@
       {
         "level": "V7",
         "selfUsd": 50000,
-        "walletsMeetingSelfThreshold": 39
+        "walletsMeetingSelfThreshold": 37
       },
       {
         "level": "V8",
