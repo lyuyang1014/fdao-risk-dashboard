@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-09-23T12:33:02.596Z",
+  "updatedAt": "2026-09-23T12:52:11.928Z",
   "methodologyVersion": 1,
-  "auditedTransactions": 75,
-  "expectedTransactions": 75,
+  "auditedTransactions": 77,
+  "expectedTransactions": 77,
   "tokenAddresses": {
     "SENTIS": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
     "META": "0x98f0421fcb5129b352cc35c1ed15ae9081deb700",
@@ -11,17 +11,17 @@
     "release": "0xd62c3c1faaf8940496a12f5f15c9d0c3bae56b62"
   },
   "summary": {
-    "auditedTransactions": 75,
-    "fundMovingTransactions": 72,
+    "auditedTransactions": 77,
+    "fundMovingTransactions": 74,
     "eventOnlyTransactions": 3,
-    "eventLp": 106045.42613848276,
-    "lpLocked": 102350.29449999999,
-    "fundMovingEventLp": 102350.29449999999,
+    "eventLp": 109065.42613848276,
+    "lpLocked": 105370.29449999999,
+    "fundMovingEventLp": 105370.29449999999,
     "eventOnlyEventLp": 3695.1316384827765,
-    "fundMovingGrossSentis": 231206.95768077066,
+    "fundMovingGrossSentis": 237764.69701477492,
     "eventOnlyGrossSentis": 8536.910202725641,
-    "eventFeeSentis": 50254.57617428479,
-    "sentisFeeTransferred": 47693.5031134671,
+    "eventFeeSentis": 52221.89797448607,
+    "sentisFeeTransferred": 49660.82491366838,
     "transactionsWithDirectMetaTransfer": 0,
     "transactionsWithDirectMetaBurn": 0,
     "directMetaBurned": 0,
@@ -3360,6 +3360,96 @@
       ],
       "sentisFeeTransferred": 65.20141950882444,
       "lpLocked": 100,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0xbd815f74ff351ab4b446a9c960ccbb82a4e7e341ecaddabc6e1701eb4ff1d38e",
+      "txFrom": "0x3d9d8c77c6d88802c02124eda1d49e839c55a2a3",
+      "selector": "0x372caeb8",
+      "wallets": [
+        "0x3d9d8c77c6d88802c02124eda1d49e839c55a2a3"
+      ],
+      "releaseDays": [
+        30
+      ],
+      "eventLp": 2500,
+      "eventFeeSentis": 1628.58140711042,
+      "eventGrossSentis": 5428.604690368066,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x3d9d8c77c6d88802c02124eda1d49e839c55a2a3",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 1140.006984977294,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x3d9d8c77c6d88802c02124eda1d49e839c55a2a3",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 325.71628142208397,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x3d9d8c77c6d88802c02124eda1d49e839c55a2a3",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 162.85814071104198,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 1628.58140711042,
+      "lpLocked": 2500,
+      "directMetaBurned": 0,
+      "metaTransfers": [],
+      "synoxTransferred": 0
+    },
+    {
+      "tx": "0xedee3406485ae33b1948b3686b9122f1d3dd83ab2c3d4c65ce276b66b41baf53",
+      "txFrom": "0x3d9d8c77c6d88802c02124eda1d49e839c55a2a3",
+      "selector": "0x372caeb8",
+      "wallets": [
+        "0x3d9d8c77c6d88802c02124eda1d49e839c55a2a3"
+      ],
+      "releaseDays": [
+        30
+      ],
+      "eventLp": 520,
+      "eventFeeSentis": 338.7403930908649,
+      "eventGrossSentis": 1129.1346436362164,
+      "sentisFeeTransfers": [
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x3d9d8c77c6d88802c02124eda1d49e839c55a2a3",
+          "to": "0x25266f6e573a6ff475dd9f5d1577c9ea5d37806f",
+          "amount": 237.11827516360543,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x3d9d8c77c6d88802c02124eda1d49e839c55a2a3",
+          "to": "0x7b3070b31e939c7cf17da39ef3259efed2f8b141",
+          "amount": 67.74807861817298,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        },
+        {
+          "token": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e",
+          "from": "0x3d9d8c77c6d88802c02124eda1d49e839c55a2a3",
+          "to": "0xf194ea70a05510596260927c7fdfd31db3febca2",
+          "amount": 33.87403930908649,
+          "isDirectMetaBurn": false,
+          "isLpLock": false
+        }
+      ],
+      "sentisFeeTransferred": 338.74039309086487,
+      "lpLocked": 520,
       "directMetaBurned": 0,
       "metaTransfers": [],
       "synoxTransferred": 0
