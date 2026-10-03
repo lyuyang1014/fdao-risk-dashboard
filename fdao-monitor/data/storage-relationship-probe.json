@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-10-02T15:03:23.588Z",
+  "updatedAt": "2026-10-03T15:56:26.727Z",
   "methodologyVersion": 1,
   "method": "eth_createAccessList was used to enumerate storage actually read by viewStakingInfo() for each sampled wallet; each value was then checked against every observed staking wallet address.",
   "summary": {
     "sampledWallets": 10,
-    "knownStakingWallets": 10275,
-    "accessedStorageKeys": 528,
+    "knownStakingWallets": 10368,
+    "accessedStorageKeys": 537,
     "commonProxyStorageKeys": 6,
-    "variableProxyStorageKeys": 222,
+    "variableProxyStorageKeys": 225,
     "knownParticipantAddressMatches": 0
   },
   "knownParticipantAddressMatches": [],
@@ -21,14 +21,14 @@
       "knownParticipantMatches": [],
       "addressLikeValues": [
         {
-          "contract": "0xf15d38e25fb2717cbac469a46b7265c0fc90cbc1",
-          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xeea682874a16ccd994df69f4dcb11f63633854a4"
-        },
-        {
           "contract": "0x9d103f8cdbb32a9f8261a9c6fb8fdd293cfbbe94",
           "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
           "address": "0xe8aa00d512e43e9fbdc8b2d8b059661b0ef30879"
+        },
+        {
+          "contract": "0xf15d38e25fb2717cbac469a46b7265c0fc90cbc1",
+          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "address": "0xeea682874a16ccd994df69f4dcb11f63633854a4"
         },
         {
           "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
@@ -48,7 +48,7 @@
         {
           "contract": "0x8ca182f96908f9b6fd47dbd85e7fc3d5053def8a",
           "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xdab46d32586291b73c53f4236330c71843cb44c4"
+          "address": "0xe4ac563aef1fd15db3ea89d1e45c56261e93d89f"
         },
         {
           "contract": "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
@@ -59,31 +59,26 @@
     },
     {
       "wallet": "0x60eee684db86c1e429669aa9e5f13531636777bf",
-      "gasUsed": "0x6340d",
+      "gasUsed": "0x631c7",
       "accessedContracts": 12,
       "accessedStorageKeys": 117,
       "proxyStorageKeys": 105,
       "knownParticipantMatches": [],
       "addressLikeValues": [
         {
+          "contract": "0x8ca182f96908f9b6fd47dbd85e7fc3d5053def8a",
+          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "address": "0xe4ac563aef1fd15db3ea89d1e45c56261e93d89f"
+        },
+        {
           "contract": "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
           "key": "0x405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace",
           "address": "0x4f49ad237a81ad403a88f34a12a8d1d53c2d7d89"
         },
         {
-          "contract": "0x9d103f8cdbb32a9f8261a9c6fb8fdd293cfbbe94",
-          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xe8aa00d512e43e9fbdc8b2d8b059661b0ef30879"
-        },
-        {
           "contract": "0xf15d38e25fb2717cbac469a46b7265c0fc90cbc1",
           "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
           "address": "0xeea682874a16ccd994df69f4dcb11f63633854a4"
-        },
-        {
-          "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
-          "key": "0xf567498961616b2fec7f42d5523258740c70e86e462ac545c98cb16be0a8d7fa",
-          "address": "0x72e09ebd9b24f47730b651889a4ed984cba53d90"
         },
         {
           "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
@@ -96,9 +91,14 @@
           "address": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e"
         },
         {
-          "contract": "0x8ca182f96908f9b6fd47dbd85e7fc3d5053def8a",
+          "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
+          "key": "0xf567498961616b2fec7f42d5523258740c70e86e462ac545c98cb16be0a8d7fa",
+          "address": "0x72e09ebd9b24f47730b651889a4ed984cba53d90"
+        },
+        {
+          "contract": "0x9d103f8cdbb32a9f8261a9c6fb8fdd293cfbbe94",
           "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xdab46d32586291b73c53f4236330c71843cb44c4"
+          "address": "0xe8aa00d512e43e9fbdc8b2d8b059661b0ef30879"
         }
       ]
     },
@@ -116,16 +116,6 @@
           "address": "0xe8aa00d512e43e9fbdc8b2d8b059661b0ef30879"
         },
         {
-          "contract": "0xf15d38e25fb2717cbac469a46b7265c0fc90cbc1",
-          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xeea682874a16ccd994df69f4dcb11f63633854a4"
-        },
-        {
-          "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
-          "key": "0xf567498961616b2fec7f42d5523258740c70e86e462ac545c98cb16be0a8d7fa",
-          "address": "0x72e09ebd9b24f47730b651889a4ed984cba53d90"
-        },
-        {
           "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
           "key": "0xf567498961616b2fec7f42d5523258740c70e86e462ac545c98cb16be0a8d7f8",
           "address": "0x55d398326f99059ff775485246999027b3197955"
@@ -136,14 +126,24 @@
           "address": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e"
         },
         {
-          "contract": "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
-          "key": "0x405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace",
-          "address": "0x4f49ad237a81ad403a88f34a12a8d1d53c2d7d89"
+          "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
+          "key": "0xf567498961616b2fec7f42d5523258740c70e86e462ac545c98cb16be0a8d7fa",
+          "address": "0x72e09ebd9b24f47730b651889a4ed984cba53d90"
         },
         {
           "contract": "0x8ca182f96908f9b6fd47dbd85e7fc3d5053def8a",
           "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xdab46d32586291b73c53f4236330c71843cb44c4"
+          "address": "0xe4ac563aef1fd15db3ea89d1e45c56261e93d89f"
+        },
+        {
+          "contract": "0xf15d38e25fb2717cbac469a46b7265c0fc90cbc1",
+          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "address": "0xeea682874a16ccd994df69f4dcb11f63633854a4"
+        },
+        {
+          "contract": "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
+          "key": "0x405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace",
+          "address": "0x4f49ad237a81ad403a88f34a12a8d1d53c2d7d89"
         }
       ]
     },
@@ -156,19 +156,9 @@
       "knownParticipantMatches": [],
       "addressLikeValues": [
         {
-          "contract": "0x8ca182f96908f9b6fd47dbd85e7fc3d5053def8a",
+          "contract": "0x9d103f8cdbb32a9f8261a9c6fb8fdd293cfbbe94",
           "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xdab46d32586291b73c53f4236330c71843cb44c4"
-        },
-        {
-          "contract": "0xf15d38e25fb2717cbac469a46b7265c0fc90cbc1",
-          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xeea682874a16ccd994df69f4dcb11f63633854a4"
-        },
-        {
-          "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
-          "key": "0xf567498961616b2fec7f42d5523258740c70e86e462ac545c98cb16be0a8d7fa",
-          "address": "0x72e09ebd9b24f47730b651889a4ed984cba53d90"
+          "address": "0xe8aa00d512e43e9fbdc8b2d8b059661b0ef30879"
         },
         {
           "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
@@ -181,25 +171,55 @@
           "address": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e"
         },
         {
+          "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
+          "key": "0xf567498961616b2fec7f42d5523258740c70e86e462ac545c98cb16be0a8d7fa",
+          "address": "0x72e09ebd9b24f47730b651889a4ed984cba53d90"
+        },
+        {
           "contract": "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
           "key": "0x405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace",
           "address": "0x4f49ad237a81ad403a88f34a12a8d1d53c2d7d89"
         },
         {
-          "contract": "0x9d103f8cdbb32a9f8261a9c6fb8fdd293cfbbe94",
+          "contract": "0xf15d38e25fb2717cbac469a46b7265c0fc90cbc1",
           "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xe8aa00d512e43e9fbdc8b2d8b059661b0ef30879"
+          "address": "0xeea682874a16ccd994df69f4dcb11f63633854a4"
+        },
+        {
+          "contract": "0x8ca182f96908f9b6fd47dbd85e7fc3d5053def8a",
+          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "address": "0xe4ac563aef1fd15db3ea89d1e45c56261e93d89f"
         }
       ]
     },
     {
       "wallet": "0x02eaccdc70543f5c7b08d0add9560aa979ea0e3a",
-      "gasUsed": "0x21331",
+      "gasUsed": "0x22e21",
       "accessedContracts": 12,
-      "accessedStorageKeys": 29,
-      "proxyStorageKeys": 17,
+      "accessedStorageKeys": 32,
+      "proxyStorageKeys": 20,
       "knownParticipantMatches": [],
       "addressLikeValues": [
+        {
+          "contract": "0x8ca182f96908f9b6fd47dbd85e7fc3d5053def8a",
+          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "address": "0xe4ac563aef1fd15db3ea89d1e45c56261e93d89f"
+        },
+        {
+          "contract": "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
+          "key": "0x405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace",
+          "address": "0x4f49ad237a81ad403a88f34a12a8d1d53c2d7d89"
+        },
+        {
+          "contract": "0x9d103f8cdbb32a9f8261a9c6fb8fdd293cfbbe94",
+          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "address": "0xe8aa00d512e43e9fbdc8b2d8b059661b0ef30879"
+        },
+        {
+          "contract": "0xf15d38e25fb2717cbac469a46b7265c0fc90cbc1",
+          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "address": "0xeea682874a16ccd994df69f4dcb11f63633854a4"
+        },
         {
           "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
           "key": "0xf567498961616b2fec7f42d5523258740c70e86e462ac545c98cb16be0a8d7f8",
@@ -214,37 +234,32 @@
           "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
           "key": "0xf567498961616b2fec7f42d5523258740c70e86e462ac545c98cb16be0a8d7fa",
           "address": "0x72e09ebd9b24f47730b651889a4ed984cba53d90"
-        },
-        {
-          "contract": "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
-          "key": "0x405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace",
-          "address": "0x4f49ad237a81ad403a88f34a12a8d1d53c2d7d89"
-        },
-        {
-          "contract": "0xf15d38e25fb2717cbac469a46b7265c0fc90cbc1",
-          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xeea682874a16ccd994df69f4dcb11f63633854a4"
-        },
-        {
-          "contract": "0x8ca182f96908f9b6fd47dbd85e7fc3d5053def8a",
-          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xdab46d32586291b73c53f4236330c71843cb44c4"
-        },
-        {
-          "contract": "0x9d103f8cdbb32a9f8261a9c6fb8fdd293cfbbe94",
-          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xe8aa00d512e43e9fbdc8b2d8b059661b0ef30879"
         }
       ]
     },
     {
       "wallet": "0x921d1522c8539b6b452e35fe105915ab6b47a84f",
-      "gasUsed": "0x21331",
+      "gasUsed": "0x22e21",
       "accessedContracts": 12,
-      "accessedStorageKeys": 29,
-      "proxyStorageKeys": 17,
+      "accessedStorageKeys": 32,
+      "proxyStorageKeys": 20,
       "knownParticipantMatches": [],
       "addressLikeValues": [
+        {
+          "contract": "0x8ca182f96908f9b6fd47dbd85e7fc3d5053def8a",
+          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "address": "0xe4ac563aef1fd15db3ea89d1e45c56261e93d89f"
+        },
+        {
+          "contract": "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
+          "key": "0x405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace",
+          "address": "0x4f49ad237a81ad403a88f34a12a8d1d53c2d7d89"
+        },
+        {
+          "contract": "0x9d103f8cdbb32a9f8261a9c6fb8fdd293cfbbe94",
+          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "address": "0xe8aa00d512e43e9fbdc8b2d8b059661b0ef30879"
+        },
         {
           "contract": "0xf15d38e25fb2717cbac469a46b7265c0fc90cbc1",
           "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
@@ -252,6 +267,11 @@
         },
         {
           "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
+          "key": "0xf567498961616b2fec7f42d5523258740c70e86e462ac545c98cb16be0a8d7fa",
+          "address": "0x72e09ebd9b24f47730b651889a4ed984cba53d90"
+        },
+        {
+          "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
           "key": "0xf567498961616b2fec7f42d5523258740c70e86e462ac545c98cb16be0a8d7f8",
           "address": "0x55d398326f99059ff775485246999027b3197955"
         },
@@ -259,46 +279,31 @@
           "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
           "key": "0xf567498961616b2fec7f42d5523258740c70e86e462ac545c98cb16be0a8d7f9",
           "address": "0x8fd0d741e09a98e82256c63f25f90301ea71a83e"
-        },
-        {
-          "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
-          "key": "0xf567498961616b2fec7f42d5523258740c70e86e462ac545c98cb16be0a8d7fa",
-          "address": "0x72e09ebd9b24f47730b651889a4ed984cba53d90"
-        },
-        {
-          "contract": "0x8ca182f96908f9b6fd47dbd85e7fc3d5053def8a",
-          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xdab46d32586291b73c53f4236330c71843cb44c4"
-        },
-        {
-          "contract": "0x9d103f8cdbb32a9f8261a9c6fb8fdd293cfbbe94",
-          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xe8aa00d512e43e9fbdc8b2d8b059661b0ef30879"
-        },
-        {
-          "contract": "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
-          "key": "0x405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace",
-          "address": "0x4f49ad237a81ad403a88f34a12a8d1d53c2d7d89"
         }
       ]
     },
     {
       "wallet": "0x4b470289546801271be6a68c70b85aed850a334a",
-      "gasUsed": "0x21331",
+      "gasUsed": "0x22e21",
       "accessedContracts": 12,
-      "accessedStorageKeys": 29,
-      "proxyStorageKeys": 17,
+      "accessedStorageKeys": 32,
+      "proxyStorageKeys": 20,
       "knownParticipantMatches": [],
       "addressLikeValues": [
+        {
+          "contract": "0x8ca182f96908f9b6fd47dbd85e7fc3d5053def8a",
+          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "address": "0xe4ac563aef1fd15db3ea89d1e45c56261e93d89f"
+        },
+        {
+          "contract": "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
+          "key": "0x405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace",
+          "address": "0x4f49ad237a81ad403a88f34a12a8d1d53c2d7d89"
+        },
         {
           "contract": "0x9d103f8cdbb32a9f8261a9c6fb8fdd293cfbbe94",
           "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
           "address": "0xe8aa00d512e43e9fbdc8b2d8b059661b0ef30879"
-        },
-        {
-          "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
-          "key": "0xf567498961616b2fec7f42d5523258740c70e86e462ac545c98cb16be0a8d7f8",
-          "address": "0x55d398326f99059ff775485246999027b3197955"
         },
         {
           "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
@@ -311,14 +316,9 @@
           "address": "0x72e09ebd9b24f47730b651889a4ed984cba53d90"
         },
         {
-          "contract": "0x8ca182f96908f9b6fd47dbd85e7fc3d5053def8a",
-          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xdab46d32586291b73c53f4236330c71843cb44c4"
-        },
-        {
-          "contract": "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
-          "key": "0x405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace",
-          "address": "0x4f49ad237a81ad403a88f34a12a8d1d53c2d7d89"
+          "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
+          "key": "0xf567498961616b2fec7f42d5523258740c70e86e462ac545c98cb16be0a8d7f8",
+          "address": "0x55d398326f99059ff775485246999027b3197955"
         },
         {
           "contract": "0xf15d38e25fb2717cbac469a46b7265c0fc90cbc1",
@@ -336,11 +336,6 @@
       "knownParticipantMatches": [],
       "addressLikeValues": [
         {
-          "contract": "0xf15d38e25fb2717cbac469a46b7265c0fc90cbc1",
-          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xeea682874a16ccd994df69f4dcb11f63633854a4"
-        },
-        {
           "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
           "key": "0xf567498961616b2fec7f42d5523258740c70e86e462ac545c98cb16be0a8d7f8",
           "address": "0x55d398326f99059ff775485246999027b3197955"
@@ -358,7 +353,7 @@
         {
           "contract": "0x8ca182f96908f9b6fd47dbd85e7fc3d5053def8a",
           "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xdab46d32586291b73c53f4236330c71843cb44c4"
+          "address": "0xe4ac563aef1fd15db3ea89d1e45c56261e93d89f"
         },
         {
           "contract": "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
@@ -369,6 +364,11 @@
           "contract": "0x9d103f8cdbb32a9f8261a9c6fb8fdd293cfbbe94",
           "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
           "address": "0xe8aa00d512e43e9fbdc8b2d8b059661b0ef30879"
+        },
+        {
+          "contract": "0xf15d38e25fb2717cbac469a46b7265c0fc90cbc1",
+          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "address": "0xeea682874a16ccd994df69f4dcb11f63633854a4"
         }
       ]
     },
@@ -386,6 +386,11 @@
           "address": "0xeea682874a16ccd994df69f4dcb11f63633854a4"
         },
         {
+          "contract": "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
+          "key": "0x405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace",
+          "address": "0x4f49ad237a81ad403a88f34a12a8d1d53c2d7d89"
+        },
+        {
           "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
           "key": "0xf567498961616b2fec7f42d5523258740c70e86e462ac545c98cb16be0a8d7f8",
           "address": "0x55d398326f99059ff775485246999027b3197955"
@@ -403,12 +408,7 @@
         {
           "contract": "0x8ca182f96908f9b6fd47dbd85e7fc3d5053def8a",
           "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xdab46d32586291b73c53f4236330c71843cb44c4"
-        },
-        {
-          "contract": "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
-          "key": "0x405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace",
-          "address": "0x4f49ad237a81ad403a88f34a12a8d1d53c2d7d89"
+          "address": "0xe4ac563aef1fd15db3ea89d1e45c56261e93d89f"
         },
         {
           "contract": "0x9d103f8cdbb32a9f8261a9c6fb8fdd293cfbbe94",
@@ -425,6 +425,21 @@
       "proxyStorageKeys": 12,
       "knownParticipantMatches": [],
       "addressLikeValues": [
+        {
+          "contract": "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
+          "key": "0x405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace",
+          "address": "0x4f49ad237a81ad403a88f34a12a8d1d53c2d7d89"
+        },
+        {
+          "contract": "0x8ca182f96908f9b6fd47dbd85e7fc3d5053def8a",
+          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "address": "0xe4ac563aef1fd15db3ea89d1e45c56261e93d89f"
+        },
+        {
+          "contract": "0x9d103f8cdbb32a9f8261a9c6fb8fdd293cfbbe94",
+          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "address": "0xe8aa00d512e43e9fbdc8b2d8b059661b0ef30879"
+        },
         {
           "contract": "0xf15d38e25fb2717cbac469a46b7265c0fc90cbc1",
           "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
@@ -444,21 +459,6 @@
           "contract": "0xa0ffb9c1ce1fe56963b0321b32e7a0302114058b",
           "key": "0xf567498961616b2fec7f42d5523258740c70e86e462ac545c98cb16be0a8d7fa",
           "address": "0x72e09ebd9b24f47730b651889a4ed984cba53d90"
-        },
-        {
-          "contract": "0x8ca182f96908f9b6fd47dbd85e7fc3d5053def8a",
-          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xdab46d32586291b73c53f4236330c71843cb44c4"
-        },
-        {
-          "contract": "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
-          "key": "0x405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace",
-          "address": "0x4f49ad237a81ad403a88f34a12a8d1d53c2d7d89"
-        },
-        {
-          "contract": "0x9d103f8cdbb32a9f8261a9c6fb8fdd293cfbbe94",
-          "key": "0x0000000000000000000000000000000000000000000000000000000000000001",
-          "address": "0xe8aa00d512e43e9fbdc8b2d8b059661b0ef30879"
         }
       ]
     }
