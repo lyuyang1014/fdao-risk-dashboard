@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-04T14:57:50.270Z",
+  "updatedAt": "2026-10-04T16:26:19.054Z",
   "coverage": 1,
   "backfillDone": true,
   "relationshipStatus": "referral_not_exposed_by_stake_contract",
@@ -10,21 +10,21 @@
     "storageProbe": "eth_createAccessList enumerates storage actually read by viewStakingInfo() for sampled wallets; values are checked against all observed staking addresses."
   },
   "evidenceSummary": {
-    "totalFirstStakeWallets": 10430,
-    "sampledFirstStakeTransactions": 10430,
+    "totalFirstStakeWallets": 10487,
+    "sampledFirstStakeTransactions": 10487,
     "calldataPatterns": [
       {
         "selector": "0x9cd441da",
         "inputBytes": 68,
         "argumentWords": 2,
-        "count": 4801,
+        "count": 4826,
         "addressFieldHits": 0
       },
       {
         "selector": "0xc38bde14",
         "inputBytes": 100,
         "argumentWords": 3,
-        "count": 2602,
+        "count": 2633,
         "addressFieldHits": 0
       },
       {
@@ -52,7 +52,7 @@
         "selector": "0xe59e39d3",
         "inputBytes": 68,
         "argumentWords": 2,
-        "count": 21,
+        "count": 22,
         "addressFieldHits": 0
       },
       {
@@ -86,8 +86,8 @@
     ],
     "gradeAConfirmedEdges": 0,
     "gradeBRewardEdges": 0,
-    "gradeCBehaviorClusters": 95,
-    "walletsInBehaviorClusters": 946,
+    "gradeCBehaviorClusters": 96,
+    "walletsInBehaviorClusters": 949,
     "fixedReceiptRecipients": [
       "0xc5424eb1061bd9e147788c527c95ac27710bfa41",
       "0x3690803f317915a9b68424f3b245102e2af0c51a",
@@ -100,10 +100,10 @@
     ],
     "storageProbe": {
       "sampledWallets": 10,
-      "knownStakingWallets": 10368,
-      "accessedStorageKeys": 537,
-      "commonProxyStorageKeys": 6,
-      "variableProxyStorageKeys": 225,
+      "knownStakingWallets": 10487,
+      "accessedStorageKeys": 832,
+      "commonProxyStorageKeys": 8,
+      "variableProxyStorageKeys": 330,
       "knownParticipantAddressMatches": 0
     }
   },
@@ -1798,6 +1798,20 @@
       ]
     },
     {
+      "id": "amount:5970289:2230.04",
+      "type": "same_amount_window",
+      "detail": "5分钟内相同 META 数量 2230.04",
+      "walletCount": 3,
+      "firstTs": 1791086826,
+      "lastTs": 1791086911,
+      "stakeMeta": 6690.118902030579,
+      "wallets": [
+        "0x9196c557630a0d88a83259b5e84e10aa15202f68",
+        "0xa0c88b243ca4983604c17ac61aaa5e397b7e2fa1",
+        "0xdcb17c0a1fa840d603af165ad2783125c9fbc57a"
+      ]
+    },
+    {
       "id": "amount:5957837:2000",
       "type": "same_amount_window",
       "detail": "5分钟内相同 META 数量 2000",
@@ -2116,37 +2130,37 @@
       {
         "level": "V1",
         "selfUsd": 2000,
-        "walletsMeetingSelfThreshold": 1127
+        "walletsMeetingSelfThreshold": 1134
       },
       {
         "level": "V2",
         "selfUsd": 4000,
-        "walletsMeetingSelfThreshold": 511
+        "walletsMeetingSelfThreshold": 515
       },
       {
         "level": "V3",
         "selfUsd": 8000,
-        "walletsMeetingSelfThreshold": 150
+        "walletsMeetingSelfThreshold": 153
       },
       {
         "level": "V4",
         "selfUsd": 15000,
-        "walletsMeetingSelfThreshold": 55
+        "walletsMeetingSelfThreshold": 56
       },
       {
         "level": "V5",
         "selfUsd": 30000,
-        "walletsMeetingSelfThreshold": 20
+        "walletsMeetingSelfThreshold": 24
       },
       {
         "level": "V6",
         "selfUsd": 40000,
-        "walletsMeetingSelfThreshold": 5
+        "walletsMeetingSelfThreshold": 8
       },
       {
         "level": "V7",
         "selfUsd": 50000,
-        "walletsMeetingSelfThreshold": 3
+        "walletsMeetingSelfThreshold": 4
       },
       {
         "level": "V8",
@@ -2175,6 +2189,6 @@
     "首入回执中的资金接收方是固定合约、流动性池和销毁地址，尚未出现可唯一对应上级的10%奖励钱包。",
     "推荐绑定与邀请名单出现在项目方登录后的 API 中，说明组织树很可能主要保存在项目方后台。",
     "C级行为簇只能提示批量铺号或同一操盘批次，不能当成官方上下级关系。",
-    "存储读取探针已检查10个钱包、537个实际访问槽，未发现槽值等于另一质押钱包地址。"
+    "存储读取探针已检查10个钱包、832个实际访问槽，未发现槽值等于另一质押钱包地址。"
   ]
 }
