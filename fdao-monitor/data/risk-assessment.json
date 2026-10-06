@@ -1,14 +1,14 @@
 {
-  "updatedAt": "2026-10-06T11:36:32.562Z",
+  "updatedAt": "2026-10-06T11:46:40.631Z",
   "methodologyVersion": 2,
   "chainScope": "BNB Smart Chain",
   "scale": {
-    "exitPoolLiquidityUsd": 11053055.245479524,
-    "fdaoLpCustodyShare": 0.9217870599801941,
-    "fdaoCustodiedLiquidityUsd": 10188563.298529232,
-    "contractReportedTvlUsd": 2709582.4084852017,
-    "custodyCoverage": 3.7601968726336588,
-    "observedCumulativeStakeUsd": 8477995.657292157,
+    "exitPoolLiquidityUsd": 11053071.738741402,
+    "fdaoLpCustodyShare": 0.921788471987568,
+    "fdaoCustodiedLiquidityUsd": 10188594.108823407,
+    "contractReportedTvlUsd": 2704220.1988721336,
+    "custodyCoverage": 3.767664376248957,
+    "observedCumulativeStakeUsd": 8461220.050416876,
     "observedWallets": 10531,
     "note": "Contract-reported TVL is chain-readable but contract-controlled accounting; FDAO-custodied LP value is independently derived from LP balance and pool liquidity."
   },
@@ -25,14 +25,14 @@
         "2026-09-30",
         "2026-10-02"
       ],
-      "recentAvgInflowUsd": 80325.6585229172,
-      "previousAvgInflowUsd": 44089.28579738251,
-      "inflowRatio": 1.8218861356036296,
+      "recentAvgInflowUsd": 80166.71627714878,
+      "previousAvgInflowUsd": 44002.045303774066,
+      "inflowRatio": 1.8218861356036298,
       "recentAvgNewWallets": 51,
       "previousAvgNewWallets": 66,
       "newWalletRatio": 0.7727272727272727,
-      "recentUnstakeUsd": 1013.3923631311777,
-      "recentStakeUsd": 240976.97556875163
+      "recentUnstakeUsd": 1011.3869026197397,
+      "recentStakeUsd": 240500.14883144633
     },
     "period7": {
       "days": 7,
@@ -45,14 +45,14 @@
         "2026-09-22",
         "2026-09-28"
       ],
-      "recentAvgInflowUsd": 61679.43181984008,
-      "previousAvgInflowUsd": 51475.64955253581,
-      "inflowRatio": 1.1982254202910123,
+      "recentAvgInflowUsd": 61557.3852958347,
+      "previousAvgInflowUsd": 51373.79348944565,
+      "inflowRatio": 1.1982254202910125,
       "recentAvgNewWallets": 64.42857142857143,
       "previousAvgNewWallets": 95,
       "newWalletRatio": 0.6781954887218046,
-      "recentUnstakeUsd": 11241.388003424854,
-      "recentStakeUsd": 431756.02273888054
+      "recentUnstakeUsd": 11219.141773282594,
+      "recentStakeUsd": 430901.6970708429
     },
     "period14": {
       "days": 14,
@@ -65,14 +65,14 @@
         "2026-09-08",
         "2026-09-21"
       ],
-      "recentAvgInflowUsd": 56577.54068618796,
-      "previousAvgInflowUsd": 54664.619807053255,
-      "inflowRatio": 1.0349937653620684,
+      "recentAvgInflowUsd": 56465.58939264017,
+      "previousAvgInflowUsd": 54556.45365446913,
+      "inflowRatio": 1.0349937653620682,
       "recentAvgNewWallets": 79.71428571428571,
       "previousAvgNewWallets": 90.78571428571429,
       "newWalletRatio": 0.8780487804878048,
-      "recentUnstakeUsd": 45986.19156977348,
-      "recentStakeUsd": 792085.5696066314
+      "recentUnstakeUsd": 45895.1868468055,
+      "recentStakeUsd": 790518.2514969624
     },
     "excludesCurrentPartialDay": true
   },
@@ -82,9 +82,9 @@
     "eventOnlyUnstakeTransactions": 4,
     "decodedUnstakeEvents": 138,
     "missingUnstakeTransactionHashes": 0,
-    "cumulativeStakeUsdAtCurrentPrice": 8477995.657292368,
-    "cumulativeUnstakeUsdAtCurrentPrice": 76917.35154867134,
-    "cumulativeUnstakeToStakeRatio": 0.009072586806825114,
+    "cumulativeStakeUsdAtCurrentPrice": 8461220.050417006,
+    "cumulativeUnstakeUsdAtCurrentPrice": 76765.13537181103,
+    "cumulativeUnstakeToStakeRatio": 0.00907258467625218,
     "chainFeeEvidence": [
       {
         "releaseDays": 30,
@@ -123,7 +123,7 @@
       "result": "LP tokens are locked on unstake and vest progressively over the selected 30/60/90-day period. release() returns the currently vested LP; the fee event's SENTIS amount is not the final payout."
     },
     "releaseAudit": {
-      "updatedAt": "2026-10-06T11:36:29.009Z",
+      "updatedAt": "2026-10-06T11:46:37.258Z",
       "chainScope": "BNB Smart Chain",
       "contracts": {
         "release": "0xd62c3c1faaf8940496a12f5f15c9d0c3bae56b62",
@@ -141,7 +141,7 @@
         "maturedEvents": 30,
         "maturedWallets": 23,
         "walletsWithReleasableLp": 29,
-        "releasableLp": 2477.5931285149563,
+        "releasableLp": 2493.914066168943,
         "walletsWithReleasedLp": 35,
         "contractRecordedReleasedLp": 39760.017339382124,
         "confirmedReleaseTransfers": 871,
@@ -304,10 +304,10 @@
         },
         {
           "wallet": "0x412f60a4708b7f807c2b49866d9ec77eae59d5c2",
-          "releasableLp": 0.887938850308642,
+          "releasableLp": 0.888057098765432,
           "lockedLp": 1,
           "releasedLp": 0.012595486111111113,
-          "releasableDirectLp": 0.887938850308642
+          "releasableDirectLp": 0.888057098765432
         },
         {
           "wallet": "0x5adc4c2dce6c0a46aaeee59a1b7cfb6b26afd2b0",
@@ -325,10 +325,10 @@
         },
         {
           "wallet": "0x5577258fe85dcb40dfe8da7819270884bd2d1b90",
-          "releasableLp": 20.17741769547325,
+          "releasableLp": 20.510090020576133,
           "lockedLp": 1660,
           "releasedLp": 778.5892978395062,
-          "releasableDirectLp": 20.17741769547325
+          "releasableDirectLp": 20.510090020576133
         },
         {
           "wallet": "0x10cacebe16e84ed4d9b1f6a51c643310515a79b9",
@@ -388,10 +388,10 @@
         },
         {
           "wallet": "0x0ba81886ec074b331b1c1adbf9db933e880d47f3",
-          "releasableLp": 227.1386514219393,
+          "releasableLp": 227.363839423624,
           "lockedLp": 2856.5447,
           "releasedLp": 585.1078920923998,
-          "releasableDirectLp": 227.1386514219393
+          "releasableDirectLp": 227.363839423624
         },
         {
           "wallet": "0x8ef35f3f1809b8b895f0b714f624c546ffbc5551",
@@ -402,10 +402,10 @@
         },
         {
           "wallet": "0x09182b618ced42b37c5bfa26810c1a7224eb6eef",
-          "releasableLp": 20.836122685185185,
+          "releasableLp": 21.169583333333332,
           "lockedLp": 1410,
           "releasedLp": 970.1936072530864,
-          "releasableDirectLp": 20.836122685185185
+          "releasableDirectLp": 21.169583333333332
         },
         {
           "wallet": "0x362ab92726b32f8322d99b73414eafa67769873e",
@@ -416,10 +416,10 @@
         },
         {
           "wallet": "0x0a6f66c6e54737a57b35511e9d8f5c93454f68de",
-          "releasableLp": 3.038210332986111,
+          "releasableLp": 3.0392352204861113,
           "lockedLp": 4.3407,
           "releasedLp": 0,
-          "releasableDirectLp": 3.038210332986111
+          "releasableDirectLp": 3.0392352204861113
         },
         {
           "wallet": "0xae607d64d9f67ed09a645e7f569fda4cc35ff086",
@@ -430,17 +430,17 @@
         },
         {
           "wallet": "0x0f730f5c9e90a6bb6a14e4541bfdc613c9cb8d31",
-          "releasableLp": 38.555573167438276,
+          "releasableLp": 39.15928330632716,
           "lockedLp": 2556.89,
           "releasedLp": 1602.816820474537,
-          "releasableDirectLp": 38.555573167438276
+          "releasableDirectLp": 39.15928330632716
         },
         {
           "wallet": "0x3d9d8c77c6d88802c02124eda1d49e839c55a2a3",
-          "releasableLp": 33.30760030864197,
+          "releasableLp": 34.02773919753086,
           "lockedLp": 3050,
           "releasedLp": 1290.477349537037,
-          "releasableDirectLp": 33.30760030864197
+          "releasableDirectLp": 34.02773919753086
         },
         {
           "wallet": "0x4148ffb98b7a1376f36ccde947180c5d3f41148c",
@@ -507,38 +507,38 @@
         },
         {
           "wallet": "0xd5afd3a0b34462b55f8c31555e16b16596b0aeb1",
-          "releasableLp": 42.97430555555556,
+          "releasableLp": 43.186458333333334,
           "lockedLp": 900,
           "releasedLp": 203.34992283950615,
-          "releasableDirectLp": 42.97430555555556
+          "releasableDirectLp": 43.186458333333334
         },
         {
           "wallet": "0x3d454b8b43c84182fb12352a9108c35a9fd7e3fc",
-          "releasableLp": 0.09167893344907407,
+          "releasableLp": 0.5327484479166666,
           "lockedLp": 1871.1164999999999,
           "releasedLp": 805.5589661319444,
-          "releasableDirectLp": 0.09167893344907407
+          "releasableDirectLp": 0.5327484479166666
         },
         {
           "wallet": "0xbf3f1fa0dcc7e0c9e55c98ebf667d64e447f4942",
-          "releasableLp": 103.89660493827161,
+          "releasableLp": 106.25385802469135,
           "lockedLp": 10000,
           "releasedLp": 4159.440586419753,
-          "releasableDirectLp": 103.89660493827161
+          "releasableDirectLp": 106.25385802469135
         },
         {
           "wallet": "0xcc776407ee28c78bb9dd3662f6e650c6517abed9",
-          "releasableLp": 100.23533950617283,
+          "releasableLp": 102.59259259259258,
           "lockedLp": 10000,
           "releasedLp": 4161.8209876543215,
-          "releasableDirectLp": 100.23533950617283
+          "releasableDirectLp": 102.59259259259258
         },
         {
           "wallet": "0x234ce526a601c2ecd033f9bba4666c966e151fd5",
-          "releasableLp": 99.76851851851852,
+          "releasableLp": 102.12577160493828,
           "lockedLp": 10000,
           "releasedLp": 4050.19475308642,
-          "releasableDirectLp": 99.76851851851852
+          "releasableDirectLp": 102.12577160493828
         },
         {
           "wallet": "0x5e949f204bd503f1731f55888b640688849f6ac8",
@@ -549,24 +549,24 @@
         },
         {
           "wallet": "0x3ff912820646b84d1afc795373ddcf8036f5c838",
-          "releasableLp": 6.754320987654321,
+          "releasableLp": 6.7778935185185185,
           "lockedLp": 100,
           "releasedLp": 34.691550925925924,
-          "releasableDirectLp": 6.754320987654321
+          "releasableDirectLp": 6.7778935185185185
         },
         {
           "wallet": "0x924884bac0e5ab1178ac92f1439dd41540da2a96",
-          "releasableLp": 99.26697530864197,
+          "releasableLp": 101.62422839506172,
           "lockedLp": 10000,
           "releasedLp": 3755.550733024691,
-          "releasableDirectLp": 99.26697530864197
+          "releasableDirectLp": 101.62422839506172
         },
         {
           "wallet": "0x1ffa9232ac12cbb54ea9b1e90e0b3ae913d90010",
-          "releasableLp": 265.0118851851852,
+          "releasableLp": 265.2828938580247,
           "lockedLp": 1149.68,
           "releasedLp": 183.75186407407406,
-          "releasableDirectLp": 265.0118851851852
+          "releasableDirectLp": 265.2828938580247
         },
         {
           "wallet": "0xbef5beb8c19bef3ecaa9fab21a6fdca4ec278834",
@@ -626,10 +626,10 @@
         },
         {
           "wallet": "0x5167efa715f174e698b25e9d0c83a570115ab2d5",
-          "releasableLp": 347.8971967565586,
+          "releasableLp": 348.2037428900463,
           "lockedLp": 1302.5698,
           "releasedLp": 107.16048771296298,
-          "releasableDirectLp": 347.8971967565586
+          "releasableDirectLp": 348.2037428900463
         },
         {
           "wallet": "0x18c814104c9be6c6cd84d63e0a20d35f13a8bb2c",
@@ -661,10 +661,10 @@
         },
         {
           "wallet": "0x3f4a3cd478037941641807fba0b16068805bdc77",
-          "releasableLp": 1.9197685185185185,
+          "releasableLp": 1.9505979938271605,
           "lockedLp": 131,
           "releasedLp": 30.85900925925926,
-          "releasableDirectLp": 1.9197685185185185
+          "releasableDirectLp": 1.9505979938271605
         },
         {
           "wallet": "0x5c14afbbe8217dabf79a8206e4fbfb67e59c5cbc",
@@ -696,17 +696,17 @@
         },
         {
           "wallet": "0x169ec6a0486d094a2bc79e1562622bb8ebaed478",
-          "releasableLp": 23.742708246502055,
+          "releasableLp": 23.827912193004114,
           "lockedLp": 1086.1408,
           "releasedLp": 49.00567838436214,
-          "releasableDirectLp": 23.742708246502055
+          "releasableDirectLp": 23.827912193004114
         },
         {
           "wallet": "0x7074f1e2a9ecc1e58f382b3a65e7b90e2f52dcf3",
-          "releasableLp": 27.40487049053498,
+          "releasableLp": 27.50316282798354,
           "lockedLp": 1252.9856,
           "releasedLp": 56.44767804691358,
-          "releasableDirectLp": 27.40487049053498
+          "releasableDirectLp": 27.50316282798354
         },
         {
           "wallet": "0xa415491a9896e7afc9265b64cff1c770063f16ed",
@@ -724,10 +724,10 @@
         },
         {
           "wallet": "0x305d8b7d6392f59479fcb1f8ba312240565d922d",
-          "releasableLp": 24.92062608680556,
+          "releasableLp": 25.047021546296296,
           "lockedLp": 1074.1542,
           "releasedLp": 70.98887019178241,
-          "releasableDirectLp": 24.92062608680556
+          "releasableDirectLp": 25.047021546296296
         },
         {
           "wallet": "0x46522643899181c0c33d41b72226f00b5c8085ec",
@@ -759,59 +759,59 @@
         },
         {
           "wallet": "0x75f4633150737176583218289ae58abc378093d9",
-          "releasableLp": 180.1468219955633,
+          "releasableLp": 180.67243398919754,
           "lockedLp": 2237.0875,
           "releasedLp": 171.12683686342595,
-          "releasableDirectLp": 180.1468219955633
+          "releasableDirectLp": 180.67243398919754
         },
         {
           "wallet": "0xed1cba842caafc7a11da8babb97b20c716dbb585",
-          "releasableLp": 16.12655776234568,
+          "releasableLp": 16.727308537808643,
           "lockedLp": 2556.89,
           "releasedLp": 344.1976413425926,
-          "releasableDirectLp": 16.12655776234568
+          "releasableDirectLp": 16.727308537808643
         },
         {
           "wallet": "0x942dc27fd3a737076ffdbf56742c410362e17615",
-          "releasableLp": 227.1093887662037,
+          "releasableLp": 227.56940878136575,
           "lockedLp": 1957.9177,
           "releasedLp": 31.362940935185186,
-          "releasableDirectLp": 227.1093887662037
+          "releasableDirectLp": 227.56940878136575
         },
         {
           "wallet": "0xd269b5b23428474cf5b3078ef7b5ca0f0ebd57d7",
-          "releasableLp": 148.47684378896602,
+          "releasableLp": 148.91025412241513,
           "lockedLp": 1844.6627,
           "releasedLp": 94.55248520806327,
-          "releasableDirectLp": 148.47684378896602
+          "releasableDirectLp": 148.91025412241513
         },
         {
           "wallet": "0xc1151de550b7ebe53605b1e7c2f0ef65e9325024",
-          "releasableLp": 124.52381683229167,
+          "releasableLp": 124.78356400208334,
           "lockedLp": 1105.5249,
           "releasedLp": 20.839485576388892,
-          "releasableDirectLp": 124.52381683229167
+          "releasableDirectLp": 124.78356400208334
         },
         {
           "wallet": "0x720290394685e78e8b422cd03245b7275516f104",
-          "releasableLp": 70.40029653935186,
+          "releasableLp": 71.00104731481481,
           "lockedLp": 2556.89,
           "releasedLp": 245.17142238425927,
-          "releasableDirectLp": 70.40029653935186
+          "releasableDirectLp": 71.00104731481481
         },
         {
           "wallet": "0x0732d8b8bd33f8272dcd9df4ddf0d313c47cb6c0",
-          "releasableLp": 9.321665973508232,
+          "releasableLp": 9.521916231995885,
           "lockedLp": 2556.89,
           "releasedLp": 0,
-          "releasableDirectLp": 9.321665973508232
+          "releasableDirectLp": 9.521916231995885
         }
       ],
       "transferScan": {
         "status": "complete_observed_unstake_window",
         "floorBlock": 100864001,
         "fromBlock": 100864001,
-        "throughBlock": 126053160,
+        "throughBlock": 126054511,
         "backfillCoverage": 1,
         "transfers": [
           {
@@ -11282,7 +11282,7 @@
       }
     },
     "flowAudit": {
-      "updatedAt": "2026-10-06T11:23:33.422Z",
+      "updatedAt": "2026-10-06T11:36:34.361Z",
       "methodologyVersion": 1,
       "auditedTransactions": 138,
       "expectedTransactions": 138,
@@ -17490,197 +17490,197 @@
     "current": {
       "stakedLp": 5500.488802934464,
       "rewardMeta": 249.9197366756351,
-      "sentisUsd": 0.14456561041023736,
-      "metaUsd": 0.08602373468820242,
-      "pairSupply": 47194971.87376815,
-      "poolLiquidityUsd": 11053055.245479524
+      "sentisUsd": 0.14427952119786763,
+      "metaUsd": 0.08585351752681021,
+      "pairSupply": 47194899.57990646,
+      "poolLiquidityUsd": 11053071.738741402
     },
     "exitOptions": [
       {
         "releaseDays": 30,
         "feeRate": 0.3,
-        "chainQuotedFeeSentis": 2915.286729949217,
-        "feeUsd": 421.4502056359733,
+        "chainQuotedFeeSentis": 2915.2866642607223,
+        "feeUsd": 420.6161640740657,
         "lockedLp": 5500.488802934464,
-        "currentLpValueUsd": 1288.2136423047302,
-        "currentLpUnitValueUsd": 0.2341998481330385,
-        "currentEquivalentAfterFeeUsd": 866.7634366687569,
-        "pnlUsdVsReference": -2122.116431911243,
-        "pnlPctVsReference": -0.7100039229477124,
-        "breakEvenLpValueUsd": 3410.330074215973,
-        "breakEvenLpUnitValueUsd": 0.620004911635597
+        "currentLpValueUsd": 1288.2175378727427,
+        "currentLpUnitValueUsd": 0.2342005563551897,
+        "currentEquivalentAfterFeeUsd": 867.6013737986771,
+        "pnlUsdVsReference": -2121.2784947813225,
+        "pnlPctVsReference": -0.7097235713890135,
+        "breakEvenLpValueUsd": 3409.4960326540654,
+        "breakEvenLpUnitValueUsd": 0.6198532811911422
       },
       {
         "releaseDays": 60,
         "feeRate": 0.2,
-        "chainQuotedFeeSentis": 1943.5244866328114,
-        "feeUsd": 280.9668037573156,
+        "chainQuotedFeeSentis": 1943.5244428404815,
+        "feeUsd": 280.41077604937715,
         "lockedLp": 5500.488802934464,
-        "currentLpValueUsd": 1288.2136423047302,
-        "currentLpUnitValueUsd": 0.2341998481330385,
-        "currentEquivalentAfterFeeUsd": 1007.2468385474147,
-        "pnlUsdVsReference": -1981.633030032585,
-        "pnlPctVsReference": -0.6630018994286471,
-        "breakEvenLpValueUsd": 3269.8466723373153,
-        "breakEvenLpUnitValueUsd": 0.5944647447682977
+        "currentLpValueUsd": 1288.2175378727427,
+        "currentLpUnitValueUsd": 0.2342005563551897,
+        "currentEquivalentAfterFeeUsd": 1007.8067618233656,
+        "pnlUsdVsReference": -1981.0731067566342,
+        "pnlPctVsReference": -0.6628145639382392,
+        "breakEvenLpValueUsd": 3269.290644629377,
+        "breakEvenLpUnitValueUsd": 0.5943636578053278
       },
       {
         "releaseDays": 90,
         "feeRate": 0.1,
-        "chainQuotedFeeSentis": 971.7622433164057,
-        "feeUsd": 140.4834018786578,
+        "chainQuotedFeeSentis": 971.7622214202407,
+        "feeUsd": 140.20538802468857,
         "lockedLp": 5500.488802934464,
-        "currentLpValueUsd": 1288.2136423047302,
-        "currentLpUnitValueUsd": 0.2341998481330385,
-        "currentEquivalentAfterFeeUsd": 1147.7302404260724,
-        "pnlUsdVsReference": -1841.1496281539273,
-        "pnlPctVsReference": -0.6159998759095819,
-        "breakEvenLpValueUsd": 3129.3632704586576,
-        "breakEvenLpUnitValueUsd": 0.5689245779009984
+        "currentLpValueUsd": 1288.2175378727427,
+        "currentLpUnitValueUsd": 0.2342005563551897,
+        "currentEquivalentAfterFeeUsd": 1148.0121498480542,
+        "pnlUsdVsReference": -1840.8677187319456,
+        "pnlPctVsReference": -0.6159055564874649,
+        "breakEvenLpValueUsd": 3129.0852566046883,
+        "breakEvenLpUnitValueUsd": 0.5688740344195135
       }
     ],
     "exitScenarios": [
       {
         "lpValueChange": -0.5,
-        "projectedLpValueUsd": 644.1068211523651,
+        "projectedLpValueUsd": 644.1087689363713,
         "options": [
           {
             "releaseDays": 30,
-            "netUsd": 222.6566155163918,
-            "pnlUsd": -2766.223253063608,
-            "pnlPct": -0.925504996752454
+            "netUsd": 223.49260486230565,
+            "pnlUsd": -2765.387263717694,
+            "pnlPct": -0.9252252968706682
           },
           {
             "releaseDays": 60,
-            "netUsd": 363.14001739504954,
-            "pnlUsd": -2625.73985118495,
-            "pnlPct": -0.8785029732333888
+            "netUsd": 363.6979928869942,
+            "pnlUsd": -2625.1818756930056,
+            "pnlPct": -0.8783162894198939
           },
           {
             "releaseDays": 90,
-            "netUsd": 503.6234192737073,
-            "pnlUsd": -2485.2564493062923,
-            "pnlPct": -0.8315009497143235
+            "netUsd": 503.9033809116828,
+            "pnlUsd": -2484.976487668317,
+            "pnlPct": -0.8314072819691196
           }
         ]
       },
       {
         "lpValueChange": -0.30000000000000004,
-        "projectedLpValueUsd": 901.749549613311,
+        "projectedLpValueUsd": 901.7522765109198,
         "options": [
           {
             "releaseDays": 30,
-            "netUsd": 480.29934397733774,
-            "pnlUsd": -2508.580524602662,
-            "pnlPct": -0.8393045672305575
+            "netUsd": 481.13611243685415,
+            "pnlUsd": -2507.7437561431457,
+            "pnlPct": -0.8390246066780064
           },
           {
             "releaseDays": 60,
-            "netUsd": 620.7827458559955,
-            "pnlUsd": -2368.0971227240043,
-            "pnlPct": -0.7923025437114922
+            "netUsd": 621.3415004615426,
+            "pnlUsd": -2367.538368118457,
+            "pnlPct": -0.7921155992272321
           },
           {
             "releaseDays": 90,
-            "netUsd": 761.2661477346533,
-            "pnlUsd": -2227.6137208453465,
-            "pnlPct": -0.745300520192427
+            "netUsd": 761.5468884862313,
+            "pnlUsd": -2227.3329800937686,
+            "pnlPct": -0.7452065917764576
           }
         ]
       },
       {
         "lpValueChange": -0.15000000000000002,
-        "projectedLpValueUsd": 1094.9815959590208,
+        "projectedLpValueUsd": 1094.9849071918313,
         "options": [
           {
             "releaseDays": 30,
-            "netUsd": 673.5313903230474,
-            "pnlUsd": -2315.348478256952,
-            "pnlPct": -0.7746542450891349
+            "netUsd": 674.3687431177657,
+            "pnlUsd": -2314.5111254622343,
+            "pnlPct": -0.7743740890335099
           },
           {
             "releaseDays": 60,
-            "netUsd": 814.0147922017052,
-            "pnlUsd": -2174.8650763782944,
-            "pnlPct": -0.7276522215700696
+            "netUsd": 814.5741311424542,
+            "pnlUsd": -2174.3057374375458,
+            "pnlPct": -0.7274650815827356
           },
           {
             "releaseDays": 90,
-            "netUsd": 954.498194080363,
-            "pnlUsd": -2034.3816744996368,
-            "pnlPct": -0.6806501980510045
+            "netUsd": 954.7795191671428,
+            "pnlUsd": -2034.100349412857,
+            "pnlPct": -0.6805560741319613
           }
         ]
       },
       {
         "lpValueChange": 0,
-        "projectedLpValueUsd": 1288.2136423047302,
+        "projectedLpValueUsd": 1288.2175378727427,
         "options": [
           {
             "releaseDays": 30,
-            "netUsd": 866.7634366687569,
-            "pnlUsd": -2122.116431911243,
-            "pnlPct": -0.7100039229477124
+            "netUsd": 867.6013737986771,
+            "pnlUsd": -2121.2784947813225,
+            "pnlPct": -0.7097235713890135
           },
           {
             "releaseDays": 60,
-            "netUsd": 1007.2468385474147,
-            "pnlUsd": -1981.633030032585,
-            "pnlPct": -0.6630018994286471
+            "netUsd": 1007.8067618233656,
+            "pnlUsd": -1981.0731067566342,
+            "pnlPct": -0.6628145639382392
           },
           {
             "releaseDays": 90,
-            "netUsd": 1147.7302404260724,
-            "pnlUsd": -1841.1496281539273,
-            "pnlPct": -0.6159998759095819
+            "netUsd": 1148.0121498480542,
+            "pnlUsd": -1840.8677187319456,
+            "pnlPct": -0.6159055564874649
           }
         ]
       },
       {
         "lpValueChange": 0.1499999999999999,
-        "projectedLpValueUsd": 1481.4456886504397,
+        "projectedLpValueUsd": 1481.450168553654,
         "options": [
           {
             "releaseDays": 30,
-            "netUsd": 1059.9954830144663,
-            "pnlUsd": -1928.8843855655334,
-            "pnlPct": -0.6453536008062899
+            "netUsd": 1060.8340044795884,
+            "pnlUsd": -1928.0458641004113,
+            "pnlPct": -0.6450730537445171
           },
           {
             "releaseDays": 60,
-            "netUsd": 1200.4788848931241,
-            "pnlUsd": -1788.4009836868756,
-            "pnlPct": -0.5983515772872247
+            "netUsd": 1201.039392504277,
+            "pnlUsd": -1787.8404760757228,
+            "pnlPct": -0.5981640462937428
           },
           {
             "releaseDays": 90,
-            "netUsd": 1340.962286771782,
-            "pnlUsd": -1647.9175818082178,
-            "pnlPct": -0.5513495537681594
+            "netUsd": 1341.2447805289655,
+            "pnlUsd": -1647.6350880510342,
+            "pnlPct": -0.5512550388429684
           }
         ]
       },
       {
         "lpValueChange": 0.30000000000000004,
-        "projectedLpValueUsd": 1674.6777349961494,
+        "projectedLpValueUsd": 1674.6827992345657,
         "options": [
           {
             "releaseDays": 30,
-            "netUsd": 1253.227529360176,
-            "pnlUsd": -1735.6523392198237,
-            "pnlPct": -0.5807032786648674
+            "netUsd": 1254.0666351605,
+            "pnlUsd": -1734.8132334194997,
+            "pnlPct": -0.5804225361000206
           },
           {
             "releaseDays": 60,
-            "netUsd": 1393.7109312388338,
-            "pnlUsd": -1595.168937341166,
-            "pnlPct": -0.5337012551458021
+            "netUsd": 1394.2720231851886,
+            "pnlUsd": -1594.6078453948112,
+            "pnlPct": -0.5335135286492463
           },
           {
             "releaseDays": 90,
-            "netUsd": 1534.1943331174916,
-            "pnlUsd": -1454.6855354625081,
-            "pnlPct": -0.4866992316267369
+            "netUsd": 1534.4774112098771,
+            "pnlUsd": -1454.4024573701226,
+            "pnlPct": -0.486604521198472
           }
         ]
       }
@@ -17689,10 +17689,10 @@
       "recommendedDays": 60,
       "mode": "balanced_exit",
       "tradeoffs": {
-        "extra60Vs90FeeUsd": 140.4834018786578,
-        "extra60Vs90PctOfCurrentLp": 0.10905287544333123,
-        "extra30Vs60FeeUsd": 140.48340187865773,
-        "extra30Vs60PctOfCurrentLp": 0.10905287544333118
+        "extra60Vs90FeeUsd": 140.20538802468857,
+        "extra60Vs90PctOfCurrentLp": 0.10883673285197802,
+        "extra30Vs60FeeUsd": 140.20538802468855,
+        "extra30Vs60PctOfCurrentLp": 0.108836732851978
       },
       "summary": "橙色阶段以60天作为风险与手续费的折中；90天只适合愿意多承担30天合约和池子风险、换取较低手续费的人。"
     },
@@ -17701,19 +17701,19 @@
   "assessment": {
     "level": "orange",
     "action": "停止追加，准备退出方案；任一核心指标进入红色就优先执行退出。",
-    "rewardCoverage": 1.896953802016615,
+    "rewardCoverage": 1.8969542902333678,
     "signals": [
       {
         "id": "custody_coverage",
         "level": "green",
-        "value": 3.7601968726336588,
+        "value": 3.767664376248957,
         "threshold": "orange < 90%; red < 75%",
         "explanation": "FDAO持有的LP按池子流动性折算后，对合约显示TVL的覆盖程度。"
       },
       {
         "id": "seven_day_inflow_momentum",
         "level": "green",
-        "value": 1.1982254202910123,
+        "value": 1.1982254202910125,
         "threshold": "orange < 90%; red < 70%",
         "explanation": "最近7个完整日的日均新增，对比之前7个完整日。"
       },
@@ -17727,14 +17727,14 @@
       {
         "id": "high_reward_coverage",
         "level": "green",
-        "value": 1.896953802016615,
+        "value": 1.8969542902333678,
         "threshold": "orange < 1.0x; red < 0.75x",
         "explanation": "最近7日日均新增资金，覆盖1.2%高档理论日奖励的倍数。"
       },
       {
         "id": "real_exit_ratio",
         "level": "green",
-        "value": 0.009072586806825114,
+        "value": 0.00907258467625218,
         "threshold": "orange > 10%; red > 25%",
         "explanation": "链上累计发起解押价值，占累计质押价值的比例。"
       },
